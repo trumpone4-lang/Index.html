@@ -709,6 +709,15 @@
             <div class="articles-section" id="leaseArticles"><h3>Lease vs Buy: Expert Guide</h3><div class="article-content"><h4>Should You Lease or Buy Your Next Vehicle?</h4><p>The lease vs buy decision depends on your driving habits, financial goals, and how long you plan to keep the vehicle. Buying builds equity and eliminates payments after the loan term, while leasing offers lower monthly payments and the ability to drive a new car every 2-3 years.</p><h5>When Leasing Makes Sense</h5><ul><li>You drive less than 12,000-15,000 miles per year</li><li>You prefer lower monthly payments and driving a new car every few years</li><li>You don't want to deal with major repairs or selling a used car</li><li>You can take advantage of business lease deductions</li></ul><h5>When Buying is Better</h5><ul><li>You drive high mileage (over 15,000 miles/year)</li><li>You plan to keep the car for 5+ years after paying it off</li><li>You want to build equity and eventually have no car payment</li><li>You customize or modify your vehicles</li></ul><div class="article-highlight"><strong>Key Insight:</strong> Over a 6-year period, buying and keeping a vehicle is typically $5,000-$10,000 cheaper than two consecutive 3-year leases. However, leasing can be advantageous if you would otherwise trade in every 3 years anyway.</div><h5>Understanding the Numbers</h5><p>The calculator above compares total cost of ownership. For buying, this includes down payment, all loan payments, and estimated depreciation (the value you lose). For leasing, it includes down payment, all lease payments, and estimated excess mileage fees.</p><h5>The Mileage Factor</h5><p>Excess mileage fees typically range from $0.15 to $0.30 per mile. If you drive 15,000 miles/year on a 12,000-mile lease, you'll pay $750-$1,500 in overage fees annually — often wiping out any monthly payment savings.</p><h5>Residual Value Considerations</h5><p>When you buy, the vehicle retains residual value that you can recoup by selling. When you lease, you pay for depreciation plus interest (money factor). The calculator accounts for depreciation in the buy scenario, showing the true cost of ownership beyond just loan payments.</p><h5>End-of-Term Flexibility</h5><p>At lease end, you can walk away, buy the car at residual value, or lease a new model. With a purchase, you own the car outright and can drive payment-free for years — this is where buying often pulls ahead financially.</p></div></div>
         </div>
 
+        <!-- Historical vs Today Rate Chart Card -->
+        <div class="calc-card" id="rateComparisonCard">
+            <h3 style="margin-bottom: 20px; font-size: 1.3rem; font-weight: 700;">📈 30-Year Mortgage Rate: Today vs. Historical (1990-2025)</h3>
+            <div class="chart-container" style="margin-top: 0;"><canvas id="historicalRateChart" width="400" height="240" style="max-height: 320px;"></canvas></div>
+            <div class="insight-box" id="rateInsightBox">
+                <strong>Rate Trend Insight</strong><br>Current 30-year fixed mortgage rates are near multi-decade highs compared to the historic lows of 2020-2021. Understanding historical context helps with refinancing and home buying decisions.
+            </div>
+        </div>
+
         <!-- 50/30/20 Rule Educational Article Section -->
         <div class="articles-section" id="budgetRuleArticle">
             <h3>📊 The 50/30/20 Budget Rule: A Complete Guide</h3>
@@ -1129,6 +1138,44 @@
         if (charts.lease) charts.lease.update();
     }
 
+    // Historical Rate Chart (Today vs. Historical)
+    function initializeHistoricalRateChart() {
+        const ctx = document.getElementById('historicalRateChart').getContext('2d');
+        // Historical yearly average 30-year mortgage rates (1990-2024) + current 2025 estimate
+        const years = ['1990', '1995', '2000', '2005', '2010', '2015', '2020', '2022', '2024', '2025 (Today)'];
+        const historicalRates = [10.13, 7.93, 8.05, 5.87, 4.69, 3.85, 3.11, 5.34, 6.79, 6.85]; // Today approx 6.85%
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: years,
+                datasets: [{
+                    label: '30-Year Fixed Mortgage Rate (%)',
+                    data: historicalRates,
+                    borderColor: '#0052a5',
+                    backgroundColor: 'rgba(0,82,165,0.05)',
+                    borderWidth: 3,
+                    pointRadius: 5,
+                    pointBackgroundColor: '#c89d3c',
+                    pointBorderColor: '#fff',
+                    tension: 0.2,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    tooltip: { callbacks: { label: (ctx) => `${ctx.raw}%` } },
+                    legend: { position: 'top' }
+                },
+                scales: {
+                    y: { title: { display: true, text: 'Interest Rate (%)' }, grid: { color: '#e2e8f0' } },
+                    x: { title: { display: true, text: 'Year' }, ticks: { autoSkip: true } }
+                }
+            }
+        });
+    }
+
     // Universal navigation handler
     function handleNavigation(action, targetOrTab) {
         if (action === 'switchTab') {
@@ -1202,6 +1249,9 @@
                 handleNavigation('switchTab', tabId);
             });
         });
+        
+        // Initialize the new historical rate chart
+        initializeHistoricalRateChart();
     }
 
     window.addEventListener('DOMContentLoaded', bindEventsAndInit);
