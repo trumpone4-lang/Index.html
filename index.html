@@ -7,8 +7,12 @@
     <meta name="description" content="Professional mortgage amortization, credit card payoff, investment growth, tax estimator, inflation impact, FIRE retirement, college savings, and lease vs buy comparison calculators. Expert financial articles and guides for smarter money decisions.">
     <meta name="keywords" content="mortgage calculator, credit card payoff, investment calculator, tax estimator, inflation calculator, FIRE calculator, college savings planner, 529 plan, lease vs buy, car lease calculator, compound interest, financial articles, 50/30/20 rule, budgeting, top mortgage lenders">
     
-    <!-- Google AdSense Verification Meta Tag - Replace 'YOUR_PUBLISHER_ID' with actual ID -->
+    <!-- Google AdSense Verification Meta Tag - Replaced with actual publisher ID -->
     <meta name="google-adsense-account" content="ca-pub-5050545176887516">
+    
+    <!-- Google AdSense Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5050545176887516"
+     crossorigin="anonymous"></script>
     
     <!-- robots.txt compatible meta directives (allow indexing but follow rules) -->
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -126,6 +130,7 @@
             font-weight: 500;
             border-bottom: 1px solid var(--border-light);
             transition: background 0.15s;
+            cursor: pointer;
         }
 
         .dropdown-menu a:last-child {
@@ -543,6 +548,11 @@
             font-size: 0.85rem;
             margin-top: 20px;
         }
+        /* Scroll padding for fixed header */
+        html {
+            scroll-padding-top: 80px;
+            scroll-behavior: smooth;
+        }
     </style>
 </head>
 <body>
@@ -556,20 +566,21 @@
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </button>
             <div class="dropdown-menu" id="dropdownMenu">
-                <a href="#" data-section="mortgage-tab">Mortgage Calculator</a>
-                <a href="#" data-section="credit-tab">Credit Card Payoff</a>
-                <a href="#" data-section="investment-tab">Investment Calculator</a>
-                <a href="#" data-section="tax-tab">Tax Estimator</a>
-                <a href="#" data-section="inflation-tab">Inflation Impact</a>
-                <a href="#" data-section="fire-tab">FIRE Retirement</a>
-                <a href="#" data-section="college-tab">College Savings</a>
-                <a href="#" data-section="lease-tab">Lease vs Buy Calculator</a>
-                <a href="#" data-section="howto-section">How to Use Guides</a>
-                <a href="#" data-section="about-section">About Us</a>
-                <a href="#" data-section="contact-section">Contact Details</a>
-                <a href="#" data-section="terms-section">Terms of Use</a>
-                <a href="#" data-section="privacy-side">Privacy Guarantee</a>
-                <a href="#" data-section="lenders-section">🏆 Top 10 Mortgage Lenders</a>
+                <a href="#" data-action="switchTab" data-tab="mortgage">Mortgage Calculator</a>
+                <a href="#" data-action="switchTab" data-tab="credit">Credit Card Payoff</a>
+                <a href="#" data-action="switchTab" data-tab="investment">Investment Calculator</a>
+                <a href="#" data-action="switchTab" data-tab="tax">Tax Estimator</a>
+                <a href="#" data-action="switchTab" data-tab="inflation">Inflation Impact</a>
+                <a href="#" data-action="switchTab" data-tab="fire">FIRE Retirement</a>
+                <a href="#" data-action="switchTab" data-tab="college">College Savings</a>
+                <a href="#" data-action="switchTab" data-tab="lease">Lease vs Buy Calculator</a>
+                <a href="#" data-action="scrollTo" data-target="howto-section">How to Use Guides</a>
+                <a href="#" data-action="scrollTo" data-target="about-section">About Us</a>
+                <a href="#" data-action="scrollTo" data-target="contact-section">Contact Details</a>
+                <a href="#" data-action="scrollTo" data-target="terms-section">Terms of Use</a>
+                <a href="#" data-action="scrollTo" data-target="privacy-side">Privacy Guarantee</a>
+                <a href="#" data-action="scrollTo" data-target="lenders-section">🏆 Top 10 Mortgage Lenders</a>
+                <a href="#" data-action="scrollTo" data-target="budgetRuleArticle">📊 50/30/20 Rule</a>
             </div>
         </div>
     </div>
@@ -696,7 +707,7 @@
 
                 <h4>Breaking Down the Three Categories</h4>
                 
-                <h5>? Needs (50%) — Essential Expenses</h5>
+                <h5>🏠 Needs (50%) — Essential Expenses</h5>
                 <p>These are expenses you absolutely must pay to live and work. If you didn't pay these, your basic survival or ability to earn income would be threatened. Examples include:</p>
                 <ul>
                     <li><strong>Housing:</strong> Rent or mortgage payments, property taxes, home insurance</li>
@@ -709,7 +720,7 @@
                 </ul>
                 <p><em>Note: If your essential needs exceed 50% of your income, you may need to consider cost-cutting measures like downsizing housing, refinancing debt, or increasing your income.</em></p>
 
-                <h5>? Wants (30%) — Discretionary Spending</h5>
+                <h5>🎉 Wants (30%) — Discretionary Spending</h5>
                 <p>These are the "fun" expenses that improve your quality of life but aren't strictly necessary. This category gives you flexibility and enjoyment without guilt — as long as you stay within the 30% limit. Examples include:</p>
                 <ul>
                     <li><strong>Dining Out:</strong> Restaurants, coffee shops, takeout, bars</li>
@@ -722,7 +733,7 @@
                 </ul>
                 <p><em>The wants category is where most budgeting fails — small daily purchases like a $5 coffee add up to $150/month. Tracking these expenses can reveal surprising opportunities to save.</em></p>
 
-                <h5>? Savings & Debt (20%) — Building Your Future</h5>
+                <h5>💰 Savings & Debt (20%) — Building Your Future</h5>
                 <p>This category is your financial foundation. It includes money that works for your future self — building wealth, creating emergency buffers, and eliminating high-interest debt faster than minimum payments. Examples include:</p>
                 <ul>
                     <li><strong>Emergency Fund:</strong> Building 3-6 months of living expenses</li>
@@ -783,7 +794,7 @@
 
         <!-- Top 10 Mortgage Lenders -->
         <div class="articles-section" id="lenders-section">
-            <h3>? Top 10 Mortgage Lenders (2025) – Compare & Choose</h3>
+            <h3>🏆 Top 10 Mortgage Lenders (2025) – Compare & Choose</h3>
             <div class="article-content">
                 <p>Selecting the right mortgage lender can save you thousands of dollars over the life of your loan. Based on market share, customer satisfaction, interest rates, and loan options, here are the top 10 mortgage lenders in the United States for 2025.</p>
                 <table class="lenders-table">
@@ -828,14 +839,14 @@
             <div class="last-updated" id="ratesLastUpdated">Loading rates...</div>
         </div>
         <div class="info-card" id="about-section"><h4>About Financial Bank Rates</h4><p>We provide transparent, ad-supported financial tools and expert educational content. No invasive tracking, no lead generation.</p></div>
-        <div class="info-card" id="contact-section"><h4>Contact Details</h4><p>Email: support@financialbankrates.com<br>Phone: +1 (888) 427-2468<br>Hours: Mon-Fri 9am-6pm EST</p></div>
+        <div class="info-card" id="contact-section"><h4>Contact Details</h4><p>Email: <a href="mailto:supportentry1@gmail.com" style="color: var(--primary-blue); text-decoration: none; font-weight: 500;">supportentry1@gmail.com</a></p></div>
         <div class="info-card" id="terms-section"><h4>Terms of Use</h4><p>Informational purposes only. Not financial advice. Past performance does not guarantee future results.</p></div>
         <div class="info-card" id="privacy-side"><h4>Privacy First</h4><p>No cookies, no tracking, no data storage. Your financial data never leaves this device.</p></div>
     </aside>
 </main>
 
 <footer>
-    <div class="footer-grid"><div class="footer-links"><h5>Tools</h5><a data-section="mortgage-tab">Mortgage</a><a data-section="credit-tab">Credit Card</a><a data-section="investment-tab">Investment</a><a data-section="tax-tab">Tax Estimator</a><a data-section="inflation-tab">Inflation Impact</a><a data-section="fire-tab">FIRE Retirement</a><a data-section="college-tab">College Savings</a><a data-section="lease-tab">Lease vs Buy</a></div><div class="footer-links"><h5>Resources</h5><a data-section="mortgage-tab">Mortgage Articles</a><a data-section="credit-tab">Debt Management</a><a data-section="investment-tab">Investment Guides</a><a href="#" data-section="budget-rule">50/30/20 Budget Rule</a><a href="#" data-section="lenders-section">🏆 Top 10 Lenders</a></div><div class="footer-links"><h5>Legal</h5><a data-section="terms-section">Terms</a><a data-section="privacy-side">Privacy</a></div></div>
+    <div class="footer-grid"><div class="footer-links"><h5>Tools</h5><a data-action="switchTab" data-tab="mortgage">Mortgage</a><a data-action="switchTab" data-tab="credit">Credit Card</a><a data-action="switchTab" data-tab="investment">Investment</a><a data-action="switchTab" data-tab="tax">Tax Estimator</a><a data-action="switchTab" data-tab="inflation">Inflation Impact</a><a data-action="switchTab" data-tab="fire">FIRE Retirement</a><a data-action="switchTab" data-tab="college">College Savings</a><a data-action="switchTab" data-tab="lease">Lease vs Buy</a></div><div class="footer-links"><h5>Resources</h5><a data-action="scrollTo" data-target="mortgageArticles">Mortgage Articles</a><a data-action="scrollTo" data-target="creditArticles">Debt Management</a><a data-action="scrollTo" data-target="investmentArticles">Investment Guides</a><a data-action="scrollTo" data-target="budgetRuleArticle">50/30/20 Budget Rule</a><a data-action="scrollTo" data-target="lenders-section">🏆 Top 10 Lenders</a></div><div class="footer-links"><h5>Legal</h5><a data-action="scrollTo" data-target="terms-section">Terms</a><a data-action="scrollTo" data-target="privacy-side">Privacy</a></div></div>
     <div class="copyright">© 2026 Financial Bank Rates — Educational purposes only. Consult a financial advisor.</div>
 </footer>
 
@@ -884,6 +895,7 @@
     let charts = {};
     function formatUSD(value) { return '$' + Math.round(value).toLocaleString(); }
 
+    // Calculator functions (same as original - keep functionality)
     function calculateMortgage() { 
         let homePrice = parseFloat(document.getElementById('homePrice').value) || 0;
         let downPayment = parseFloat(document.getElementById('downPayment').value) || 0;
@@ -1102,7 +1114,39 @@
         if (charts.lease) charts.lease.update();
     }
 
+    // Universal navigation handler
+    function handleNavigation(action, targetOrTab) {
+        if (action === 'switchTab') {
+            // Switch calculator tab
+            const tabId = targetOrTab;
+            const panes = ['mortgagePane','creditPane','investmentPane','taxPane','inflationPane','firePane','collegePane','leasePane'];
+            panes.forEach(p => document.getElementById(p).classList.remove('active-pane'));
+            document.getElementById(tabId + 'Pane').classList.add('active-pane');
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                if(btn.getAttribute('data-tab') === tabId) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+            // Recalculate current calculator
+            if(tabId === 'mortgage') calculateMortgage();
+            if(tabId === 'credit') calculateCreditPayoff();
+            if(tabId === 'investment') calculateInvestment();
+            if(tabId === 'tax') calculateTax();
+            if(tabId === 'inflation') calculateInflation();
+            if(tabId === 'fire') calculateFIRE();
+            if(tabId === 'college') calculateCollege();
+            if(tabId === 'lease') calculateLeaseVsBuy();
+            // Smooth scroll to the calculator pane
+            document.getElementById(tabId + 'Pane').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else if (action === 'scrollTo') {
+            const targetElement = document.getElementById(targetOrTab);
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    }
+
     function bindEventsAndInit() {
+        // Input event listeners for calculators
         document.querySelectorAll('#homePrice, #downPayment, #interestRate, #loanTermSelect').forEach(el => el.addEventListener('input', () => calculateMortgage()));
         document.querySelectorAll('#cardBalance, #cardApr, #monthlyPaymentCredit').forEach(el => el.addEventListener('input', () => calculateCreditPayoff()));
         document.querySelectorAll('#initialInvestment, #monthlyContribution, #annualReturn, #investmentYears').forEach(el => el.addEventListener('input', () => calculateInvestment()));
@@ -1111,17 +1155,41 @@
         document.querySelectorAll('#currentAge, #currentSavings, #annualFireContribution, #annualSpending, #fireReturn, #withdrawalRate').forEach(el => el.addEventListener('input', () => calculateFIRE()));
         document.querySelectorAll('#childAge, #yearsToCollege, #currentCollegeSavings, #monthlyCollegeContribution, #collegeReturn, #currentCollegeCost, #tuitionInflation').forEach(el => el.addEventListener('input', () => calculateCollege()));
         document.querySelectorAll('#vehiclePrice, #buyDownPayment, #loanRate, #loanTermMonths, #leasePayment, #leaseDown, #leaseTerm, #mileageLimit, #excessMileageFee, #depreciationRate').forEach(el => el.addEventListener('input', () => calculateLeaseVsBuy()));
+        
+        // Initial calculations
         calculateMortgage(); calculateCreditPayoff(); calculateInvestment(); calculateTax(); calculateInflation(); calculateFIRE(); calculateCollege(); calculateLeaseVsBuy();
+        
+        // Menu and dropdown handling
+        const menuBtn = document.getElementById('menuButton');
+        const dropdown = document.getElementById('dropdownMenu');
+        if (menuBtn && dropdown) {
+            menuBtn.addEventListener('click', (e) => { e.stopPropagation(); dropdown.classList.toggle('show'); });
+            document.addEventListener('click', (e) => { if (!menuBtn.contains(e.target) && !dropdown.contains(e.target)) dropdown.classList.remove('show'); });
+        }
+        
+        // Attach navigation to all menu and footer links using data attributes
+        document.querySelectorAll('[data-action="switchTab"], [data-action="scrollTo"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const action = link.getAttribute('data-action');
+                const target = link.getAttribute('data-tab') || link.getAttribute('data-target');
+                if (action && target) {
+                    handleNavigation(action, target);
+                    if (dropdown) dropdown.classList.remove('show');
+                }
+            });
+        });
+        
+        // Tab buttons click handler
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.getAttribute('data-tab');
+                handleNavigation('switchTab', tabId);
+            });
+        });
     }
 
-    window.addEventListener('DOMContentLoaded', () => { bindEventsAndInit(); 
-        const menuBtn = document.getElementById('menuButton'); const dropdown = document.getElementById('dropdownMenu');
-        menuBtn.addEventListener('click', (e) => { e.stopPropagation(); dropdown.classList.toggle('show'); });
-        document.addEventListener('click', (e) => { if (!menuBtn.contains(e.target) && !dropdown.contains(e.target)) dropdown.classList.remove('show'); });
-        document.querySelectorAll('.dropdown-menu a, .footer-links a').forEach(link => { link.addEventListener('click', (e) => { const sectionId = link.getAttribute('data-section'); if(sectionId === 'mortgage-tab') switchTab('mortgage'); else if(sectionId === 'credit-tab') switchTab('credit'); else if(sectionId === 'investment-tab') switchTab('investment'); else if(sectionId === 'tax-tab') switchTab('tax'); else if(sectionId === 'inflation-tab') switchTab('inflation'); else if(sectionId === 'fire-tab') switchTab('fire'); else if(sectionId === 'college-tab') switchTab('college'); else if(sectionId === 'lease-tab') switchTab('lease'); else if(sectionId === 'howto-section') document.getElementById('howto-section')?.scrollIntoView({ behavior: 'smooth' }); else if(sectionId === 'about-section') document.getElementById('about-section')?.scrollIntoView({ behavior: 'smooth' }); else if(sectionId === 'contact-section') document.getElementById('contact-section')?.scrollIntoView({ behavior: 'smooth' }); else if(sectionId === 'terms-section') document.getElementById('terms-section')?.scrollIntoView({ behavior: 'smooth' }); else if(sectionId === 'privacy-side') document.getElementById('privacy-side')?.scrollIntoView({ behavior: 'smooth' }); else if(sectionId === 'budget-rule') document.getElementById('budgetRuleArticle')?.scrollIntoView({ behavior: 'smooth' }); else if(sectionId === 'lenders-section') document.getElementById('lenders-section')?.scrollIntoView({ behavior: 'smooth' }); dropdown?.classList.remove('show'); }); });
-        window.switchTab = function(tabId) { const panes = ['mortgagePane','creditPane','investmentPane','taxPane','inflationPane','firePane','collegePane','leasePane']; panes.forEach(p => document.getElementById(p).classList.remove('active-pane')); document.getElementById(tabId+'Pane').classList.add('active-pane'); document.querySelectorAll('.tab-btn').forEach(btn => { if(btn.getAttribute('data-tab')===tabId) btn.classList.add('active'); else btn.classList.remove('active'); }); if(tabId==='mortgage') calculateMortgage(); if(tabId==='credit') calculateCreditPayoff(); if(tabId==='investment') calculateInvestment(); if(tabId==='tax') calculateTax(); if(tabId==='inflation') calculateInflation(); if(tabId==='fire') calculateFIRE(); if(tabId==='college') calculateCollege(); if(tabId==='lease') calculateLeaseVsBuy(); };
-        document.querySelectorAll('.tab-btn').forEach(btn => btn.addEventListener('click', () => window.switchTab(btn.getAttribute('data-tab'))));
-    });
+    window.addEventListener('DOMContentLoaded', bindEventsAndInit);
 </script>
 </body>
-    </html>
+            </html>
