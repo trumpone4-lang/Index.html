@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+    
+    <!-- ============================================ -->
+    <!-- MAIN HOMEPAGE (Highest Priority)            -->
+    <!-- ============================================ -->
+    <url>
+        <loc>https://financialbankrates.indevs.in/</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- ============================================ -->
+    <!-- CALCULATOR PAGES (9 Core Calculators)        -->
+    <!-- ============================================ -->
+    
+    <!-- 1. Mortgage Calculator -->
+    <url>
+        <loc>https://financialbankrates.indevs.in/?tab=mortgage</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://financialbankrates.indevs.in/mortgage-calculator-preview.png</image:loc>
+            <image:title>Mortgage Calculator - Compare Home Loan Payments</image:title>
+        </image:image>
+    </url>
+
+    <!-- 2. Credit Card Payoff Calculator -->
+    <url>
+        <loc>https://financialbankrates.indevs.in/?tab=credit</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.85</priority>
+        <image:image>
+            <image:loc>https://financialbankrates.indevs.in/credit-card-calculator-preview.png</image:loc>
+            <image:title>Credit Card Payoff Calculator - Debt Reduction Tool</image:title>
+        </image:image>
+    </url>
+
+    <!-- 3. Investment Calculator -->
+    <url>
+        <loc>https://financialbankrates.indevs.in/?tab=investment</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.85</priority>
+        <image:image>
+            <image:loc>https://financialbankrates.indevs.in/investment-calculator-preview.png</image:loc>
+            <image:title>Investment Calculator - Compound Interest Tool</image:title>
+        </image:image>
+    </url>
+
+    <!-- 4. Tax Estimator -->
+    <url>
+        <loc>https://financialbankrates.indevs.in/?tab=tax</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://financialbankrates.indevs.in/tax-calculator-preview.png</image:loc>
+            <image:title>Tax Estimator - Federal Income Tax Calculator</image:title>
+        </image:image>
+    </url>
+
+    <!-- 5. Inflation Calculator -->
+    <url>
+        <loc>https://financialbankrates.indevs.in/?tab=inflation</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+        <image:image>
+            <image:loc>https://financialbankrates.indevs.in/inflation-calculator-preview.png</image:loc>
+            <image:title>Inflation Calculator - Purchasing Power Tool</image:title>
+        </image:image>
+    </url>
+
+    <!-- 6. FIRE Retirement Calculator -->
+    <url>
+        <loc>https://financialbankrates.indevs.in/?tab=fire</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.85</priority>
+        <image:image>
+            <image:loc>https://financialbankrates.indevs.in/fire-calculator-preview.png</image:loc>
+            <image:title>FIRE Calculator - Financial Independence Tool</image:title>
+        </image:image>
+    </url>
+
+    <!-- 7. College Savings Calculator -->
+    <url>
+        <loc>https://financialbankrates.indevs.in/?tab=college</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+        <image:image>
+            <image:loc>https://financialbankrates.indevs.in/college-savings-calculator-preview.png</image:loc>
+            <image:title>College Savings Calculator - 529 Plan Tool</image:title>
+        </image:image>
+    </url>
+
+    <!-- 8. Lease vs Buy Calculator -->
+    <url>
+        <loc>https://financialbankrates.indevs.in/?tab=lease</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://financialbankrates.indevs.in/lease-vs-buy-calculator-preview.png</image:loc>
+            <image:title>Lease vs Buy Calculator - Car Financing Tool</image:title>
+        </image:image>
+    </url>
+
+    <!-- 9. Refinance Calculator -->
+    <url>
+        <loc>https://financialbankrates.indevs.in/?tab=refinance</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.85</priority>
+        <image:image>
+            <image:loc>https://financialbankrates.indevs.in/refinance-calculator-preview.png</image:loc>
+            <image:title>Refinance Calculator - Mortgage Refinance Tool</image:title>
+        </image:image>
+    </url>
+
+    <!-- ============================================ -->
+    <!-- CONTENT SECTIONS (Within Main Page)          -->
+    <!-- ============================================ -->
+
+    <!-- Mortgage Articles Section -->
+    <url>
+        <loc>https://financialbankrates.indevs.in/#mortgageArticles</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- Credit Card Articles Section -->
+    <url>
+        <loc>https://financialbankrates.indevs.in/#creditArticles</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- Investment Articles Section -->
+    <url>
+        <loc>https://financialbankrates.indevs.in/#investmentArticles</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- Tax Articles Section -->
+    <url>
+        <loc>https://financialbankrates.indevs.in/#taxArticles</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- Inflation Articles Section -->
+    <url>
+        <loc>https://financialbankrates.indevs.in/#inflationArticles</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- FIRE Articles Section -->
+    <url>
+        <loc>https://financialbankrates.indevs.in/#fireArticles</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- College Articles Section -->
+    <url>
+        <loc>https://financialbankrates.indevs.in/#collegeArticles</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- Lease Articles Section -->
+    <url>
+        <loc>https://financialbankrates.indevs.in/#leaseArticles</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- Refinance Articles Section -->
+    <url>
+        <loc>https://financialbankrates.indevs.in/#refinanceArticles</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- ============================================ -->
+    <!-- EDUCATIONAL GUIDES & BLOG SECTIONS           -->
+    <!-- ============================================ -->
+
+    <!-- Financial Blog Section (Comprehensive 10-Topic Guide) -->
+    <url>
+        <loc>https://financialbankrates.indevs.in/#financial-blog-section</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Problem-Solution Section -->
+    <url>
+        <loc>https://financialbankrates.indevs.in/#problem-solution-section</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.65</priority>
+    </url>
+
+    <!-- 50/30/20 Budget Rule Article -->
+    <url>
+        <loc>https://financialbankrates.indevs.in/#budgetRuleArticle</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.65</priority>
+    </url>
+
+    <!-- Top 10 Mortgage Lenders Section -->
+    <url>
+        <loc>https://financialbankrates.indevs.in/#lenders-section</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- FAQ Section -->
+    <url>
+        <loc>https://financialbankrates.indevs.in/#faq-section</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Historical Rate Chart Section -->
+    <url>
+        <loc>https://financialbankrates.indevs.in/#rateComparisonCard</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- How to Use Guides -->
+    <url>
+        <loc>https://financialbankrates.indevs.in/#howto-section</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.55</priority>
+    </url>
+
+    <!-- ============================================ -->
+    <!-- STATIC INFORMATION PAGES                     -->
+    <!-- ============================================ -->
+
+    <!-- About Section -->
+    <url>
+        <loc>https://financialbankrates.indevs.in/#about-section</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <!-- Contact Section -->
+    <url>
+        <loc>https://financialbankrates.indevs.in/#contact-section</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <!-- Terms of Use -->
+    <url>
+        <loc>https://financialbankrates.indevs.in/#terms-section</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.4</priority>
+    </url>
+
+    <!-- Privacy Guarantee -->
+    <url>
+        <loc>https://financialbankrates.indevs.in/#privacy-side</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.4</priority>
+    </url>
+
+    <!-- ============================================ -->
+    <!-- ALTERNATIVE CLEAN URL STRUCTURES             -->
+    <!-- (For better SEO, use these if you implement  -->
+    <!--  URL rewriting on your server)               -->
+    <!-- ============================================ -->
+    
+    <!-- 
+    <url>
+        <loc>https://financialbankrates.indevs.in/mortgage-calculator</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://financialbankrates.indevs.in/credit-card-payoff-calculator</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.85</priority>
+    </url>
+    <url>
+        <loc>https://financialbankrates.indevs.in/investment-calculator</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.85</priority>
+    </url>
+    <url>
+        <loc>https://financialbankrates.indevs.in/fire-calculator</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.85</priority>
+    </url>
+    <url>
+        <loc>https://financialbankrates.indevs.in/refinance-calculator</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.85</priority>
+    </url>
+    <url>
+        <loc>https://financialbankrates.indevs.in/lease-vs-buy-calculator</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://financialbankrates.indevs.in/tax-estimator</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://financialbankrates.indevs.in/inflation-calculator</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+    </url>
+    <url>
+        <loc>https://financialbankrates.indevs.in/college-savings-calculator</loc>
+        <lastmod>2026-04-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+    </url>
+    -->
+
+</urlset>
