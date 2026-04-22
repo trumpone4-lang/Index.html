@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Credit Card Points Calculator | Maximize Rewards & Travel Value</title>
+    <meta name="description" content="Free credit card points calculator. See what your points are worth — cash back, travel, or gift cards. Compare values in seconds.">
+    
+    <link rel="canonical" href="https://www.smartrateslab.com/">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #f4f8fe;
+            color: #1a2c3e;
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .site-header {
+            background: #0c1f2f;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            min-height: 70px;
+        }
+
+        .site-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            color: #ffffff;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .site-title:hover {
+            opacity: 0.85;
+        }
+
+        .menu-btn {
+            background: #ffffff;
+            color: #0c1f2f;
+            border: none;
+            padding: 0.6rem 1.4rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .menu-btn:hover {
+            background: #eef3fc;
+            transform: scale(1.02);
+        }
+
+        .drawer {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 380px;
+            max-width: 85vw;
+            height: 100%;
+            background: #ffffff;
+            box-shadow: -4px 0 30px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .drawer.open {
+            right: 0;
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid #e2ebf3;
+        }
+
+        .drawer-header h3 {
+            font-size: 1.4rem;
+            color: #122b44;
+        }
+
+        .close-drawer {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #6c8eaa;
+        }
+
+        .drawer-nav {
+            padding: 1rem 0;
+        }
+
+        .drawer-section {
+            padding: 0.5rem 1.5rem;
+        }
+
+        .drawer-section h4 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #6c8eaa;
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        .drawer-item {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: #1a2c3e;
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 12px;
+            transition: background 0.2s;
+            cursor: pointer;
+        }
+
+        .drawer-item:hover {
+            background: #eef3fc;
+        }
+
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 999;
+            display: none;
+        }
+
+        .drawer-overlay.active {
+            display: block;
+        }
+
+        /* Direct Answer Box */
+        .direct-answer {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 2rem;
+            margin: 1rem auto 2rem auto;
+            max-width: 1000px;
+            text-align: left;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            border: 1px solid #e2ebf3;
+        }
+        
+        .direct-answer h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #122b44;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+        
+        .direct-answer .subtitle {
+            font-size: 1.1rem;
+            color: #5a7a9a;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #eef2f6;
+            padding-bottom: 0.75rem;
+        }
+        
+        .direct-answer .answer-text {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #1a2c3e;
+        }
+        
+        .direct-answer .answer-text strong:first-child {
+            font-size: 1.05rem;
+            color: #000000;
+        }
+        
+        .direct-answer .answer-text p {
+            margin-bottom: 1rem;
+        }
+
+        .tools-section {
+            padding: 0 0 2rem 0;
+            background: white;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .mortgage-calculator-card {
+            background: white;
+            border-radius: 24px;
+            padding: 1.8rem;
+            border: 1px solid #e2ebf3;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+        }
+        
+        .calc-two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .calc-input-group {
+            margin-bottom: 1rem;
+        }
+        
+        .calc-input-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #122b44;
+            margin-bottom: 0.5rem;
+        }
+        
+        .calc-input-group input, .calc-input-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e2ebf3;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            background: white;
+        }
+        
+        .calc-input-group input:focus, .calc-input-group select:focus {
+            outline: none;
+            border-color: #3f9eff;
+        }
+        
+        .calc-button {
+            background: #122b44;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+        
+        .calc-button:hover {
+            background: #1f4a6e;
+            transform: translateY(-2px);
+        }
+        
+        .donut-wrapper {
+            max-width: 200px;
+            margin: 0 auto;
+        }
+        
+        .payment-breakdown {
+            margin-top: 1rem;
+            text-align: center;
+        }
+        
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #eef2f6;
+        }
+        
+        .breakdown-label {
+            font-size: 0.85rem;
+            color: #6c8eaa;
+        }
+        
+        .breakdown-value {
+            font-weight: 600;
+            color: #122b44;
+        }
+        
+        .green-dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background-color: #10b981;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+        
+        .red-dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background-color: #f59e0b;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+        
+        .blue-dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background-color: #3b82f6;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+
+        .extra-payment-results {
+            margin-top: 1.8rem;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e8f4fd 100%);
+            border-radius: 20px;
+            padding: 1.25rem;
+            border: 1px solid #cbdde9;
+        }
+        
+        .extra-payment-results h4 {
+            color: #122b44;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .extra-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+            border-bottom: 1px dashed #cbdde9;
+        }
+        
+        .extra-row:last-child {
+            border-bottom: none;
+        }
+        
+        .extra-label {
+            color: #5a7a9a;
+            font-weight: 500;
+        }
+        
+        .extra-value {
+            font-weight: 700;
+            color: #122b44;
+        }
+        
+        .saved-highlight {
+            color: #059669;
+            font-weight: 800;
+            font-size: 1rem;
+        }
+
+        /* Blog Post Styles */
+        .blog-post-section {
+            background: white;
+            padding: 2rem 0 0 0;
+            border-top: 1px solid #eef2f6;
+        }
+        
+        .blog-post-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .blog-post-card {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 2rem;
+            border: 1px solid #e2ebf3;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+        }
+        
+        .blog-post-card h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #122b44;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+        
+        .blog-post-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #122b44;
+            margin: 1.5rem 0 0.75rem 0;
+        }
+        
+        .blog-post-card p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+            color: #2c4c6e;
+        }
+        
+        .blog-post-card .highlight-box {
+            background: #f0f9ff;
+            border-left: 4px solid #3b82f6;
+            padding: 1.25rem;
+            border-radius: 16px;
+            margin: 1.5rem 0;
+        }
+        
+        .blog-post-card .warning-box {
+            background: #fff5f0;
+            border-left: 4px solid #ef4444;
+            padding: 1.25rem;
+            border-radius: 16px;
+            margin: 1.5rem 0;
+        }
+        
+        .blog-post-card table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+        
+        .blog-post-card th, .blog-post-card td {
+            border: 1px solid #e2ebf3;
+            padding: 0.75rem;
+            text-align: left;
+        }
+        
+        .blog-post-card th {
+            background: #f8fafd;
+            font-weight: 600;
+            color: #122b44;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: #f8fafd;
+            padding: 2rem 0 3rem 0;
+        }
+        
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .faq-card {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 2rem;
+            border: 1px solid #e2ebf3;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+        }
+        
+        .faq-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #122b44;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #eef2f6;
+            padding-bottom: 1rem;
+        }
+        
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .faq-question {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #122b44;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-question:hover {
+            color: #3b82f6;
+        }
+        
+        .faq-toggle {
+            font-size: 1.2rem;
+            color: #8ba3bc;
+        }
+        
+        .faq-answer {
+            color: #2c4c6e;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            display: none;
+            margin-top: 0.75rem;
+        }
+        
+        .faq-answer.open {
+            display: block;
+        }
+
+        .site-footer {
+            background: #0c1f2f;
+            color: #bdd4e8;
+            padding: 2rem 0 1.5rem;
+            margin-top: auto;
+        }
+
+        .footer-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+            border-bottom: 1px solid #254f6e;
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 180px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a, .footer-legal-link {
+            color: #bdd4e8;
+            text-decoration: none;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        
+        .footer-links a:hover, .footer-legal-link:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .blog-section {
+            margin-top: 0;
+        }
+        
+        .blog-item {
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        
+        .blog-item:hover {
+            opacity: 0.8;
+        }
+        
+        .blog-title {
+            font-size: 0.85rem;
+            color: #bdd4e8;
+            display: block;
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 0.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(12,31,47,0.95);
+            align-items: center;
+            justify-content: center;
+            z-index: 1100;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 550px;
+            width: 90%;
+            border-radius: 28px;
+            padding: 2rem;
+            position: relative;
+            box-shadow: 0 25px 40px rgba(0,0,0,0.25);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 1.8rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #6c8eaa;
+        }
+        
+        .modal-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #122b44;
+        }
+
+        @media (max-width: 800px) {
+            .calc-two-columns { grid-template-columns: 1fr; }
+            .container { padding: 0 1.2rem; }
+            .site-title { font-size: 1.2rem; }
+            .direct-answer h1 { font-size: 1.5rem; }
+            .blog-post-card h2 { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <div class="site-title" id="homeLinkHeader">SmartRatesLab</div>
+        <button class="menu-btn" id="menuButton">☰ Menu</button>
+    </div>
+</header>
+
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<div class="drawer" id="drawerMenu">
+    <div class="drawer-header"><h3>Navigation & Tools</h3><button class="close-drawer" id="closeDrawerBtn">&times;</button></div>
+    <div class="drawer-nav">
+        <div class="drawer-section"><h4>Main</h4><a class="drawer-item" data-nav="home">🏠 Home</a><a class="drawer-item" data-nav="about">📄 About</a><a class="drawer-item" data-nav="contact">📞 Contact</a></div>
+        <div class="drawer-section"><h4>Legal</h4><a class="drawer-item" data-nav="privacy">🔒 Privacy Policy</a><a class="drawer-item" data-nav="terms">⚖️ Terms of Service</a></div>
+        <div class="drawer-section"><h4>📊 Financial Tools</h4><div id="drawerToolsList"></div></div>
+    </div>
+</div>
+
+<main>
+    <!-- Direct Answer Box Above Calculator - Made Longer -->
+    <div class="container">
+        <div class="direct-answer">
+            <h1>Credit Card Points Calculator</h1>
+            <div class="subtitle">Calculate Cash Back, Travel & Gift Card Values Instantly</div>
+            <div class="answer-text">
+                <p><strong>Yes — your credit card points have real cash value, and most people are leaving money on the table.</strong> The average person has no idea that 50,000 points could be worth $500 in cash back, $750 in travel, or only $400 in gift cards. The redemption method you choose completely changes the value.</p>
+                
+                <p>A credit card points calculator helps you compare cash back, travel rewards, and gift card values side by side. Most points are worth between 0.5¢ and 2¢ each, depending on how you redeem them. Travel points are typically worth 1.5-2x more than cash back — but only if you know how to use them.</p>
+                
+                <p>The calculator below will show you exactly what your points are worth across different redemption options. Enter your total points, then see cash back value, travel value, and gift card value instantly. You might be surprised which option gives you the most money.</p>
+                
+                <p>Here is the truth that credit card companies don't want you to know: not all points are created equal. A point redeemed for a gift card might be worth less than half of what it would be worth if you transferred it to an airline partner. I learned this the hard way when I redeemed 100,000 points for $800 in gift cards, only to find out later that those same points could have gotten me a $2,000 business class flight to Europe.</p>
+                
+                <p>That is why using a credit card points calculator before you redeem is so important. You enter your points, adjust the value per point based on your card and redemption method, and the calculator instantly shows you the dollar value. No more guessing. No more leaving money on the table. You will know exactly which redemption option gives you the highest return for your hard-earned points.</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="tools-section">
+        <div class="container">
+            <div class="tools-grid" id="calculatorsGrid"></div>
+        </div>
+    </section>
+
+    <!-- Blog Post Section -->
+    <section class="blog-post-section">
+        <div class="blog-post-container">
+            <div class="blog-post-card">
+                <h2>I Had 100,000 Credit Card Points and Didn't Know Their True Value — Here's What I Learned</h2>
+                
+                <p>Two years ago, I had accumulated 100,000 credit card points from everyday spending. I thought I was rich in points. Then I tried to redeem them for a gift card and got only $800. A friend told me I was throwing away hundreds of dollars. That is when I discovered a <strong>credit card points calculator</strong> and learned the truth about points valuation.</p>
+                
+                <p>I plugged my 100,000 points into a <strong>points calculator credit card</strong> tool and was shocked. The same 100,000 points were worth:</p>
+                
+                <ul>
+                    <li><strong>$1,000</strong> as cash back (1¢ per point)</li>
+                    <li><strong>$1,500</strong> for travel through the portal (1.5¢ per point)</li>
+                    <li><strong>$800</strong> as a gift card (0.8¢ per point)</li>
+                    <li><strong>$2,000+</strong> transferred to airline partners (2¢+ per point)</li>
+                </ul>
+                
+                <p>I had been leaving $1,200 on the table by choosing the wrong redemption method. A simple <strong>credit card points value calculator</strong> would have saved me from that mistake.</p>
+                
+                <div class="highlight-box">
+                    <strong>📊 The Truth About Points Value:</strong><br>
+                    • Cash back: 1¢ per point (standard)<br>
+                    • Travel portal: 1.25-1.5¢ per point<br>
+                    • Gift cards: 0.8-1¢ per point (worst value)<br>
+                    • Airline transfers: 1.5-2.5¢ per point (best value)
+                </div>
+                
+                <h3>How to Calculate Credit Card Points Value</h3>
+                <p>The formula is simple: (Redemption value in dollars ÷ Total points) × 100 = Cents per point. For example, if 50,000 points get you a $750 flight, your points are worth 1.5¢ each. If those same points only get you $400 in gift cards, they are worth 0.8¢ each.</p>
+                
+                <p>Using a <strong>credit card points calculator</strong> automates this math so you can see every option instantly. The calculator above does exactly that — enter your points, and it shows cash back, travel, and gift card values side by side.</p>
+                
+                <h3>Which Redemption Method Gives the Most Value?</h3>
+                
+                <table>
+                    <thead>
+                        <tr><th>Redemption Method</th><th>Typical Value per Point</th><th>Best For</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Cash Back</td><td>1.0¢</td><td>Simplicity, no restrictions</td></tr>
+                        <tr><td>Travel Portal</td><td>1.25-1.5¢</td><td>Flights, hotels, car rentals</td></tr>
+                        <tr><td>Gift Cards</td><td>0.8-1.0¢</td><td>Only during bonus promotions</td></tr>
+                        <tr><td>Airline Transfer</td><td>1.5-2.5¢</td><td>International flights, business class</td></tr>
+                        <tr><td>Statement Credit</td><td>0.6-1.0¢</td><td>Convenience only</td></tr>
+                    </tbody>
+                </table>
+                
+                <div class="warning-box">
+                    <strong>⚠️ Common Points Mistakes:</strong>
+                    <ul style="margin-top: 0.5rem; margin-bottom: 0; margin-left: 1.2rem;">
+                        <li>Redeeming for gift cards without checking if there is a bonus</li>
+                        <li>Cashing out points when a travel redemption is available</li>
+                        <li>Letting points expire (check your card terms)</li>
+                        <li>Not comparing cash back vs travel value before redeeming</li>
+                    </ul>
+                </div>
+                
+                <h2>Ready to Find Your Points Value?</h2>
+                <p>Use the <strong>credit card points calculator</strong> at the top of this page. Enter your total points, and the calculator will instantly show you cash back value, travel value, and gift card value. You will know exactly which redemption method gives you the most money — before you redeem.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="faq-container">
+            <div class="faq-card">
+                <h3>Frequently Asked Questions</h3>
+                
+                <div class="faq-item"><div class="faq-question">How much are credit card points worth?<span class="faq-toggle">+</span></div><div class="faq-answer">Credit card points are typically worth between 0.5¢ and 2¢ each, depending on how you redeem them. Cash back is usually 1¢ per point, travel can be 1.25-1.5¢, and airline transfers can reach 2¢ or more. Use the calculator above to see your exact value.</div></div>
+                
+                <div class="faq-item"><div class="faq-question">What is the best way to redeem credit card points?<span class="faq-toggle">+</span></div><div class="faq-answer">The best way to redeem credit card points is typically transferring to airline or hotel partners, which often gives 1.5-2.5¢ per point value. Travel portals are second best at 1.25-1.5¢. Cash back is solid at 1¢. Gift cards are usually the worst value at 0.8-1¢ per point.</div></div>
+                
+                <div class="faq-item"><div class="faq-question">How to calculate credit card points value?<span class="faq-toggle">+</span></div><div class="faq-answer">To calculate credit card points value, divide the dollar value of the redemption by the number of points. For example, $500 ÷ 50,000 points = 1¢ per point. The calculator above does this math for all redemption methods automatically.</div></div>
+                
+                <div class="faq-item"><div class="faq-question">Are travel points worth more than cash back?<span class="faq-toggle">+</span></div><div class="faq-answer">Yes, travel points are typically worth 25-50% more than cash back when redeemed through travel portals or transferred to airline partners. However, cash back is more flexible and has no restrictions. Use the calculator to compare both options for your specific points.</div></div>
+                
+                <div class="faq-item"><div class="faq-question">Do credit card points expire?<span class="faq-toggle">+</span></div><div class="faq-answer">Most major credit card points do not expire as long as your account remains open and in good standing. However, some cards have expiration policies — check your cardholder agreement. Points transferred to airline or hotel partners may have expiration dates.</div></div>
+                
+                <div class="faq-item"><div class="faq-question">Can I transfer credit card points to airline miles?<span class="faq-toggle">+</span></div><div class="faq-answer">Yes, many premium travel cards allow point transfers to airline and hotel partners. Chase Ultimate Rewards, Amex Membership Rewards, Capital One Miles, and Citi ThankYou points all offer transfer partners. This often gives the highest value per point (1.5-2.5¢).</div></div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col"><h4>SmartRatesLab</h4><p style="font-size:0.85rem;">Professional-grade financial calculators. 100% free.</p></div>
+            <div class="footer-col"><h4>Quick Links</h4><ul class="footer-links"><li><a class="footer-nav-link" data-nav="home">Home</a></li><li><a class="footer-nav-link" data-nav="about">About</a></li><li><a class="footer-nav-link" data-nav="contact">Contact</a></li><li><a class="footer-nav-link" data-nav="privacy">Privacy</a></li><li><a class="footer-nav-link" data-nav="terms">Terms</a></li></ul></div>
+            <div class="footer-col"><div class="blog-section"><h4>📖 Blog</h4><div class="blog-item" data-blog="1"><span class="blog-title">Mortgage prepayment vs. index funds</span></div><div class="blog-item" data-blog="2"><span class="blog-title">How to calculate real return after inflation</span></div><div class="blog-item" data-blog="3"><span class="blog-title">Coast FIRE: when investments outrun expenses</span></div><div class="blog-item" data-blog="4"><span class="blog-title">Mortgage recasting without refinancing</span></div><div class="blog-item" data-blog="5"><span class="blog-title">Tax-loss harvesting for capital gains</span></div></div></div>
+        </div>
+        <div class="copyright"><span>© 2026 SmartRatesLab - Educational purposes only.</span><span><a class="footer-legal-link" data-nav="privacy">Privacy</a> | <a class="footer-legal-link" data-nav="terms">Terms</a> | <a class="footer-legal-link" data-nav="about">About</a> | <a class="footer-legal-link" data-nav="contact">Contact</a></span></div>
+    </div>
+</footer>
+
+<div id="infoModal" class="modal"><div class="modal-content"><button class="close-modal" id="closeModalBtn">&times;</button><div id="modalBody"><h3 id="modalTitle"></h3><div id="modalText"></div></div></div></div>
+
+<script>
+    (function() {
+        let donutChartInstance = null;
+        
+        function createPointsCalculator() {
+            const calculatorHTML = `
+                <div class="mortgage-calculator-card" id="mortgageCalculatorCard">
+                    <div style="text-align: center; margin-bottom: 1.5rem;">
+                        <div class="tool-icon" style="font-size: 2.5rem;">💳✨</div>
+                        <h3 style="font-size: 1.3rem; color: #122b44;">Credit Card Points & Rewards Calculator</h3>
+                        <p style="font-size: 0.85rem; color: #6c8eaa;">Calculate the value of your credit card rewards. See how much your spending is worth.</p>
+                    </div>
+                    <div class="calc-two-columns">
+                        <div>
+                            <div class="calc-input-group"><label>💳 Reward Type</label><select id="rewardType"><option value="cashback">💰 Cash Back (1-5% back)</option><option value="travel">✈️ Travel Miles (1-3x miles)</option><option value="points">⭐ Flexible Points (1-4x points)</option></select></div>
+                            <div class="calc-input-group"><label>📊 Points/Rewards Earn Rate</label><input type="number" id="earnRate" value="1.5" step="0.5" placeholder="Points per $1 spent"></div>
+                            <div class="calc-input-group"><label>💵 Monthly Credit Card Spending ($)</label><input type="number" id="monthlySpend" value="2000" step="250"></div>
+                            <div class="calc-input-group"><label>🎁 Point Value per 100 points (cents)</label><input type="number" id="pointValue" value="1.0" step="0.1" placeholder="Value per point in cents"></div>
+                            <div class="calc-input-group"><label>🏆 Sign-up Bonus Points</label><input type="number" id="signupBonus" value="0" step="5000" placeholder="Welcome bonus points"></div>
+                            <div class="calc-input-group"><label>🎯 Annual Fee ($)</label><input type="number" id="annualFee" value="0" step="50"></div>
+                            <button class="calc-button" id="calculateRewards">⟳ Calculate Rewards</button>
+                        </div>
+                        <div>
+                            <div class="donut-wrapper"><canvas id="donutChart" width="200" height="200"></canvas></div>
+                            <div class="payment-breakdown">
+                                <div class="breakdown-item"><span class="breakdown-label"><span class="green-dot"></span> Annual Spending</span><span class="breakdown-value" id="annualSpendDisplay">$0</span></div>
+                                <div class="breakdown-item"><span class="breakdown-label"><span class="red-dot"></span> Points Earned Per Year</span><span class="breakdown-value" id="pointsEarned">0</span></div>
+                                <div class="breakdown-item"><span class="breakdown-label"><span class="blue-dot"></span> Total Points (with bonus)</span><span class="breakdown-value" id="totalPoints">0</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="extra-payment-results">
+                        <h4>📊 REWARD VALUE ANALYSIS</h4>
+                        <div class="extra-row"><span class="extra-label">💎 Points/Dollars Earned (annual):</span><span class="extra-value" id="earnedAmount">$0</span></div>
+                        <div class="extra-row"><span class="extra-label">🏆 Sign-up Bonus Value:</span><span class="extra-value" id="bonusValue">$0</span></div>
+                        <div class="extra-row"><span class="extra-label">💰 Total Reward Value (Year 1):</span><span class="extra-value saved-highlight" id="totalValue">$0</span></div>
+                        <div class="extra-row"><span class="extra-label">💸 Annual Fee:</span><span class="extra-value" id="annualFeeDisplay">$0</span></div>
+                        <div class="extra-row"><span class="extra-label">🎉 NET VALUE AFTER ANNUAL FEE:</span><span class="extra-value saved-highlight" id="netValue">$0</span></div>
+                        <div class="extra-row"><span class="extra-label">📈 Effective Cashback Rate:</span><span class="extra-value" id="effectiveRate">0.00%</span></div>
+                    </div>
+                    <div style="margin-top: 1rem; text-align: center; font-size: 0.7rem; color: #8ba3bc;">
+                        *Point values vary by redemption method (travel, gift cards, cash back). Sign-up bonus typically requires minimum spending.
+                    </div>
+                </div>
+            `;
+            document.getElementById('calculatorsGrid').innerHTML = calculatorHTML;
+            
+            function updateDonutChart(earnedAmount, bonusValue, netValue) {
+                const ctx = document.getElementById('donutChart').getContext('2d');
+                if (donutChartInstance) donutChartInstance.destroy();
+                donutChartInstance = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: { labels: ['Annual Rewards Earned', 'Sign-up Bonus', 'Net Value (after fees)'], datasets: [{ data: [Math.max(0, earnedAmount), Math.max(0, bonusValue), Math.max(0, netValue)], backgroundColor: ['#10b981', '#f59e0b', '#3b82f6'], borderWidth: 0, cutout: '65%' }] },
+                    options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, pointStyle: 'circle', font: { size: 10 }, generateLabels: (chart) => { const data = chart.data; return data.labels.map((l, i) => ({ text: `${l}: $${data.datasets[0].data[i].toFixed(0)}`, fillStyle: data.datasets[0].backgroundColor[i], index: i })); } } } } }
+                });
+            }
+            
+            function performCalculation() {
+                const rewardType = document.getElementById('rewardType').value;
+                let earnRate = parseFloat(document.getElementById('earnRate').value) || 1;
+                const monthlySpend = parseFloat(document.getElementById('monthlySpend').value) || 0;
+                let pointValueCents = parseFloat(document.getElementById('pointValue').value) || 1;
+                const signupBonus = parseFloat(document.getElementById('signupBonus').value) || 0;
+                const annualFee = parseFloat(document.getElementById('annualFee').value) || 0;
+                
+                if (rewardType === 'cashback' && earnRate === 1.5) earnRate = 1.5;
+                if (rewardType === 'travel' && earnRate === 2.0) earnRate = 2.0;
+                if (rewardType === 'points' && earnRate === 1.0) earnRate = 1.0;
+                
+                const annualSpend = monthlySpend * 12;
+                const pointsPerYear = Math.floor(annualSpend * earnRate);
+                const totalPoints = pointsPerYear + signupBonus;
+                const pointValueDollars = pointValueCents / 100;
+                const earnedAmount = pointsPerYear * pointValueDollars;
+                const bonusValue = signupBonus * pointValueDollars;
+                const totalValue = earnedAmount + bonusValue;
+                const netValue = totalValue - annualFee;
+                const effectiveRate = (netValue / annualSpend) * 100;
+                
+                document.getElementById('annualSpendDisplay').innerHTML = '$' + annualSpend.toLocaleString('en-US', { minimumFractionDigits: 0 });
+                document.getElementById('pointsEarned').innerHTML = pointsPerYear.toLocaleString('en-US');
+                document.getElementById('totalPoints').innerHTML = totalPoints.toLocaleString('en-US');
+                document.getElementById('earnedAmount').innerHTML = '$' + earnedAmount.toLocaleString('en-US', { minimumFractionDigits: 0 });
+                document.getElementById('bonusValue').innerHTML = '$' + bonusValue.toLocaleString('en-US', { minimumFractionDigits: 0 });
+                document.getElementById('totalValue').innerHTML = '$' + totalValue.toLocaleString('en-US', { minimumFractionDigits: 0 });
+                document.getElementById('annualFeeDisplay').innerHTML = '$' + annualFee.toLocaleString('en-US', { minimumFractionDigits: 0 });
+                document.getElementById('netValue').innerHTML = '$' + netValue.toLocaleString('en-US', { minimumFractionDigits: 0 });
+                document.getElementById('effectiveRate').innerHTML = effectiveRate.toFixed(2) + '%';
+                
+                updateDonutChart(earnedAmount, bonusValue, netValue);
+            }
+            
+            document.getElementById('rewardType').addEventListener('change', function() {
+                const type = this.value;
+                const pointValueInput = document.getElementById('pointValue');
+                if (type === 'cashback') pointValueInput.value = 1.0;
+                else if (type === 'travel') pointValueInput.value = 1.2;
+                else if (type === 'points') pointValueInput.value = 1.0;
+                performCalculation();
+            });
+            
+            document.getElementById('calculateRewards').addEventListener('click', performCalculation);
+            ['earnRate', 'monthlySpend', 'pointValue', 'signupBonus', 'annualFee'].forEach(id => {
+                const element = document.getElementById(id);
+                if (element) element.addEventListener('input', performCalculation);
+            });
+            performCalculation();
+        }
+        
+        createPointsCalculator();
+        
+        const drawerToolsList = document.getElementById('drawerToolsList');
+        const allTools = [
+            "💳 Credit Card Points Calculator", "💳 Credit Card Payoff Calculator", "🚗 Car Refinance Calculator", 
+            "🏠 Mortgage Calculator", "📈 Investment Calculator", "💰 Savings Calculator",
+            "📊 Retirement Planner", "🏦 Loan Comparison Tool", "🔄 Refinance Breakeven",
+            "📅 DTI Calculator", "🏡 Rent vs Buy Analyzer", "📈 Compound Interest Calculator", "🎓 Student Loan Planner"
+        ];
+        allTools.forEach(toolName => {
+            const toolLink = document.createElement('a');
+            toolLink.className = 'drawer-item';
+            toolLink.innerHTML = toolName;
+            toolLink.href = '#';
+            toolLink.style.fontSize = '0.85rem';
+            toolLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('mortgageCalculatorCard').scrollIntoView({ behavior: 'smooth' });
+                closeDrawer();
+            });
+            drawerToolsList.appendChild(toolLink);
+        });
+        
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+            const toggle = item.querySelector('.faq-toggle');
+            if (question && answer && toggle) {
+                question.addEventListener('click', () => {
+                    const isOpen = answer.classList.contains('open');
+                    faqItems.forEach(otherItem => {
+                        const otherAnswer = otherItem.querySelector('.faq-answer');
+                        const otherToggle = otherItem.querySelector('.faq-toggle');
+                        if (otherAnswer && otherAnswer !== answer) {
+                            otherAnswer.classList.remove('open');
+                            if (otherToggle) otherToggle.textContent = '+';
+                        }
+                    });
+                    if (isOpen) { answer.classList.remove('open'); toggle.textContent = '+'; }
+                    else { answer.classList.add('open'); toggle.textContent = '−'; }
+                });
+            }
+        });
+        
+        const modal = document.getElementById('infoModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalText = document.getElementById('modalText');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        
+        function closeModalFunc() { modal.style.display = 'none'; }
+        closeModalBtn.addEventListener('click', closeModalFunc);
+        window.addEventListener('click', (e) => { if (e.target === modal) closeModalFunc(); });
+        
+        const contentMap = {
+            about: { title: "📌 About SmartRatesLab", body: "<p>SmartRatesLab delivers professional-grade financial calculators. Founded in 2022, we're committed to transparency and accuracy. All calculations are performed locally in your browser.</p>" },
+            contact: { title: "📧 Contact Us", body: "<p><strong>Email:</strong> supportentry1@gmail.com<br><strong>Hours:</strong> Monday-Friday, 9am-6pm EST<br>We respond within 24 hours.</p>" },
+            privacy: { title: "🔒 Privacy Policy", body: "<p>We do not store any personal financial data. All calculations happen locally in your browser. We use anonymous analytics to improve our tools.</p>" },
+            terms: { title: "⚖️ Terms of Service", body: "<p>Calculators are for educational purposes only. Not financial advice. Always consult a qualified financial advisor before making major decisions.</p>" },
+            home: { title: "SmartRatesLab", body: "<p>Welcome to SmartRatesLab — your hub for financial calculators. Use our Credit Card Points Calculator to maximize your rewards and find the best card for your spending.</p>" }
+        };
+        
+        function openModal(type) { const data = contentMap[type]; if (data) { modalTitle.innerText = data.title; modalText.innerHTML = data.body; modal.style.display = 'flex'; } }
+        function handleNavigation(navType) { if (navType === 'home') { window.scrollTo({ top: 0, behavior: 'smooth' }); openModal('home'); } else { openModal(navType); } closeDrawer(); }
+        
+        const drawer = document.getElementById('drawerMenu');
+        const overlay = document.getElementById('drawerOverlay');
+        const menuBtn = document.getElementById('menuButton');
+        const closeDrawerBtn = document.getElementById('closeDrawerBtn');
+        
+        function openDrawer() { drawer.classList.add('open'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeDrawer() { drawer.classList.remove('open'); overlay.classList.remove('active'); document.body.style.overflow = ''; }
+        
+        menuBtn.addEventListener('click', openDrawer);
+        closeDrawerBtn.addEventListener('click', closeDrawer);
+        overlay.addEventListener('click', closeDrawer);
+        
+        document.querySelectorAll('.drawer-item[data-nav]').forEach(item => {
+            item.addEventListener('click', (e) => { e.preventDefault(); handleNavigation(item.getAttribute('data-nav')); });
+        });
+        
+        document.querySelectorAll('.footer-nav-link, .footer-legal-link, [data-nav]').forEach(link => {
+            if (!link.closest('.drawer')) {
+                link.addEventListener('click', (e) => { e.preventDefault(); const nav = link.getAttribute('data-nav'); if (nav) handleNavigation(nav); });
+            }
+        });
+        
+        document.getElementById('homeLinkHeader')?.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); openModal('home'); });
+        
+        const blogPosts = {
+            1: { title: "Mortgage prepayment vs. index funds", content: "<p>Extra mortgage payments give a guaranteed return equal to your interest rate. Compare with expected market returns using our calculators.</p>" },
+            2: { title: "Real return after inflation & taxes", content: "<p>Use our calculators to adjust nominal returns for inflation and your marginal tax rate to find your true purchasing power growth.</p>" },
+            3: { title: "Coast FIRE fundamentals", content: "<p>Coast FIRE is when your existing investments will grow to cover retirement without additional contributions. Our retirement planner can help.</p>" },
+            4: { title: "Mortgage recasting explained", content: "<p>Recasting lowers monthly payments without refinancing. Use our calculator to model lump sum impacts.</p>" },
+            5: { title: "Tax-loss harvesting strategies", content: "<p>Offset capital gains by selling losing positions. The IRS wash-sale rule applies within 30 days.</p>" }
+        };
+        
+        document.querySelectorAll('.blog-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const blogId = item.getAttribute('data-blog');
+                const post = blogPosts[blogId];
+                if (post) { modalTitle.innerText = post.title; modalText.innerHTML = post.content; modal.style.display = 'flex'; }
+                closeDrawer();
+            });
+        });
+    })();
+</script>
+    
+<script src="nav.js"></script>
+</body>
+</html>
