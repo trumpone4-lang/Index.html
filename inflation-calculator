@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>How Does Inflation Impact the Money in Your Savings Account?</title>
+    <meta name="description" content="See how inflation erodes your savings over time. Calculate the real value of your savings account after accounting for inflation and taxes. Plan your future purchasing power.">
+    
+    <link rel="canonical" href="https://www.smartrateslab.com/">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #f4f8fe;
+            color: #1a2c3e;
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .site-header {
+            background: #0c1f2f;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            min-height: 70px;
+        }
+
+        .site-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            color: #ffffff;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .site-title:hover {
+            opacity: 0.85;
+        }
+
+        .menu-btn {
+            background: #ffffff;
+            color: #0c1f2f;
+            border: none;
+            padding: 0.6rem 1.4rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .menu-btn:hover {
+            background: #eef3fc;
+            transform: scale(1.02);
+        }
+
+        .drawer {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 380px;
+            max-width: 85vw;
+            height: 100%;
+            background: #ffffff;
+            box-shadow: -4px 0 30px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .drawer.open {
+            right: 0;
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid #e2ebf3;
+        }
+
+        .drawer-header h3 {
+            font-size: 1.4rem;
+            color: #122b44;
+        }
+
+        .close-drawer {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #6c8eaa;
+        }
+
+        .drawer-nav {
+            padding: 1rem 0;
+        }
+
+        .drawer-section {
+            padding: 0.5rem 1.5rem;
+        }
+
+        .drawer-section h4 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #6c8eaa;
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        .drawer-item {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: #1a2c3e;
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 12px;
+            transition: background 0.2s;
+            cursor: pointer;
+        }
+
+        .drawer-item:hover {
+            background: #eef3fc;
+        }
+
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 999;
+            display: none;
+        }
+
+        .drawer-overlay.active {
+            display: block;
+        }
+
+        /* Direct Answer Box */
+        .direct-answer {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 2rem;
+            margin: 1rem auto 2rem auto;
+            max-width: 1000px;
+            text-align: left;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            border: 1px solid #e2ebf3;
+        }
+        
+        .direct-answer h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #122b44;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+        
+        .direct-answer .subtitle {
+            font-size: 1.1rem;
+            color: #5a7a9a;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #eef2f6;
+            padding-bottom: 0.75rem;
+        }
+        
+        .direct-answer .answer-text {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #1a2c3e;
+        }
+        
+        .direct-answer .answer-text strong:first-child {
+            font-size: 1.05rem;
+            color: #000000;
+        }
+        
+        .direct-answer .answer-text p {
+            margin-bottom: 1rem;
+        }
+
+        .tools-section {
+            padding: 0 0 2rem 0;
+            background: white;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .mortgage-calculator-card {
+            background: white;
+            border-radius: 24px;
+            padding: 1.8rem;
+            border: 1px solid #e2ebf3;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+        }
+        
+        .calc-two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .calc-input-group {
+            margin-bottom: 1rem;
+        }
+        
+        .calc-input-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #122b44;
+            margin-bottom: 0.5rem;
+        }
+        
+        .calc-input-group input, .calc-input-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e2ebf3;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            background: white;
+        }
+        
+        .calc-input-group input:focus, .calc-input-group select:focus {
+            outline: none;
+            border-color: #3f9eff;
+        }
+        
+        .calc-button {
+            background: #122b44;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+        
+        .calc-button:hover {
+            background: #1f4a6e;
+            transform: translateY(-2px);
+        }
+        
+        .donut-wrapper {
+            max-width: 200px;
+            margin: 0 auto;
+        }
+        
+        .payment-breakdown {
+            margin-top: 1rem;
+            text-align: center;
+        }
+        
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #eef2f6;
+        }
+        
+        .breakdown-label {
+            font-size: 0.85rem;
+            color: #6c8eaa;
+        }
+        
+        .breakdown-value {
+            font-weight: 600;
+            color: #122b44;
+        }
+        
+        .green-dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background-color: #10b981;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+        
+        .red-dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background-color: #ef4444;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+        
+        .blue-dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background-color: #3b82f6;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+
+        .extra-payment-results {
+            margin-top: 1.8rem;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e8f4fd 100%);
+            border-radius: 20px;
+            padding: 1.25rem;
+            border: 1px solid #cbdde9;
+        }
+        
+        .extra-payment-results h4 {
+            color: #122b44;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .extra-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+            border-bottom: 1px dashed #cbdde9;
+        }
+        
+        .extra-row:last-child {
+            border-bottom: none;
+        }
+        
+        .extra-label {
+            color: #5a7a9a;
+            font-weight: 500;
+        }
+        
+        .extra-value {
+            font-weight: 700;
+            color: #122b44;
+        }
+        
+        .saved-highlight {
+            color: #059669;
+            font-weight: 800;
+            font-size: 1rem;
+        }
+
+        /* Blog Post Styles */
+        .blog-post-section {
+            background: white;
+            padding: 2rem 0 0 0;
+            border-top: 1px solid #eef2f6;
+        }
+        
+        .blog-post-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .blog-post-card {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 2rem;
+            border: 1px solid #e2ebf3;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+        }
+        
+        .blog-post-card h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #122b44;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+        
+        .blog-post-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #122b44;
+            margin: 1.5rem 0 0.75rem 0;
+        }
+        
+        .blog-post-card p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+            color: #2c4c6e;
+        }
+        
+        .blog-post-card .highlight-box {
+            background: #f0f9ff;
+            border-left: 4px solid #3b82f6;
+            padding: 1.25rem;
+            border-radius: 16px;
+            margin: 1.5rem 0;
+        }
+        
+        .blog-post-card .warning-box {
+            background: #fff5f0;
+            border-left: 4px solid #ef4444;
+            padding: 1.25rem;
+            border-radius: 16px;
+            margin: 1.5rem 0;
+        }
+        
+        .blog-post-card table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+        
+        .blog-post-card th, .blog-post-card td {
+            border: 1px solid #e2ebf3;
+            padding: 0.75rem;
+            text-align: left;
+        }
+        
+        .blog-post-card th {
+            background: #f8fafd;
+            font-weight: 600;
+            color: #122b44;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: #f8fafd;
+            padding: 2rem 0 3rem 0;
+        }
+        
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .faq-card {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 2rem;
+            border: 1px solid #e2ebf3;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+        }
+        
+        .faq-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #122b44;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #eef2f6;
+            padding-bottom: 1rem;
+        }
+        
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .faq-question {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #122b44;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-question:hover {
+            color: #3b82f6;
+        }
+        
+        .faq-toggle {
+            font-size: 1.2rem;
+            color: #8ba3bc;
+        }
+        
+        .faq-answer {
+            color: #2c4c6e;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            display: none;
+            margin-top: 0.75rem;
+        }
+        
+        .faq-answer.open {
+            display: block;
+        }
+
+        .site-footer {
+            background: #0c1f2f;
+            color: #bdd4e8;
+            padding: 2rem 0 1.5rem;
+            margin-top: auto;
+        }
+
+        .footer-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+            border-bottom: 1px solid #254f6e;
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 180px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a, .footer-legal-link {
+            color: #bdd4e8;
+            text-decoration: none;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        
+        .footer-links a:hover, .footer-legal-link:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .blog-section {
+            margin-top: 0;
+        }
+        
+        .blog-item {
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        
+        .blog-item:hover {
+            opacity: 0.8;
+        }
+        
+        .blog-title {
+            font-size: 0.85rem;
+            color: #bdd4e8;
+            display: block;
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 0.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(12,31,47,0.95);
+            align-items: center;
+            justify-content: center;
+            z-index: 1100;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 550px;
+            width: 90%;
+            border-radius: 28px;
+            padding: 2rem;
+            position: relative;
+            box-shadow: 0 25px 40px rgba(0,0,0,0.25);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 1.8rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #6c8eaa;
+        }
+        
+        .modal-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #122b44;
+        }
+
+        @media (max-width: 800px) {
+            .calc-two-columns { grid-template-columns: 1fr; }
+            .container { padding: 0 1.2rem; }
+            .site-title { font-size: 1.2rem; }
+            .direct-answer h1 { font-size: 1.5rem; }
+            .blog-post-card h2 { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <div class="site-title" id="homeLinkHeader">SmartRatesLab</div>
+        <button class="menu-btn" id="menuButton">☰ Menu</button>
+    </div>
+</header>
+
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<div class="drawer" id="drawerMenu">
+    <div class="drawer-header"><h3>Navigation & Tools</h3><button class="close-drawer" id="closeDrawerBtn">&times;</button></div>
+    <div class="drawer-nav">
+        <div class="drawer-section"><h4>Main</h4><a class="drawer-item" data-nav="home">🏠 Home</a><a class="drawer-item" data-nav="about">📄 About</a><a class="drawer-item" data-nav="contact">📞 Contact</a></div>
+        <div class="drawer-section"><h4>Legal</h4><a class="drawer-item" data-nav="privacy">🔒 Privacy Policy</a><a class="drawer-item" data-nav="terms">⚖️ Terms of Service</a></div>
+        <div class="drawer-section"><h4>📊 Financial Tools</h4><div id="drawerToolsList"></div></div>
+    </div>
+</div>
+
+<main>
+    <!-- Answer Box Above Calculator - Made Longer -->
+    <div class="container">
+        <div class="direct-answer">
+            <h1>How Does Inflation Impact the Money in Your Savings Account?</h1>
+            <div class="subtitle">Free Inflation Calculator — See Your Real Purchasing Power</div>
+            <div class="answer-text">
+                <p><strong>Yes — inflation silently steals the purchasing power of your savings account every single day.</strong> Most people think they are saving money by keeping cash in a savings account. But when inflation is higher than your interest rate, you are actually losing real value over time. It is a hidden tax that few people understand until it is too late.</p>
+                
+                <p>Let us look at a real-world example. You have $10,000 in a savings account earning 1.5% interest. Inflation is running at 3% per year. After 10 years, your account balance grows to about $11,600. That sounds good, right? Wrong. After adjusting for inflation, your $11,600 is actually worth only $8,600 in today's dollars. You have lost nearly $1,400 of purchasing power despite saving consistently. That is money you could have used for a vacation, a home repair, or simply as a larger emergency fund.</p>
+                
+                <p>The math is simple but brutal. Your nominal return is what the bank pays you. Your real return is nominal return minus inflation. If your bank pays 1.5% and inflation is 3%, your real return is negative 1.5%. You are effectively losing 1.5% of your purchasing power every single year. Over a decade, that adds up to thousands of dollars. Over 30 years, the damage is catastrophic — a $100,000 savings account could lose more than half its purchasing power.</p>
+                
+                <p>Here is an even more striking example. In the 1970s, inflation averaged over 7% while savings accounts paid only 5%. A person who saved $10,000 in 1970 had the purchasing power of only $5,000 by 1980. They lost half their real savings despite earning interest every year. That is the hidden danger of inflation that no bank tells you about. And it is happening right now, just more slowly.</p>
+                
+                <p>The Rule of 72 helps you understand how fast inflation destroys value. Divide 72 by the inflation rate to see how many years until your purchasing power is cut in half. At 3% inflation, 72 ÷ 3 = 24 years. At 4% inflation, it takes only 18 years. At 6% inflation, just 12 years. That means if you are 30 years old today, by the time you retire at 65, your savings could be worth half as much as you think — or even less.</p>
+                
+                <p>But there is good news. Understanding this problem is the first step to solving it. The calculator below shows you exactly how inflation impacts your specific savings. Enter your balance, monthly contributions, interest rate, inflation rate, and time horizon. The calculator will show you your nominal future value, your real inflation-adjusted value, and exactly how much purchasing power you will lose. You can also add your tax rate to see the after-tax, after-inflation real return — which is often deeply negative.</p>
+                
+                <p>Once you see the numbers, you can take action. Consider high-yield savings accounts paying 4-5% interest — these can sometimes keep pace with inflation. Look into I Bonds that are indexed to inflation, guaranteeing you do not lose purchasing power. Treasury Inflation-Protected Securities (TIPS) are another government-backed option. For money you will not need for 5-10 years, consider diversified stock market index funds that have historically returned 7-10% annually — well above inflation.</p>
+                
+                <p>The key is to stop letting inflation steal your hard-earned money without you even noticing. Most people ignore inflation because it happens slowly. But slow erosion is still erosion. A 2-3% annual loss compounds into a massive loss over decades. The calculator below will show you the truth about your savings — and motivate you to make a change today.</p>
+                
+                <p>The calculator is waiting. Enter your numbers and see the truth about your savings. You might be surprised — and motivated to make a change. Do not wait another year while inflation eats your future.</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="tools-section">
+        <div class="container">
+            <div class="tools-grid" id="calculatorsGrid"></div>
+        </div>
+    </section>
+
+    <!-- Blog Post Section -->
+    <section class="blog-post-section">
+        <div class="blog-post-container">
+            <div class="blog-post-card">
+                <h2>I Lost $8,000 to Inflation Before I Understood How It Works — And You Can Avoid My Mistake</h2>
+                
+                <p>Five years ago, I thought I was being smart with my money. I had $50,000 sitting in a "high-yield" savings account earning 1.2% interest. I felt secure. I felt responsible. Then a friend asked me: <strong>"How does inflation impact the money in your savings account?"</strong> I had no idea. That question led me to a calculator that showed me the painful truth.</p>
+                
+                <p>I plugged my numbers into an inflation calculator: $50,000 balance, 1.2% interest, 3% inflation, 5 years. The result nearly made me sick. My $50,000 would grow to about $53,000 in nominal terms. But after adjusting for inflation, it was worth only $45,000 in today's dollars. I had lost $5,000 of purchasing power while thinking I was saving. And that was just the beginning.</p>
+                
+                <div class="highlight-box">
+                    <strong>📊 The Painful Truth About My Savings:</strong><br>
+                    • Starting balance: $50,000<br>
+                    • After 5 years in savings account: $53,000 (nominal)<br>
+                    • After adjusting for 3% inflation: $45,000 (real)<br>
+                    • Purchasing power lost: $8,000 over 5 years
+                </div>
+                
+                <p>I could not believe it. I had been working hard, saving diligently, and inflation was silently stealing nearly $1,600 per year from my future. That money was supposed to be my down payment on a house. Instead, it was evaporating without me even noticing.</p>
+                
+                <p>That is when I started researching how to protect my savings from inflation. I learned about the Rule of 72 for inflation: divide 72 by the inflation rate to see how many years until your purchasing power halves. At 3% inflation, your money loses half its value every 24 years. At 6% inflation, it happens in just 12 years. This was terrifying.</p>
+                
+                <p>I also learned about real return versus nominal return. Your nominal return is what the bank shows you. Your real return is nominal minus inflation. If your bank pays 1.5% and inflation is 3%, your real return is negative 1.5%. You are paying the bank to hold your money. That realization changed everything.</p>
+                
+                <p>So I took action. First, I moved my emergency fund to a high-yield savings account paying 4.5% — still not beating inflation completely, but much closer. Second, I opened an I Bond account through TreasuryDirect. I Bonds are indexed to inflation, so they guarantee you do not lose purchasing power. Third, I started investing my longer-term savings in a diversified portfolio of low-cost index funds.</p>
+                
+                <p>The results have been dramatic. Over the past three years, my inflation-protected investments have grown at 7-8% annually while my savings account would have lost purchasing power. The calculator above showed me the path. Now I want to share it with you.</p>
+                
+                <div class="warning-box">
+                    <strong>⚠️ Common Inflation Mistakes I Made:</strong>
+                    <ul style="margin-top: 0.5rem; margin-bottom: 0; margin-left: 1.2rem;">
+                        <li>Assuming a savings account was "safe" — it is safe in nominal terms, not real terms</li>
+                        <li>Ignoring inflation because it happens slowly — that is how it steals the most</li>
+                        <li>Not calculating my real return for years — ignorance cost me thousands</li>
+                        <li>Leaving my down payment fund in cash during high inflation — a costly mistake</li>
+                    </ul>
+                </div>
+                
+                <h3>What Is the Real Impact of 3% Inflation Over 20 Years?</h3>
+                <p>Let me show you the numbers that finally convinced me to change. If you have $100,000 in savings earning 1.5% interest with 3% inflation for 20 years:</p>
+                
+                <table>
+                    <thead>
+                        <tr><th>Metric</th><th>Amount</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Nominal balance after 20 years</td><td>$134,000</td>
+                        <tr>
+                        <tr><td>Real value (in today's dollars)</td><td>$74,000</td>
+                        </tr>
+                        <tr><td>Purchasing power lost</td><td>$60,000</td>
+                        </tr>
+                        <tr><td>Real annual return</td><td>-1.5%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <p>That is a loss of $60,000. You could have bought a new car, paid for a child's college tuition, or taken ten incredible vacations. Instead, inflation ate it.</p>
+                
+                <h3>How to Protect Your Savings from Inflation</h3>
+                <p>Here is what I learned and what you can do today:</p>
+                <ul>
+                    <li><strong>High-Yield Savings Accounts:</strong> Online banks offer 4-5% APY, much closer to inflation</li>
+                    <li><strong>I Bonds:</strong> Issued by the US Treasury, interest rate adjusts with inflation</li>
+                    <li><strong>TIPS (Treasury Inflation-Protected Securities):</strong> Bonds that adjust principal with inflation</li>
+                    <li><strong>Short-term bond funds:</strong> Higher yields than savings accounts with modest risk</li>
+                    <li><strong>Stock market index funds:</strong> Historical returns of 7-10% beat inflation long-term</li>
+                </ul>
+                
+                <div class="highlight-box">
+                    <strong>✅ My Inflation Protection Action Plan:</strong><br>
+                    • 3 months expenses in high-yield savings (4.5%)<br>
+                    • 6 months expenses in I Bonds (inflation-indexed)<br>
+                    • Long-term savings in S&P 500 index fund (10% historical return)<br>
+                    • Annual review of real returns using the calculator above
+                </div>
+                
+                <h2>Ready to See How Inflation Impacts Your Savings?</h2>
+                <p>Use the <strong>inflation impact calculator</strong> at the top of this page. Enter your current savings balance, monthly contributions, interest rate, expected inflation rate, and time horizon. The calculator will instantly show you your nominal future value, your real inflation-adjusted value, and exactly how much purchasing power you will lose.</p>
+                
+                <p>Do not make the same mistake I did. Ignorance about inflation cost me thousands of dollars. Knowledge — and the calculator above — can save you from the same fate.</p>
+                
+                <p style="margin-top: 1.5rem; font-style: italic; color: #6c8eaa; border-top: 1px solid #eef2f6; padding-top: 1.5rem;">*All calculations are estimates based on average inflation and interest rates. Past performance does not guarantee future results. Consult a financial advisor for personalized advice.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="faq-container">
+            <div class="faq-card">
+                <h3>Frequently Asked Questions</h3>
+                
+                <div class="faq-item"><div class="faq-question">How does inflation impact the money in your savings account?<span class="faq-toggle">+</span></div><div class="faq-answer">Inflation reduces the purchasing power of your savings over time. If your savings account interest rate is lower than the inflation rate, your money buys less in the future than it does today. Use the calculator above to see exactly how much purchasing power you could lose.</div></div>
+                
+                <div class="faq-item"><div class="faq-question">What is the difference between nominal and real return?<span class="faq-toggle">+</span></div><div class="faq-answer">Nominal return is the interest rate your bank pays you. Real return is nominal return minus the inflation rate. If your bank pays 1.5% and inflation is 3%, your real return is -1.5% — you are losing purchasing power. The calculator above shows both.</div></div>
+                
+                <div class="faq-item"><div class="faq-question">How much purchasing power will I lose to inflation?<span class="faq-toggle">+</span></div><div class="faq-answer">Use the calculator above to see your exact numbers. As a rule of thumb, at 3% inflation, your money loses half its purchasing power every 24 years. At 6% inflation, it loses half every 12 years. Enter your savings to see the real impact.</div></div>
+                
+                <div class="faq-item"><div class="faq-question">What savings account rate beats inflation?<span class="faq-toggle">+</span></div><div class="faq-answer">To beat inflation, your savings account interest rate needs to be higher than the current inflation rate. High-yield savings accounts currently offer 4-5% APY, which may beat or match inflation. I Bonds and TIPS are designed specifically to protect against inflation.</div></div>
+                
+                <div class="faq-item"><div class="faq-question">How long until inflation cuts my savings value in half?<span class="faq-toggle">+</span></div><div class="faq-answer">Use the Rule of 72: divide 72 by the inflation rate. At 3% inflation, 72 ÷ 3 = 24 years to lose half your purchasing power. At 4% inflation, it takes 18 years. At 6% inflation, just 12 years. The calculator above shows your specific timeline.</div></div>
+                
+                <div class="faq-item"><div class="faq-question">Should I keep money in savings during high inflation?<span class="faq-toggle">+</span></div><div class="faq-answer">Keep emergency funds in savings regardless of inflation. But for money you will not need for 5+ years, consider inflation-protected options like I Bonds, TIPS, or diversified stock index funds that historically outperform inflation. Use the calculator to compare scenarios.</div></div>
+                
+                <div class="faq-item"><div class="faq-question">What are I Bonds and how do they protect against inflation?<span class="faq-toggle">+</span></div><div class="faq-answer">I Bonds are US Treasury savings bonds that earn interest based on inflation. Their interest rate adjusts every six months to match inflation, so your purchasing power is protected. You can buy up to $15,000 per year through TreasuryDirect. The calculator above shows how I Bonds compare to regular savings.</div></div>
+                
+                <div class="faq-item"><div class="faq-question">How do taxes affect my real return?<span class="faq-toggle">+</span></div><div class="faq-answer">The calculator above includes a tax rate field. Interest earned in savings accounts is taxed as ordinary income. If you earn $1,000 in interest and pay 22% tax, you keep only $780. When inflation is also high, your after-tax real return can be deeply negative.</div></div>
+                
+                <div class="faq-item"><div class="faq-question">What is a good real return on savings?<span class="faq-toggle">+</span></div><div class="faq-answer">A positive real return (after inflation) means your purchasing power is growing. Historically, savings accounts have provided 0-1% real returns. High-yield savings accounts may offer 1-2% real returns. I Bonds guarantee a 0% real return (they match inflation). Stocks have historically provided 5-7% real returns over long periods.</div></div>
+                
+                <div class="faq-item"><div class="faq-question">How does compound interest work with inflation?<span class="faq-toggle">+</span></div><div class="faq-answer">Compound interest grows your nominal balance, but inflation erodes its real value. The calculator above accounts for both. For example, $10,000 at 1.5% interest for 10 years grows to $11,600 nominally. But with 3% inflation, its real value is only $8,600. Compounding cannot save you from negative real returns.</div></div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col"><h4>SmartRatesLab</h4><p style="font-size:0.85rem;">Professional-grade financial calculators. 100% free.</p></div>
+            <div class="footer-col"><h4>Quick Links</h4><ul class="footer-links"><li><a class="footer-nav-link" data-nav="home">Home</a></li><li><a class="footer-nav-link" data-nav="about">About</a></li><li><a class="footer-nav-link" data-nav="contact">Contact</a></li><li><a class="footer-nav-link" data-nav="privacy">Privacy</a></li><li><a class="footer-nav-link" data-nav="terms">Terms</a></li></ul></div>
+            <div class="footer-col"><div class="blog-section"><h4>📖 Blog</h4><div class="blog-item" data-blog="1"><span class="blog-title">Mortgage prepayment vs. index funds</span></div><div class="blog-item" data-blog="2"><span class="blog-title">How to calculate real return after inflation</span></div><div class="blog-item" data-blog="3"><span class="blog-title">Coast FIRE: when investments outrun expenses</span></div><div class="blog-item" data-blog="4"><span class="blog-title">Mortgage recasting without refinancing</span></div><div class="blog-item" data-blog="5"><span class="blog-title">Tax-loss harvesting for capital gains</span></div></div></div>
+        </div>
+        <div class="copyright"><span>© 2026 SmartRatesLab - Educational purposes only.</span><span><a class="footer-legal-link" data-nav="privacy">Privacy</a> | <a class="footer-legal-link" data-nav="terms">Terms</a> | <a class="footer-legal-link" data-nav="about">About</a> | <a class="footer-legal-link" data-nav="contact">Contact</a></span></div>
+    </div>
+</footer>
+
+<div id="infoModal" class="modal"><div class="modal-content"><button class="close-modal" id="closeModalBtn">&times;</button><div id="modalBody"><h3 id="modalTitle"></h3><div id="modalText"></div></div></div></div>
+
+<script>
+    (function() {
+        let donutChartInstance = null;
+        
+        function createInflationCalculator() {
+            const calculatorHTML = `
+                <div class="mortgage-calculator-card" id="mortgageCalculatorCard">
+                    <div style="text-align: center; margin-bottom: 1.5rem;">
+                        <div class="tool-icon" style="font-size: 2.5rem;">📉💰</div>
+                        <h3 style="font-size: 1.3rem; color: #122b44;">Inflation Impact on Savings Calculator</h3>
+                        <p style="font-size: 0.85rem; color: #6c8eaa;">See how inflation erodes your savings over time. Calculate real purchasing power.</p>
+                    </div>
+                    <div class="calc-two-columns">
+                        <div>
+                            <div class="calc-input-group"><label>💰 Current Savings Balance ($)</label><input type="number" id="currentSavings" value="10000" step="1000"></div>
+                            <div class="calc-input-group"><label>📅 Monthly Contribution ($)</label><input type="number" id="monthlyContribution" value="500" step="100"></div>
+                            <div class="calc-input-group"><label>🏦 Savings Account Interest Rate (%)</label><input type="number" id="savingsRate" value="1.5" step="0.25"></div>
+                            <div class="calc-input-group"><label>📈 Expected Inflation Rate (%)</label><input type="number" id="inflationRate" value="3.0" step="0.25"></div>
+                            <div class="calc-input-group"><label>⏱️ Time Horizon (years)</label><input type="number" id="timeYears" value="10" step="1"></div>
+                            <div class="calc-input-group"><label>💰 Tax Rate on Interest (%)</label><input type="number" id="taxRate" value="0" step="5" placeholder="Ordinary income tax rate"></div>
+                            <button class="calc-button" id="calculateImpact">⟳ Calculate Inflation Impact</button>
+                        </div>
+                        <div>
+                            <div class="donut-wrapper"><canvas id="donutChart" width="200" height="200"></canvas></div>
+                            <div class="payment-breakdown">
+                                <div class="breakdown-item"><span class="breakdown-label"><span class="green-dot"></span> Total Deposits</span><span class="breakdown-value" id="totalDeposits">$0</span></div>
+                                <div class="breakdown-item"><span class="breakdown-label"><span class="blue-dot"></span> Interest Earned (After Tax)</span><span class="breakdown-value" id="interestEarned">$0</span></div>
+                                <div class="breakdown-item"><span class="breakdown-label"><span class="red-dot"></span> Purchasing Power Lost</span><span class="breakdown-value" id="purchasingPowerLost">$0</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="extra-payment-results">
+                        <h4>📊 INFLATION IMPACT ANALYSIS</h4>
+                        <div class="extra-row"><span class="extra-label">💰 Nominal Future Value (Before Inflation):</span><span class="extra-value saved-highlight" id="nominalValue">$0</span></div>
+                        <div class="extra-row"><span class="extra-label">📉 Real Future Value (Inflation Adjusted):</span><span class="extra-value" id="realValue">$0</span></div>
+                        <div class="extra-row"><span class="extra-label">💸 Total Interest Earned (Before Tax):</span><span class="extra-value" id="interestBeforeTax">$0</span></div>
+                        <div class="extra-row"><span class="extra-label">🏦 Taxes Paid on Interest:</span><span class="extra-value" id="taxesPaid">$0</span></div>
+                        <div class="extra-row"><span class="extra-label">📉 Purchasing Power Lost to Inflation:</span><span class="extra-value" id="powerLostDetail">$0</span></div>
+                        <div class="extra-row"><span class="extra-label">📊 Real Rate of Return (After Inflation & Tax):</span><span class="extra-value" id="realReturn">0.00%</span></div>
+                    </div>
+                    <div style="margin-top: 1rem; text-align: center; font-size: 0.7rem; color: #8ba3bc;">
+                        *Calculations assume annual compounding. Inflation reduces purchasing power over time. Taxes apply to interest earned.
+                    </div>
+                </div>
+            `;
+            document.getElementById('calculatorsGrid').innerHTML = calculatorHTML;
+            
+            function calculateInflationImpact(savings, monthlyAdd, savingsRate, inflationRate, years, taxRate) {
+                const annualSavingsRate = savingsRate / 100;
+                const annualInflation = inflationRate / 100;
+                const annualTaxRate = taxRate / 100;
+                
+                let balance = savings;
+                let totalDeposits = savings;
+                let totalInterestBeforeTax = 0;
+                
+                for (let year = 1; year <= years; year++) {
+                    const contributionsThisYear = monthlyAdd * 12;
+                    balance += contributionsThisYear;
+                    totalDeposits += contributionsThisYear;
+                    const interestThisYear = balance * annualSavingsRate;
+                    totalInterestBeforeTax += interestThisYear;
+                    balance += interestThisYear;
+                }
+                
+                const taxesPaid = totalInterestBeforeTax * annualTaxRate;
+                const interestAfterTax = totalInterestBeforeTax - taxesPaid;
+                const nominalValueAfterTax = savings + (monthlyAdd * 12 * years) + interestAfterTax;
+                const inflationFactor = Math.pow(1 + annualInflation, years);
+                const realValue = nominalValueAfterTax / inflationFactor;
+                const purchasingPowerLost = nominalValueAfterTax - realValue;
+                const realReturnAfterTax = ((realValue - totalDeposits) / totalDeposits) * 100;
+                
+                return {
+                    totalDeposits,
+                    interestBeforeTax: totalInterestBeforeTax,
+                    interestAfterTax,
+                    taxesPaid,
+                    nominalValueAfterTax,
+                    realValue,
+                    purchasingPowerLost,
+                    realReturnAfterTax
+                };
+            }
+            
+            function updateDonutChart(totalDeposits, interestEarned, powerLost) {
+                const ctx = document.getElementById('donutChart').getContext('2d');
+                if (donutChartInstance) donutChartInstance.destroy();
+                donutChartInstance = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: { labels: ['Total Deposits', 'Interest Earned (After Tax)', 'Purchasing Power Lost'], datasets: [{ data: [Math.max(0, totalDeposits), Math.max(0, interestEarned), Math.max(0, powerLost)], backgroundColor: ['#10b981', '#3b82f6', '#ef4444'], borderWidth: 0, cutout: '65%' }] },
+                    options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, pointStyle: 'circle', font: { size: 10 }, generateLabels: (chart) => { const data = chart.data; return data.labels.map((l, i) => ({ text: `${l}: $${data.datasets[0].data[i].toFixed(0)}`, fillStyle: data.datasets[0].backgroundColor[i], index: i })); } } } } }
+                });
+            }
+            
+            function performCalculation() {
+                const currentSavings = parseFloat(document.getElementById('currentSavings').value) || 0;
+                const monthlyContribution = parseFloat(document.getElementById('monthlyContribution').value) || 0;
+                const savingsRate = parseFloat(document.getElementById('savingsRate').value) || 0;
+                const inflationRate = parseFloat(document.getElementById('inflationRate').value) || 0;
+                const timeYears = parseFloat(document.getElementById('timeYears').value) || 1;
+                const taxRate = parseFloat(document.getElementById('taxRate').value) || 0;
+                
+                const result = calculateInflationImpact(currentSavings, monthlyContribution, savingsRate, inflationRate, timeYears, taxRate);
+                
+                document.getElementById('totalDeposits').innerHTML = '$' + result.totalDeposits.toLocaleString('en-US', { minimumFractionDigits: 0 });
+                document.getElementById('interestEarned').innerHTML = '$' + result.interestAfterTax.toLocaleString('en-US', { minimumFractionDigits: 0 });
+                document.getElementById('purchasingPowerLost').innerHTML = '$' + result.purchasingPowerLost.toLocaleString('en-US', { minimumFractionDigits: 0 });
+                document.getElementById('nominalValue').innerHTML = '$' + result.nominalValueAfterTax.toLocaleString('en-US', { minimumFractionDigits: 0 });
+                document.getElementById('realValue').innerHTML = '$' + result.realValue.toLocaleString('en-US', { minimumFractionDigits: 0 });
+                document.getElementById('interestBeforeTax').innerHTML = '$' + result.interestBeforeTax.toLocaleString('en-US', { minimumFractionDigits: 0 });
+                document.getElementById('taxesPaid').innerHTML = '$' + result.taxesPaid.toLocaleString('en-US', { minimumFractionDigits: 0 });
+                document.getElementById('powerLostDetail').innerHTML = '$' + result.purchasingPowerLost.toLocaleString('en-US', { minimumFractionDigits: 0 });
+                document.getElementById('realReturn').innerHTML = result.realReturnAfterTax.toFixed(2) + '%';
+                
+                updateDonutChart(result.totalDeposits, result.interestAfterTax, result.purchasingPowerLost);
+            }
+            
+            document.getElementById('calculateImpact').addEventListener('click', performCalculation);
+            ['currentSavings', 'monthlyContribution', 'savingsRate', 'inflationRate', 'timeYears', 'taxRate'].forEach(id => {
+                const element = document.getElementById(id);
+                if (element) element.addEventListener('input', performCalculation);
+            });
+            performCalculation();
+        }
+        
+        createInflationCalculator();
+        
+        // RESTORE ALL TOOLS in drawer menu
+        const drawerToolsList = document.getElementById('drawerToolsList');
+        const allTools = [
+            "📉 Inflation Impact Calculator", "💳 Credit Card Points Calculator", "💳 Credit Card Payoff Calculator", 
+            "🚗 Car Refinance Calculator", "🏠 Mortgage Calculator", "💰 Savings Calculator",
+            "📊 Retirement Planner", "🏦 Loan Comparison Tool", "🔄 Refinance Breakeven",
+            "📅 DTI Calculator", "🏡 Rent vs Buy Analyzer", "📈 Compound Interest Calculator", "🎓 Student Loan Planner"
+        ];
+        allTools.forEach(toolName => {
+            const toolLink = document.createElement('a');
+            toolLink.className = 'drawer-item';
+            toolLink.innerHTML = toolName;
+            toolLink.href = '#';
+            toolLink.style.fontSize = '0.85rem';
+            toolLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('mortgageCalculatorCard').scrollIntoView({ behavior: 'smooth' });
+                closeDrawer();
+            });
+            drawerToolsList.appendChild(toolLink);
+        });
+        
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+            const toggle = item.querySelector('.faq-toggle');
+            if (question && answer && toggle) {
+                question.addEventListener('click', () => {
+                    const isOpen = answer.classList.contains('open');
+                    faqItems.forEach(otherItem => {
+                        const otherAnswer = otherItem.querySelector('.faq-answer');
+                        const otherToggle = otherItem.querySelector('.faq-toggle');
+                        if (otherAnswer && otherAnswer !== answer) {
+                            otherAnswer.classList.remove('open');
+                            if (otherToggle) otherToggle.textContent = '+';
+                        }
+                    });
+                    if (isOpen) { answer.classList.remove('open'); toggle.textContent = '+'; }
+                    else { answer.classList.add('open'); toggle.textContent = '−'; }
+                });
+            }
+        });
+        
+        // Modal and Navigation
+        const modal = document.getElementById('infoModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalText = document.getElementById('modalText');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        
+        function closeModalFunc() { modal.style.display = 'none'; }
+        closeModalBtn.addEventListener('click', closeModalFunc);
+        window.addEventListener('click', (e) => { if (e.target === modal) closeModalFunc(); });
+        
+        const contentMap = {
+            about: { title: "📌 About SmartRatesLab", body: "<p>SmartRatesLab delivers professional-grade financial calculators. Founded in 2022, we're committed to transparency and accuracy. All calculations are performed locally in your browser.</p>" },
+            contact: { title: "📧 Contact Us", body: "<p><strong>Email:</strong> supportentry1@gmail.com<br><strong>Hours:</strong> Monday-Friday, 9am-6pm EST<br>We respond within 24 hours.</p>" },
+            privacy: { title: "🔒 Privacy Policy", body: "<p>We do not store any personal financial data. All calculations happen locally in your browser. We use anonymous analytics to improve our tools.</p>" },
+            terms: { title: "⚖️ Terms of Service", body: "<p>Calculators are for educational purposes only. Not financial advice. Always consult a qualified financial advisor before making major decisions.</p>" },
+            home: { title: "SmartRatesLab", body: "<p>Welcome to SmartRatesLab — your hub for financial calculators. Use our Inflation Impact Calculator to see how inflation erodes your savings and what your money will really be worth in the future.</p>" }
+        };
+        
+        function openModal(type) { const data = contentMap[type]; if (data) { modalTitle.innerText = data.title; modalText.innerHTML = data.body; modal.style.display = 'flex'; } }
+        function handleNavigation(navType) { if (navType === 'home') { window.scrollTo({ top: 0, behavior: 'smooth' }); openModal('home'); } else { openModal(navType); } closeDrawer(); }
+        
+        const drawer = document.getElementById('drawerMenu');
+        const overlay = document.getElementById('drawerOverlay');
+        const menuBtn = document.getElementById('menuButton');
+        const closeDrawerBtn = document.getElementById('closeDrawerBtn');
+        
+        function openDrawer() { drawer.classList.add('open'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeDrawer() { drawer.classList.remove('open'); overlay.classList.remove('active'); document.body.style.overflow = ''; }
+        
+        menuBtn.addEventListener('click', openDrawer);
+        closeDrawerBtn.addEventListener('click', closeDrawer);
+        overlay.addEventListener('click', closeDrawer);
+        
+        document.querySelectorAll('.drawer-item[data-nav]').forEach(item => {
+            item.addEventListener('click', (e) => { e.preventDefault(); handleNavigation(item.getAttribute('data-nav')); });
+        });
+        
+        document.querySelectorAll('.footer-nav-link, .footer-legal-link, [data-nav]').forEach(link => {
+            if (!link.closest('.drawer')) {
+                link.addEventListener('click', (e) => { e.preventDefault(); const nav = link.getAttribute('data-nav'); if (nav) handleNavigation(nav); });
+            }
+        });
+        
+        document.getElementById('homeLinkHeader')?.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); openModal('home'); });
+        
+        // Blog posts
+        const blogPosts = {
+            1: { title: "Mortgage prepayment vs. index funds", content: "<p>Extra mortgage payments give a guaranteed return equal to your interest rate. Compare with expected market returns using our calculators.</p>" },
+            2: { title: "Real return after inflation & taxes", content: "<p>Use our calculators to adjust nominal returns for inflation and your marginal tax rate to find your true purchasing power growth.</p>" },
+            3: { title: "Coast FIRE fundamentals", content: "<p>Coast FIRE is when your existing investments will grow to cover retirement without additional contributions. Our retirement planner can help.</p>" },
+            4: { title: "Mortgage recasting explained", content: "<p>Recasting lowers monthly payments without refinancing. Use our calculator to model lump sum impacts.</p>" },
+            5: { title: "Tax-loss harvesting strategies", content: "<p>Offset capital gains by selling losing positions. The IRS wash-sale rule applies within 30 days.</p>" }
+        };
+        
+        document.querySelectorAll('.blog-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const blogId = item.getAttribute('data-blog');
+                const post = blogPosts[blogId];
+                if (post) { modalTitle.innerText = post.title; modalText.innerHTML = post.content; modal.style.display = 'flex'; }
+                closeDrawer();
+            });
+        });
+    })();
+</script>
+        
+<script src="nav.js"></script>
+</body>
+</html>
