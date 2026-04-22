@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>How to Make a Weekly Budget?</title>
+    <meta name="description" content="Learn how to make a weekly budget that works. Track income, expenses, and savings. Free budget calculator to help you take control of your money.">
+    
+    <link rel="canonical" href="https://www.smartrateslab.com/">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #f4f8fe;
+            color: #1a2c3e;
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .site-header {
+            background: #0c1f2f;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            min-height: 70px;
+        }
+
+        .site-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            color: #ffffff;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .site-title:hover {
+            opacity: 0.85;
+        }
+
+        .menu-btn {
+            background: #ffffff;
+            color: #0c1f2f;
+            border: none;
+            padding: 0.6rem 1.4rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .menu-btn:hover {
+            background: #eef3fc;
+            transform: scale(1.02);
+        }
+
+        .drawer {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 380px;
+            max-width: 85vw;
+            height: 100%;
+            background: #ffffff;
+            box-shadow: -4px 0 30px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .drawer.open {
+            right: 0;
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid #e2ebf3;
+        }
+
+        .drawer-header h3 {
+            font-size: 1.4rem;
+            color: #122b44;
+        }
+
+        .close-drawer {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #6c8eaa;
+        }
+
+        .drawer-nav {
+            padding: 1rem 0;
+        }
+
+        .drawer-section {
+            padding: 0.5rem 1.5rem;
+        }
+
+        .drawer-section h4 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #6c8eaa;
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        .drawer-item {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: #1a2c3e;
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 12px;
+            transition: background 0.2s;
+            cursor: pointer;
+        }
+
+        .drawer-item:hover {
+            background: #eef3fc;
+        }
+
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 999;
+            display: none;
+        }
+
+        .drawer-overlay.active {
+            display: block;
+        }
+
+        /* Direct Answer Box */
+        .direct-answer {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 2rem;
+            margin: 1rem auto 2rem auto;
+            max-width: 1000px;
+            text-align: left;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            border: 1px solid #e2ebf3;
+        }
+        
+        .direct-answer h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #122b44;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+        
+        .direct-answer .subtitle {
+            font-size: 1.1rem;
+            color: #5a7a9a;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #eef2f6;
+            padding-bottom: 0.75rem;
+        }
+        
+        .direct-answer .answer-text {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #1a2c3e;
+        }
+        
+        .direct-answer .answer-text strong:first-child {
+            font-size: 1.05rem;
+            color: #000000;
+        }
+        
+        .direct-answer .answer-text p {
+            margin-bottom: 1rem;
+        }
+
+        .tools-section {
+            padding: 0 0 2rem 0;
+            background: white;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .mortgage-calculator-card {
+            background: white;
+            border-radius: 24px;
+            padding: 1.8rem;
+            border: 1px solid #e2ebf3;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+        }
+        
+        .calc-two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .calc-input-group {
+            margin-bottom: 1rem;
+        }
+        
+        .calc-input-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #122b44;
+            margin-bottom: 0.5rem;
+        }
+        
+        .calc-input-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e2ebf3;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            background: white;
+        }
+        
+        .calc-input-group input:focus {
+            outline: none;
+            border-color: #3f9eff;
+        }
+        
+        .calc-button {
+            background: #122b44;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+        
+        .calc-button:hover {
+            background: #1f4a6e;
+            transform: translateY(-2px);
+        }
+        
+        .donut-wrapper {
+            max-width: 200px;
+            margin: 0 auto;
+        }
+        
+        .payment-breakdown {
+            margin-top: 1rem;
+            text-align: center;
+        }
+        
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #eef2f6;
+        }
+        
+        .breakdown-label {
+            font-size: 0.85rem;
+            color: #6c8eaa;
+        }
+        
+        .breakdown-value {
+            font-weight: 600;
+            color: #122b44;
+        }
+        
+        .green-dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background-color: #10b981;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+        
+        .red-dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background-color: #ef4444;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+        
+        .blue-dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background-color: #3b82f6;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+
+        .extra-payment-results {
+            margin-top: 1.8rem;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e8f4fd 100%);
+            border-radius: 20px;
+            padding: 1.25rem;
+            border: 1px solid #cbdde9;
+        }
+        
+        .extra-payment-results h4 {
+            color: #122b44;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .extra-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+            border-bottom: 1px dashed #cbdde9;
+        }
+        
+        .extra-row:last-child {
+            border-bottom: none;
+        }
+        
+        .extra-label {
+            color: #5a7a9a;
+            font-weight: 500;
+        }
+        
+        .extra-value {
+            font-weight: 700;
+            color: #122b44;
+        }
+        
+        .saved-highlight {
+            color: #059669;
+            font-weight: 800;
+            font-size: 1rem;
+        }
+
+        /* Blog Post Styles */
+        .blog-post-section {
+            background: white;
+            padding: 2rem 0 0 0;
+            border-top: 1px solid #eef2f6;
+        }
+        
+        .blog-post-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .blog-post-card {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 2rem;
+            border: 1px solid #e2ebf3;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+        }
+        
+        .blog-post-card h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #122b44;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+        
+        .blog-post-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #122b44;
+            margin: 1.5rem 0 0.75rem 0;
+        }
+        
+        .blog-post-card p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+            color: #2c4c6e;
+        }
+        
+        .blog-post-card .highlight-box {
+            background: #f0f9ff;
+            border-left: 4px solid #3b82f6;
+            padding: 1.25rem;
+            border-radius: 16px;
+            margin: 1.5rem 0;
+        }
+        
+        .blog-post-card .warning-box {
+            background: #fff5f0;
+            border-left: 4px solid #ef4444;
+            padding: 1.25rem;
+            border-radius: 16px;
+            margin: 1.5rem 0;
+        }
+        
+        .blog-post-card table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+        
+        .blog-post-card th, .blog-post-card td {
+            border: 1px solid #e2ebf3;
+            padding: 0.75rem;
+            text-align: left;
+        }
+        
+        .blog-post-card th {
+            background: #f8fafd;
+            font-weight: 600;
+            color: #122b44;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: #f8fafd;
+            padding: 2rem 0 3rem 0;
+        }
+        
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .faq-card {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 2rem;
+            border: 1px solid #e2ebf3;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+        }
+        
+        .faq-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #122b44;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #eef2f6;
+            padding-bottom: 1rem;
+        }
+        
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .faq-question {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #122b44;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-question:hover {
+            color: #3b82f6;
+        }
+        
+        .faq-toggle {
+            font-size: 1.2rem;
+            color: #8ba3bc;
+        }
+        
+        .faq-answer {
+            color: #2c4c6e;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            display: none;
+            margin-top: 0.75rem;
+        }
+        
+        .faq-answer.open {
+            display: block;
+        }
+
+        .site-footer {
+            background: #0c1f2f;
+            color: #bdd4e8;
+            padding: 2rem 0 1.5rem;
+            margin-top: auto;
+        }
+
+        .footer-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+            border-bottom: 1px solid #254f6e;
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 180px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a, .footer-legal-link {
+            color: #bdd4e8;
+            text-decoration: none;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        
+        .footer-links a:hover, .footer-legal-link:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .blog-section {
+            margin-top: 0;
+        }
+        
+        .blog-item {
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        
+        .blog-item:hover {
+            opacity: 0.8;
+        }
+        
+        .blog-title {
+            font-size: 0.85rem;
+            color: #bdd4e8;
+            display: block;
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 0.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(12,31,47,0.95);
+            align-items: center;
+            justify-content: center;
+            z-index: 1100;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 550px;
+            width: 90%;
+            border-radius: 28px;
+            padding: 2rem;
+            position: relative;
+            box-shadow: 0 25px 40px rgba(0,0,0,0.25);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 1.8rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #6c8eaa;
+        }
+        
+        .modal-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #122b44;
+        }
+
+        @media (max-width: 800px) {
+            .calc-two-columns { grid-template-columns: 1fr; }
+            .container { padding: 0 1.2rem; }
+            .site-title { font-size: 1.2rem; }
+            .direct-answer h1 { font-size: 1.5rem; }
+            .blog-post-card h2 { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <div class="site-title" id="homeLinkHeader">SmartRatesLab</div>
+        <button class="menu-btn" id="menuButton">☰ Menu</button>
+    </div>
+</header>
+
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<div class="drawer" id="drawerMenu">
+    <div class="drawer-header"><h3>Navigation & Tools</h3><button class="close-drawer" id="closeDrawerBtn">&times;</button></div>
+    <div class="drawer-nav">
+        <div class="drawer-section"><h4>Main</h4><a class="drawer-item" data-nav="home">🏠 Home</a><a class="drawer-item" data-nav="about">📄 About</a><a class="drawer-item" data-nav="contact">📞 Contact</a></div>
+        <div class="drawer-section"><h4>Legal</h4><a class="drawer-item" data-nav="privacy">🔒 Privacy Policy</a><a class="drawer-item" data-nav="terms">⚖️ Terms of Service</a></div>
+        <div class="drawer-section"><h4>📊 Financial Tools</h4><div id="drawerToolsList"></div></div>
+    </div>
+</div>
+
+<main>
+    <!-- Direct Answer Box Above Calculator -->
+    <div class="container">
+        <div class="direct-answer">
+            <h1>How to Make a Weekly Budget?</h1>
+            <div class="subtitle">Free Budget Calculator — Take Control of Your Money</div>
+            <div class="answer-text">
+                <p><strong>Yes — making a weekly budget is the single most effective way to take control of your finances and stop living paycheck to paycheck.</strong> A weekly budget breaks down your income and expenses into manageable 7-day chunks, making it easier to track where your money actually goes and catch problems before they spiral.</p>
+                
+                <p>The good news is that creating a weekly budget takes less than 30 minutes once you have the right system. Start by calculating your total weekly income. If you are paid monthly, divide your monthly take-home pay by 4.33. If you are paid bi-weekly, divide your paycheck by 2. Then list every expense you have in a typical week — rent or mortgage, utilities, groceries, gas, dining out, subscriptions, debt payments, and savings.</p>
+                
+                <p>The magic of a weekly budget is that it forces you to look at your money more often. Most people budget monthly, then blow their budget by the second week and have no idea what happened. With a weekly budget, you review your spending every 7 days. You catch the $7 coffee habit, the $20 takeout order, the unused subscription — small leaks that add up to hundreds of dollars per month.</p>
+                
+                <p>Here is the weekly budgeting method that changed my financial life. Every Sunday, I sit down for 15 minutes. I look at my upcoming week: any planned expenses, any irregular bills, my savings goals. Then I set a spending limit for each category. Throughout the week, I track every dollar. On the next Sunday, I review what I actually spent, adjust for the following week, and celebrate what went right. Within 90 days, I had cut my unnecessary spending by 35% and doubled my savings rate.</p>
+                
+                <p>The calculator below is designed for monthly tracking, but you can use it to build your weekly budget too. Enter your monthly numbers, then divide the results by 4.33 to see your weekly targets. A healthy weekly budget should leave you with 10-20% of your income as surplus — money you can save, invest, or use to pay down debt faster.</p>
+                
+                <p>Remember: a budget is not about restriction. It is about telling your money where to go instead of wondering where it went. Start with the calculator below, then commit to one week of tracking. You will be shocked at what you learn about your own spending habits — and how much more you can save.</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="tools-section">
+        <div class="container">
+            <div class="tools-grid" id="calculatorsGrid"></div>
+        </div>
+    </section>
+
+    <!-- Long Blog Post Section -->
+    <section class="blog-post-section">
+        <div class="blog-post-container">
+            <div class="blog-post-card">
+                <h2>I Was Broke Every Week — Then I Learned How to Make a Weekly Budget</h2>
+                
+                <p>Three years ago, I was living paycheck to paycheck. Every Monday, I would check my bank account and wonder where my money went. I was making $60,000 per year, but somehow I was always broke by Wednesday. That is when I discovered <strong>how to make a weekly budget</strong> — and it completely changed my financial life.</p>
+                
+                <p>The problem with monthly budgets is that they are too abstract. You set a monthly limit for groceries — $500 — but by the second week, you have no idea if you are on track. A weekly budget fixes this. You set a weekly limit — $115 for groceries — and you check your progress every 7 days. If you overspend in week one, you adjust in week two before it is too late.</p>
+                
+                <div class="highlight-box">
+                    <strong>📊 The Weekly Budget Method That Changed Everything:</strong><br>
+                    • Week 1: Track every single dollar (no judgment, just data)<br>
+                    • Week 2: Set realistic weekly limits based on your actual spending<br>
+                    • Week 3: Identify the top 3 leaks (coffee, takeout, subscriptions)<br>
+                    • Week 4: Adjust and repeat — you are now in control
+                </div>
+                
+                <p>The first week was painful. I realized I was spending $80 per week on coffee and breakfast sandwiches — over $4,000 per year. I was spending $120 per week on takeout and delivery — another $6,000 per year. Together, those two categories were costing me $10,000 annually. I was not broke because I did not earn enough. I was broke because I had no idea <strong>how to make a weekly budget</strong> that actually worked.</p>
+                
+                <h3>Step 1: Calculate Your Weekly Take-Home Pay</h3>
+                <p>Start with your monthly net income. If you make $5,000 per month after taxes, divide by 4.33 to get $1,155 per week. If you are paid bi-weekly, divide your paycheck by 2. This is your weekly spending limit before savings and debt payments.</p>
+                
+                <h3>Step 2: List Your Fixed Weekly Expenses</h3>
+                <p>These are the bills that do not change week to week:</p>
+                <ul>
+                    <li>Rent or mortgage (monthly ÷ 4.33)</li>
+                    <li>Utilities (monthly ÷ 4.33)</li>
+                    <li>Phone and internet (monthly ÷ 4.33)</li>
+                    <li>Insurance (monthly ÷ 4.33)</li>
+                    <li>Debt minimum payments (monthly ÷ 4.33)</li>
+                </ul>
+                
+                <h3>Step 3: Set Weekly Limits for Variable Expenses</h3>
+                <p>These are the categories where you have the most control:</p>
+                
+                <table>
+                    <thead><tr><th>Category</th><th>Weekly Limit (Single)</th><th>Weekly Limit (Family of 4)</th></tr></thead>
+                    <tbody>
+                        <tr><td>Groceries</td><td>$70-100</td><td>$150-200</td></tr>
+                        <tr><td>Dining Out</td><td>$30-50</td><td>$60-100</td></tr>
+                        <tr><td>Gas / Transit</td><td>$30-60</td><td>$60-100</td></tr>
+                        <tr><td>Entertainment</td><td>$25-50</td><td>$50-100</td></tr>
+                        <tr><td>Shopping</td><td>$20-40</td><td>$40-80</td></tr>
+                    </tbody>
+                </table>
+                
+                <h3>Step 4: Automate Your Savings First</h3>
+                <p>Before you spend a single dollar on anything else, move money to savings. Aim for 10-20% of your weekly income. If you earn $1,155 per week, that is $115-$230 directly to savings every single week. Set up an automatic transfer on payday so you never see the money.</p>
+                
+                <div class="highlight-box">
+                    <strong>💡 The 50/30/20 Weekly Budget Rule (Adjusted):</strong><br>
+                    • 50% for Needs (housing, utilities, groceries, transport) = $577/week on $1,155 income<br>
+                    • 30% for Wants (dining out, entertainment, shopping) = $346/week<br>
+                    • 20% for Savings & Debt (savings, investments, extra debt payments) = $231/week
+                </div>
+                
+                <h3>Step 5: Track Every Single Dollar for One Week</h3>
+                <p>This is the hardest part — but only for the first week. Write down every expense. Every coffee, every snack, every subscription. Use a notes app, a spreadsheet, or a budgeting app. At the end of the week, add up your spending by category. Compare it to your weekly limits. You will immediately see where you are leaking money.</p>
+                
+                <div class="warning-box">
+                    <strong>⚠️ Common Weekly Budget Mistakes:</strong>
+                    <ul style="margin-top: 0.5rem; margin-bottom: 0; margin-left: 1.2rem;">
+                        <li>Forgetting irregular weekly expenses (haircuts, pet supplies, gifts)</li>
+                        <li>Not accounting for quarterly or annual bills (divide by 52 for weekly cost)</li>
+                        <li>Setting limits too strict — you will give up by week two</li>
+                        <li>Not reviewing your budget weekly — the review is what makes it work</li>
+                    </ul>
+                </div>
+                
+                <h3>Real Example: From Zero to $10,000 Saved in One Year</h3>
+                <p>Let me show you how a weekly budget transformed my finances. Before budgeting, my weekly spending looked like this:</p>
+                
+                <table>
+                    <thead><tr><th>Category</th><th>Before Budget</th><th>After Weekly Budget</th><th>Weekly Savings</th></tr></thead>
+                    <tbody>
+                        <tr><td>Coffee & Breakfast</td><td>$80</td><td>$20</td><td>$60</td></tr>
+                        <tr><td>Takeout & Delivery</td><td>$120</td><td>$40</td><td>$80</td></tr>
+                        <tr><td>Subscriptions</td><td>$40</td><td>$15</td><td>$25</td></tr>
+                        <tr><td>Impulse Shopping</td><td>$60</td><td>$20</td><td>$40</td></tr>
+                        <tr><td><strong>Total Weekly Savings</strong></td><td colspan="2"></td><td><strong>$205</strong></td></tr>
+                    </tbody>
+                </table>
+                
+                <p>That is $205 saved every single week just by paying attention. Over one year, that is $10,660. I used that money to pay off credit card debt, build an emergency fund, and start investing. All because I finally learned <strong>how to make a weekly budget</strong> that worked for my life.</p>
+                
+                <h3>Tools to Help You Budget Weekly</h3>
+                <p>The calculator above is a great starting point. Enter your monthly income and expenses to see your monthly surplus. Then divide by 4.33 to get your weekly targets. For ongoing tracking, use a simple spreadsheet or even a notebook. The tool does not matter as much as the habit. The key is reviewing your spending every single week.</p>
+                
+                <div class="highlight-box">
+                    <strong>✅ Your Weekly Budget Action Plan:</strong><br>
+                    • Sunday: Review last week's spending and plan the week ahead<br>
+                    • Monday-Friday: Track every expense as it happens<br>
+                    • Saturday: Check remaining budget for the week<br>
+                    • Sunday: Repeat — celebrate wins, adjust misses<br>
+                    • After 90 days: Increase savings rate by 1-2%
+                </div>
+                
+                <h2>Ready to Start Your Weekly Budget?</h2>
+                <p>Use the <strong>budget calculator</strong> at the top of this page. Enter your monthly income and expenses to see where your money is going. Then divide your monthly surplus by 4.33 to find your weekly savings target. Commit to one week of tracking. You will be shocked at what you learn — and how much more you can save.</p>
+                
+                <p style="margin-top: 1.5rem; font-style: italic; color: #6c8eaa; border-top: 1px solid #eef2f6; padding-top: 1.5rem;">*All calculations are estimates. Your actual budget may vary based on your location, family size, and financial goals. The best budget is the one you will actually follow.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ Section - Added 4 More Questions -->
+    <section class="faq-section">
+        <div class="faq-container">
+            <div class="faq-card">
+                <h3>Frequently Asked Questions</h3>
+                
+                <div class="faq-item"><div class="faq-question">How do I make a weekly budget from scratch?<span class="faq-toggle">+</span></div><div class="faq-answer">Start by calculating your weekly take-home pay. List all fixed weekly expenses (rent, utilities, debt payments divided by 4.33). Then set weekly limits for variable expenses like groceries, dining out, and entertainment. Track every dollar for one week, then adjust your limits based on actual spending. The calculator above can help you get started.</div></div>
+                
+                <div class="faq-item"><div class="faq-question">What is the 50/30/20 rule for weekly budgeting?<span class="faq-toggle">+</span></div><div class="faq-answer">The 50/30/20 rule says 50% of your income goes to needs (housing, utilities, groceries, transport), 30% to wants (dining out, entertainment, shopping), and 20% to savings and debt repayment. For weekly budgeting, apply these percentages to your weekly take-home pay. If you earn $1,000 per week, that is $500 for needs, $300 for wants, and $200 for savings.</div></div>
+                
+                <div class="faq-item"><div class="faq-question">How much should I save each week?<span class="faq-toggle">+</span></div><div class="faq-answer">Aim to save 10-20% of your weekly income. If that is not possible right now, start with 5% and increase by 1% every month. Even saving $20 per week adds up to over $1,000 per year. Use the calculator above to see how much you can realistically save based on your current income and expenses.</div></div>
+                
+                <div class="faq-item"><div class="faq-question">What is the best app for weekly budgeting?<span class="faq-toggle">+</span></div><div class="faq-answer">Popular weekly budgeting apps include YNAB (You Need A Budget), EveryDollar, and Mint. But you do not need an app to start — a simple spreadsheet or even a notebook works just as well. The key is consistency, not the tool. The calculator above is a great starting point to understand your numbers.</div></div>
+                
+                <div class="faq-item"><div class="faq-question">How do I stick to a weekly budget?<span class="faq-toggle">+</span></div><div class="faq-answer">The secret to sticking to a weekly budget is automation and visibility. Automate your savings and fixed bills so you never see that money. Use cash envelopes for variable categories like groceries and dining out. Review your budget every Sunday for 15 minutes. Most importantly, give yourself grace — missing your budget one week does not mean you failed. Just adjust and try again next week.</div></div>
+                
+                <div class="faq-item"><div class="faq-question">What is a zero-based weekly budget?<span class="faq-toggle">+</span></div><div class="faq-answer">A zero-based budget means you assign every dollar of your weekly income to a specific category — needs, wants, savings, debt, or investments — until your income minus expenses equals zero. This ensures you are intentional about every dollar you earn. The calculator above shows your surplus; in a zero-based budget, you would assign that surplus to savings or extra debt payments.</div></div>
+                
+                <div class="faq-item"><div class="faq-question">How do I budget weekly if I get paid monthly?<span class="faq-toggle">+</span></div><div class="faq-answer">If you are paid monthly, divide your monthly take-home pay by 4.33 to get your weekly budget amount. Then set up automatic transfers to move one week's worth of spending money into a separate checking account every Friday. This creates the feeling of being paid weekly and makes it much easier to track your spending in smaller chunks.</div></div>
+                
+                <div class="faq-item"><div class="faq-question">What should I do if I run out of money before the week ends?<span class="faq-toggle">+</span></div><div class="faq-answer">If you run out of money before the week ends, first look at what caused the shortage. Was it an unexpected expense or overspending in a flexible category? For the current week, look for free activities, cook from your pantry, and avoid unnecessary purchases. For next week, adjust your budget limits or find ways to increase your income. The weekly budget review is designed to catch these issues early.</div></div>
+                
+                <div class="faq-item"><div class="faq-question">How do I track weekly expenses without an app?<span class="faq-toggle">+</span></div><div class="faq-answer">The envelope system works perfectly for weekly budgeting without an app. Withdraw your weekly budget amount in cash and divide it into labeled envelopes for each spending category (groceries, dining out, entertainment, etc.). When an envelope is empty, you stop spending in that category for the week. This method is simple, visual, and scientifically proven to reduce spending.</div></div>
+                
+                <div class="faq-item"><div class="faq-question">Can I use a weekly budget to pay off debt faster?<span class="faq-toggle">+</span></div><div class="faq-answer">Absolutely. A weekly budget is one of the fastest ways to pay off debt. After covering your needs, put every extra dollar toward your highest-interest debt first (the avalanche method) or your smallest balance first (the snowball method). The calculator above shows your weekly surplus — put that entire amount toward debt. Even an extra $50 per week adds up to $2,600 per year of debt reduction.</div></div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col"><h4>SmartRatesLab</h4><p style="font-size:0.85rem;">Professional-grade financial calculators. 100% free.</p></div>
+            <div class="footer-col"><h4>Quick Links</h4><ul class="footer-links"><li><a class="footer-nav-link" data-nav="home">Home</a></li><li><a class="footer-nav-link" data-nav="about">About</a></li><li><a class="footer-nav-link" data-nav="contact">Contact</a></li><li><a class="footer-nav-link" data-nav="privacy">Privacy</a></li><li><a class="footer-nav-link" data-nav="terms">Terms</a></li></ul></div>
+            <div class="footer-col"><div class="blog-section"><h4>📖 Blog</h4><div class="blog-item" data-blog="1"><span class="blog-title">Mortgage prepayment vs. index funds</span></div><div class="blog-item" data-blog="2"><span class="blog-title">How to calculate real return after inflation</span></div><div class="blog-item" data-blog="3"><span class="blog-title">Coast FIRE: when investments outrun expenses</span></div><div class="blog-item" data-blog="4"><span class="blog-title">Mortgage recasting without refinancing</span></div><div class="blog-item" data-blog="5"><span class="blog-title">Tax-loss harvesting for capital gains</span></div></div></div>
+        </div>
+        <div class="copyright"><span>© 2026 SmartRatesLab - Educational purposes only.</span><span><a class="footer-legal-link" data-nav="privacy">Privacy</a> | <a class="footer-legal-link" data-nav="terms">Terms</a> | <a class="footer-legal-link" data-nav="about">About</a> | <a class="footer-legal-link" data-nav="contact">Contact</a></span></div>
+    </div>
+</footer>
+
+<div id="infoModal" class="modal"><div class="modal-content"><button class="close-modal" id="closeModalBtn">&times;</button><div id="modalBody"><h3 id="modalTitle"></h3><div id="modalText"></div></div></div></div>
+
+<script>
+    (function() {
+        let donutChartInstance = null;
+        
+        function createBudgetCalculator() {
+            const calculatorHTML = `
+                <div class="mortgage-calculator-card" id="mortgageCalculatorCard">
+                    <div style="text-align: center; margin-bottom: 1.5rem;">
+                        <div class="tool-icon" style="font-size: 2.5rem;">📊💰</div>
+                        <h3 style="font-size: 1.3rem; color: #122b44;">Monthly Budget Calculator</h3>
+                        <p style="font-size: 0.85rem; color: #6c8eaa;">Track your income and expenses. See where your money goes each month.</p>
+                    </div>
+                    <div class="calc-two-columns">
+                        <div>
+                            <div style="background: #f0fdf4; padding: 0.75rem; border-radius: 16px; margin-bottom: 1rem;">
+                                <h4 style="color: #059669; margin-bottom: 0.75rem; font-size: 0.9rem;">💰 INCOME</h4>
+                                <div class="calc-input-group"><label>💼 Monthly Salary / Wages ($)</label><input type="number" id="salary" value="5000" step="500"></div>
+                                <div class="calc-input-group"><label>📈 Side Hustle / Freelance ($)</label><input type="number" id="sideIncome" value="500" step="100"></div>
+                                <div class="calc-input-group"><label>🏦 Investment / Rental Income ($)</label><input type="number" id="investmentIncome" value="200" step="100"></div>
+                                <div class="calc-input-group"><label>🎁 Other Income ($)</label><input type="number" id="otherIncome" value="0" step="100"></div>
+                            </div>
+                            <div style="background: #fef2f2; padding: 0.75rem; border-radius: 16px; margin-bottom: 1rem;">
+                                <h4 style="color: #dc2626; margin-bottom: 0.75rem; font-size: 0.9rem;">🏠 HOUSING & UTILITIES</h4>
+                                <div class="calc-input-group"><label>🏡 Rent / Mortgage ($)</label><input type="number" id="rentMortgage" value="1500" step="100"></div>
+                                <div class="calc-input-group"><label>💡 Electricity & Gas ($)</label><input type="number" id="utilities" value="200" step="50"></div>
+                                <div class="calc-input-group"><label>📱 Internet & Phone ($)</label><input type="number" id="internetPhone" value="120" step="30"></div>
+                                <div class="calc-input-group"><label>💧 Water & Trash ($)</label><input type="number" id="waterTrash" value="80" step="20"></div>
+                            </div>
+                            <div style="background: #fefce8; padding: 0.75rem; border-radius: 16px; margin-bottom: 1rem;">
+                                <h4 style="color: #ca8a04; margin-bottom: 0.75rem; font-size: 0.9rem;">🚗 TRANSPORTATION</h4>
+                                <div class="calc-input-group"><label>🚗 Car Payment ($)</label><input type="number" id="carPayment" value="350" step="50"></div>
+                                <div class="calc-input-group"><label>⛽ Gas / Fuel ($)</label><input type="number" id="gas" value="150" step="30"></div>
+                                <div class="calc-input-group"><label>🚌 Public Transit / Ride Share ($)</label><input type="number" id="transit" value="50" step="20"></div>
+                                <div class="calc-input-group"><label>🔧 Insurance & Maintenance ($)</label><input type="number" id="carInsurance" value="120" step="30"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="background: #eff6ff; padding: 0.75rem; border-radius: 16px; margin-bottom: 1rem;">
+                                <h4 style="color: #2563eb; margin-bottom: 0.75rem; font-size: 0.9rem;">🍎 FOOD & LIVING</h4>
+                                <div class="calc-input-group"><label>🛒 Groceries ($)</label><input type="number" id="groceries" value="500" step="50"></div>
+                                <div class="calc-input-group"><label>🍽️ Dining Out ($)</label><input type="number" id="diningOut" value="200" step="50"></div>
+                                <div class="calc-input-group"><label>🛍️ Shopping / Clothing ($)</label><input type="number" id="shopping" value="150" step="50"></div>
+                                <div class="calc-input-group"><label>🎬 Entertainment / Subscriptions ($)</label><input type="number" id="entertainment" value="100" step="25"></div>
+                            </div>
+                            <div style="background: #fdf4ff; padding: 0.75rem; border-radius: 16px; margin-bottom: 1rem;">
+                                <h4 style="color: #a855f7; margin-bottom: 0.75rem; font-size: 0.9rem;">💊 HEALTH & PERSONAL</h4>
+                                <div class="calc-input-group"><label>🩺 Health Insurance ($)</label><input type="number" id="healthInsurance" value="300" step="50"></div>
+                                <div class="calc-input-group"><label>💊 Medical / Dental ($)</label><input type="number" id="medical" value="50" step="25"></div>
+                                <div class="calc-input-group"><label>💪 Gym / Fitness ($)</label><input type="number" id="gym" value="50" step="25"></div>
+                                <div class="calc-input-group"><label>💇 Personal Care ($)</label><input type="number" id="personalCare" value="40" step="20"></div>
+                            </div>
+                            <div style="background: #fef3c7; padding: 0.75rem; border-radius: 16px; margin-bottom: 1rem;">
+                                <h4 style="color: #d97706; margin-bottom: 0.75rem; font-size: 0.9rem;">💳 DEBT & SAVINGS</h4>
+                                <div class="calc-input-group"><label>💳 Credit Card Payments ($)</label><input type="number" id="creditCard" value="200" step="50"></div>
+                                <div class="calc-input-group"><label>📚 Student Loans ($)</label><input type="number" id="studentLoans" value="0" step="50"></div>
+                                <div class="calc-input-group"><label>🏦 Savings / Investments ($)</label><input type="number" id="savings" value="300" step="50"></div>
+                                <div class="calc-input-group"><label>🎯 Other Expenses ($)</label><input type="number" id="otherExpenses" value="100" step="50"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="extra-payment-results">
+                        <h4>📊 BUDGET SUMMARY</h4>
+                        <div class="extra-row"><span class="extra-label">💰 Total Monthly Income:</span><span class="extra-value saved-highlight" id="totalIncome">$0</span></div>
+                        <div class="extra-row"><span class="extra-label">📉 Total Monthly Expenses:</span><span class="extra-value" id="totalExpenses">$0</span></div>
+                        <div class="extra-row"><span class="extra-label">💵 Money Left Over (Savings Potential):</span><span class="extra-value saved-highlight" id="moneyLeft">$0</span></div>
+                        <div class="extra-row"><span class="extra-label">📊 Savings Rate:</span><span class="extra-value" id="savingsRate">0%</span></div>
+                        <div class="extra-row"><span class="extra-label">🏆 Expense to Income Ratio:</span><span class="extra-value" id="expenseRatio">0%</span></div>
+                        <div class="extra-row"><span class="extra-label">💡 Annual Surplus (if invested):</span><span class="extra-value" id="annualSurplus">$0</span></div>
+                    </div>
+                    <div style="margin-top: 1rem; text-align: center; font-size: 0.7rem; color: #8ba3bc;">
+                        *Track all your income and expenses. A positive surplus means you can save or invest more each month.
+                    </div>
+                </div>
+            `;
+            document.getElementById('calculatorsGrid').innerHTML = calculatorHTML;
+            
+            function performCalculation() {
+                // Income inputs
+                const salary = parseFloat(document.getElementById('salary').value) || 0;
+                const sideIncome = parseFloat(document.getElementById('sideIncome').value) || 0;
+                const investmentIncome = parseFloat(document.getElementById('investmentIncome').value) || 0;
+                const otherIncome = parseFloat(document.getElementById('otherIncome').value) || 0;
+                const totalIncome = salary + sideIncome + investmentIncome + otherIncome;
+                
+                // Housing & Utilities
+                const rentMortgage = parseFloat(document.getElementById('rentMortgage').value) || 0;
+                const utilities = parseFloat(document.getElementById('utilities').value) || 0;
+                const internetPhone = parseFloat(document.getElementById('internetPhone').value) || 0;
+                const waterTrash = parseFloat(document.getElementById('waterTrash').value) || 0;
+                const housingTotal = rentMortgage + utilities + internetPhone + waterTrash;
+                
+                // Transportation
+                const carPayment = parseFloat(document.getElementById('carPayment').value) || 0;
+                const gas = parseFloat(document.getElementById('gas').value) || 0;
+                const transit = parseFloat(document.getElementById('transit').value) || 0;
+                const carInsurance = parseFloat(document.getElementById('carInsurance').value) || 0;
+                const transportTotal = carPayment + gas + transit + carInsurance;
+                
+                // Food & Living
+                const groceries = parseFloat(document.getElementById('groceries').value) || 0;
+                const diningOut = parseFloat(document.getElementById('diningOut').value) || 0;
+                const shopping = parseFloat(document.getElementById('shopping').value) || 0;
+                const entertainment = parseFloat(document.getElementById('entertainment').value) || 0;
+                const foodLivingTotal = groceries + diningOut + shopping + entertainment;
+                
+                // Health & Personal
+                const healthInsurance = parseFloat(document.getElementById('healthInsurance').value) || 0;
+                const medical = parseFloat(document.getElementById('medical').value) || 0;
+                const gym = parseFloat(document.getElementById('gym').value) || 0;
+                const personalCare = parseFloat(document.getElementById('personalCare').value) || 0;
+                const healthTotal = healthInsurance + medical + gym + personalCare;
+                
+                // Debt & Savings
+                const creditCard = parseFloat(document.getElementById('creditCard').value) || 0;
+                const studentLoans = parseFloat(document.getElementById('studentLoans').value) || 0;
+                const savings = parseFloat(document.getElementById('savings').value) || 0;
+                const otherExpenses = parseFloat(document.getElementById('otherExpenses').value) || 0;
+                const debtSavingsTotal = creditCard + studentLoans + savings + otherExpenses;
+                
+                const totalExpenses = housingTotal + transportTotal + foodLivingTotal + healthTotal + debtSavingsTotal;
+                const moneyLeft = totalIncome - totalExpenses;
+                const savingsRate = totalIncome > 0 ? (Math.max(0, moneyLeft) / totalIncome) * 100 : 0;
+                const expenseRatio = totalIncome > 0 ? (totalExpenses / totalIncome) * 100 : 0;
+                const annualSurplus = moneyLeft * 12;
+                
+                document.getElementById('totalIncome').innerHTML = '$' + totalIncome.toLocaleString('en-US', { minimumFractionDigits: 2 });
+                document.getElementById('totalExpenses').innerHTML = '$' + totalExpenses.toLocaleString('en-US', { minimumFractionDigits: 2 });
+                document.getElementById('moneyLeft').innerHTML = '$' + moneyLeft.toLocaleString('en-US', { minimumFractionDigits: 2 });
+                document.getElementById('savingsRate').innerHTML = savingsRate.toFixed(1) + '%';
+                document.getElementById('expenseRatio').innerHTML = expenseRatio.toFixed(1) + '%';
+                document.getElementById('annualSurplus').innerHTML = '$' + annualSurplus.toLocaleString('en-US', { minimumFractionDigits: 0 });
+            }
+            
+            // Add event listeners to all input fields
+            const inputIds = ['salary', 'sideIncome', 'investmentIncome', 'otherIncome', 'rentMortgage', 'utilities', 'internetPhone', 'waterTrash', 'carPayment', 'gas', 'transit', 'carInsurance', 'groceries', 'diningOut', 'shopping', 'entertainment', 'healthInsurance', 'medical', 'gym', 'personalCare', 'creditCard', 'studentLoans', 'savings', 'otherExpenses'];
+            inputIds.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) element.addEventListener('input', performCalculation);
+            });
+            performCalculation();
+        }
+        
+        createBudgetCalculator();
+        
+        // RESTORE ALL TOOLS in drawer menu
+        const drawerToolsList = document.getElementById('drawerToolsList');
+        const allTools = [
+            "📊 Budget Calculator", "📈 Investment Calculator", "💳 Credit Card Points Calculator", 
+            "💳 Credit Card Payoff Calculator", "🚗 Car Refinance Calculator", "🏠 Mortgage Calculator",
+            "💰 Savings Calculator", "📊 Retirement Planner", "🏦 Loan Comparison Tool",
+            "🔄 Refinance Breakeven", "📅 DTI Calculator", "🏡 Rent vs Buy Analyzer", "🎓 Student Loan Planner"
+        ];
+        allTools.forEach(toolName => {
+            const toolLink = document.createElement('a');
+            toolLink.className = 'drawer-item';
+            toolLink.innerHTML = toolName;
+            toolLink.href = '#';
+            toolLink.style.fontSize = '0.85rem';
+            toolLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('mortgageCalculatorCard').scrollIntoView({ behavior: 'smooth' });
+                closeDrawer();
+            });
+            drawerToolsList.appendChild(toolLink);
+        });
+        
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+            const toggle = item.querySelector('.faq-toggle');
+            if (question && answer && toggle) {
+                question.addEventListener('click', () => {
+                    const isOpen = answer.classList.contains('open');
+                    faqItems.forEach(otherItem => {
+                        const otherAnswer = otherItem.querySelector('.faq-answer');
+                        const otherToggle = otherItem.querySelector('.faq-toggle');
+                        if (otherAnswer && otherAnswer !== answer) {
+                            otherAnswer.classList.remove('open');
+                            if (otherToggle) otherToggle.textContent = '+';
+                        }
+                    });
+                    if (isOpen) { answer.classList.remove('open'); toggle.textContent = '+'; }
+                    else { answer.classList.add('open'); toggle.textContent = '−'; }
+                });
+            }
+        });
+        
+        // Modal and Navigation
+        const modal = document.getElementById('infoModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalText = document.getElementById('modalText');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        
+        function closeModalFunc() { modal.style.display = 'none'; }
+        closeModalBtn.addEventListener('click', closeModalFunc);
+        window.addEventListener('click', (e) => { if (e.target === modal) closeModalFunc(); });
+        
+        const contentMap = {
+            about: { title: "📌 About SmartRatesLab", body: "<p>SmartRatesLab delivers professional-grade financial calculators. Founded in 2022, we're committed to transparency and accuracy. All calculations are performed locally in your browser.</p>" },
+            contact: { title: "📧 Contact Us", body: "<p><strong>Email:</strong> supportentry1@gmail.com<br><strong>Hours:</strong> Monday-Friday, 9am-6pm EST<br>We respond within 24 hours.</p>" },
+            privacy: { title: "🔒 Privacy Policy", body: "<p>We do not store any personal financial data. All calculations happen locally in your browser. We use anonymous analytics to improve our tools.</p>" },
+            terms: { title: "⚖️ Terms of Service", body: "<p>Calculators are for educational purposes only. Not financial advice. Always consult a qualified financial advisor before making major decisions.</p>" },
+            home: { title: "SmartRatesLab", body: "<p>Welcome to SmartRatesLab — your hub for financial calculators. Use our Budget Calculator to track your monthly income and expenses, and find opportunities to save more.</p>" }
+        };
+        
+        function openModal(type) { const data = contentMap[type]; if (data) { modalTitle.innerText = data.title; modalText.innerHTML = data.body; modal.style.display = 'flex'; } }
+        function handleNavigation(navType) { if (navType === 'home') { window.scrollTo({ top: 0, behavior: 'smooth' }); openModal('home'); } else { openModal(navType); } closeDrawer(); }
+        
+        const drawer = document.getElementById('drawerMenu');
+        const overlay = document.getElementById('drawerOverlay');
+        const menuBtn = document.getElementById('menuButton');
+        const closeDrawerBtn = document.getElementById('closeDrawerBtn');
+        
+        function openDrawer() { drawer.classList.add('open'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeDrawer() { drawer.classList.remove('open'); overlay.classList.remove('active'); document.body.style.overflow = ''; }
+        
+        menuBtn.addEventListener('click', openDrawer);
+        closeDrawerBtn.addEventListener('click', closeDrawer);
+        overlay.addEventListener('click', closeDrawer);
+        
+        document.querySelectorAll('.drawer-item[data-nav]').forEach(item => {
+            item.addEventListener('click', (e) => { e.preventDefault(); handleNavigation(item.getAttribute('data-nav')); });
+        });
+        
+        document.querySelectorAll('.footer-nav-link, .footer-legal-link, [data-nav]').forEach(link => {
+            if (!link.closest('.drawer')) {
+                link.addEventListener('click', (e) => { e.preventDefault(); const nav = link.getAttribute('data-nav'); if (nav) handleNavigation(nav); });
+            }
+        });
+        
+        document.getElementById('homeLinkHeader')?.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); openModal('home'); });
+        
+        // Blog posts
+        const blogPosts = {
+            1: { title: "Mortgage prepayment vs. index funds", content: "<p>Extra mortgage payments give a guaranteed return equal to your interest rate. Compare with expected market returns using our calculators.</p>" },
+            2: { title: "Real return after inflation & taxes", content: "<p>Use our calculators to adjust nominal returns for inflation and your marginal tax rate to find your true purchasing power growth.</p>" },
+            3: { title: "Coast FIRE fundamentals", content: "<p>Coast FIRE is when your existing investments will grow to cover retirement without additional contributions. Our retirement planner can help.</p>" },
+            4: { title: "Mortgage recasting explained", content: "<p>Recasting lowers monthly payments without refinancing. Use our calculator to model lump sum impacts.</p>" },
+            5: { title: "Tax-loss harvesting strategies", content: "<p>Offset capital gains by selling losing positions. The IRS wash-sale rule applies within 30 days.</p>" }
+        };
+        
+        document.querySelectorAll('.blog-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const blogId = item.getAttribute('data-blog');
+                const post = blogPosts[blogId];
+                if (post) { modalTitle.innerText = post.title; modalText.innerHTML = post.content; modal.style.display = 'flex'; }
+                closeDrawer();
+            });
+        });
+    })();
+</script>
+    
+<script src="nav.js"></script>
+</body>
+</html>
