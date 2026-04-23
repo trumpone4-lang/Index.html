@@ -982,7 +982,7 @@
         };
         
         function openModal(type) { const data = contentMap[type]; if (data) { modalTitle.innerText = data.title; modalText.innerHTML = data.body; modal.style.display = 'flex'; } }
-        function handleNavigation(navType) { if (navType === 'home') { window.scrollTo({ top: 0, behavior: 'smooth' }); openModal('home'); } else { openModal(navType); } closeDrawer(); }
+        function handleNavigation(navType) {if (navType === 'home') {window.scrollTo({ top: 0, behavior: 'smooth' });closeDrawer();return;} else {openModal(navType);closeDrawer();} }
         
         const drawer = document.getElementById('drawerMenu');
         const overlay = document.getElementById('drawerOverlay');
