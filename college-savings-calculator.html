@@ -657,9 +657,9 @@
 <div class="drawer" id="drawerMenu">
     <div class="drawer-header"><h3>Navigation & Tools</h3><button class="close-drawer" id="closeDrawerBtn">&times;</button></div>
     <div class="drawer-nav">
-        <div class="drawer-section"><h4>Main</h4><a class="drawer-item" data-nav="home">🏠 Home</a><a class="drawer-item" data-nav="about">📄 About</a><a class="drawer-item" data-nav="contact">📞 Contact</a></div>
-        <div class="drawer-section"><h4>Legal</h4><a class="drawer-item" data-nav="privacy">🔒 Privacy Policy</a><a class="drawer-item" data-nav="terms">⚖️ Terms of Service</a></div>
-        <div class="drawer-section"><h4>📊 Financial Tools</h4><div id="drawerToolsList"></div></div>
+        <div class="drawer-section"><h4>Main</h4><a class="drawer-item" data-nav="home">Home</a><a class="drawer-item" data-nav="about">About</a><a class="drawer-item" data-nav="contact">Contact</a></div>
+        <div class="drawer-section"><h4>Legal</h4><a class="drawer-item" data-nav="privacy">Privacy Policy</a><a class="drawer-item" data-nav="terms">Terms of Service</a></div>
+        <div class="drawer-section"><h4>Financial Tools</h4><div id="drawerToolsList"></div></div>
     </div>
 </div>
 
@@ -708,7 +708,7 @@
                 <p>I plugged in my numbers: newborn daughter, $0 current savings, $200 per month contribution, 6% expected return, 18 years until college. The calculator showed me that I would have about $80,000 by the time she turned 18. That sounded good — until I added tuition inflation. At 4% inflation, current $25,000 annual tuition would cost over $50,000 per year by 2040. That is $200,000 for four years. I was only going to cover 40% of the cost.</p>
                 
                 <div class="highlight-box">
-                    <strong>📊 My Wake-Up Call:</strong><br>
+                    <strong>My Wake-Up Call:</strong><br>
                     • Newborn daughter, $200/month savings, 6% return → $80,000 at age 18<br>
                     • Projected 4-year college cost (4% inflation) → $200,000<br>
                     • Shortfall → $120,000<br>
@@ -722,7 +722,7 @@
                 <p>I also learned about the <strong>scholarship strategy</strong>. I encouraged my daughter to focus on academics and extracurriculars. She earned a partial merit scholarship, which reduced our out-of-pocket costs. Some 529 plans allow penalty-free withdrawals equal to scholarship amounts, so we were able to use those funds for other expenses.</p>
                 
                 <div class="warning-box">
-                    <strong>⚠️ Common College Saving Mistakes I Avoided:</strong>
+                    <strong>Common College Saving Mistakes I Avoided:</strong>
                     <ul style="margin-top: 0.5rem; margin-bottom: 0; margin-left: 1.2rem;">
                         <li>Starting too late — every year you delay costs you thousands in compound growth</li>
                         <li>Using a regular savings account instead of a 529 plan — losing tax advantages</li>
@@ -764,7 +764,7 @@
                 <p>As you can see, starting early makes a massive difference. A $500 monthly contribution starting at birth fully funds a $200,000 college education. Starting at age 15, the same $500 per month only covers 20% of the cost.</p>
                 
                 <div class="highlight-box">
-                    <strong>✅ My College Savings Action Plan:</strong><br>
+                    <strong>My College Savings Action Plan:</strong><br>
                     • Open a 529 plan the month my child was born<br>
                     • Set up automatic monthly contributions of $500<br>
                     • Front-loaded an extra $10,000 in year one<br>
@@ -833,18 +833,18 @@
             const calculatorHTML = `
                 <div class="mortgage-calculator-card" id="mortgageCalculatorCard">
                     <div style="text-align: center; margin-bottom: 1.5rem;">
-                        <div class="tool-icon" style="font-size: 2.5rem;">🎓💰</div>
+                        <div class="tool-icon" style="font-size: 2.5rem;"></div>
                         <h3 style="font-size: 1.3rem; color: #122b44;">College Savings Strategies Calculator</h3>
                         <p style="font-size: 0.85rem; color: #6c8eaa;">Plan for future education costs. Calculate 529 plan growth and monthly savings needed.</p>
                     </div>
                     <div class="calc-two-columns">
                         <div>
-                            <div class="calc-input-group"><label>🎓 Current College Savings ($)</label><input type="number" id="currentSavings" value="5000" step="1000"></div>
-                            <div class="calc-input-group"><label>📅 Monthly Contribution ($)</label><input type="number" id="monthlyContribution" value="200" step="50"></div>
-                            <div class="calc-input-group"><label>📈 Expected Investment Return (%)</label><input type="number" id="expectedReturn" value="6.0" step="0.5"></div>
-                            <div class="calc-input-group"><label>📚 Years Until College Starts</label><input type="number" id="yearsUntilCollege" value="10" step="1"></div>
-                            <div class="calc-input-group"><label>🏫 Current Annual College Cost ($)</label><input type="number" id="currentCollegeCost" value="25000" step="5000"></div>
-                            <div class="calc-input-group"><label>📈 Annual Tuition Inflation Rate (%)</label><input type="number" id="tuitionInflation" value="4.0" step="0.5"></div>
+                            <div class="calc-input-group"><label>Current College Savings ($)</label><input type="number" id="currentSavings" value="5000" step="1000"></div>
+                            <div class="calc-input-group"><label>Monthly Contribution ($)</label><input type="number" id="monthlyContribution" value="200" step="50"></div>
+                            <div class="calc-input-group"><label>Expected Investment Return (%)</label><input type="number" id="expectedReturn" value="6.0" step="0.5"></div>
+                            <div class="calc-input-group"><label>Years Until College Starts</label><input type="number" id="yearsUntilCollege" value="10" step="1"></div>
+                            <div class="calc-input-group"><label>Current Annual College Cost ($)</label><input type="number" id="currentCollegeCost" value="25000" step="5000"></div>
+                            <div class="calc-input-group"><label>Annual Tuition Inflation Rate (%)</label><input type="number" id="tuitionInflation" value="4.0" step="0.5"></div>
                             <button class="calc-button" id="calculateCollege">⟳ Calculate College Savings Plan</button>
                         </div>
                         <div>
@@ -857,13 +857,13 @@
                         </div>
                     </div>
                     <div class="extra-payment-results">
-                        <h4>📊 COLLEGE SAVINGS ANALYSIS</h4>
-                        <div class="extra-row"><span class="extra-label">💰 Projected Future Savings Balance:</span><span class="extra-value saved-highlight" id="futureSavings">$0</span></div>
-                        <div class="extra-row"><span class="extra-label">🎓 Estimated College Cost at Start (1 year):</span><span class="extra-value" id="futureYear1Cost">$0</span></div>
-                        <div class="extra-row"><span class="extra-label">📚 Total Projected 4-Year College Cost:</span><span class="extra-value" id="totalFourYearCost">$0</span></div>
-                        <div class="extra-row"><span class="extra-label">✅ Percentage of College Cost Covered:</span><span class="extra-value" id="percentCovered">0%</span></div>
-                        <div class="extra-row"><span class="extra-label">📊 Savings Goal Shortfall (if any):</span><span class="extra-value" id="shortfall">$0</span></div>
-                        <div class="extra-row"><span class="extra-label">💡 Suggested Monthly Contribution to Fully Fund:</span><span class="extra-value" id="suggestedContribution">$0</span></div>
+                        <h4>COLLEGE SAVINGS ANALYSIS</h4>
+                        <div class="extra-row"><span class="extra-label">Projected Future Savings Balance:</span><span class="extra-value saved-highlight" id="futureSavings">$0</span></div>
+                        <div class="extra-row"><span class="extra-label">Estimated College Cost at Start (1 year):</span><span class="extra-value" id="futureYear1Cost">$0</span></div>
+                        <div class="extra-row"><span class="extra-label">Total Projected 4-Year College Cost:</span><span class="extra-value" id="totalFourYearCost">$0</span></div>
+                        <div class="extra-row"><span class="extra-label">Percentage of College Cost Covered:</span><span class="extra-value" id="percentCovered">0%</span></div>
+                        <div class="extra-row"><span class="extra-label">Savings Goal Shortfall (if any):</span><span class="extra-value" id="shortfall">$0</span></div>
+                        <div class="extra-row"><span class="extra-label">Suggested Monthly Contribution to Fully Fund:</span><span class="extra-value" id="suggestedContribution">$0</span></div>
                     </div>
                     <div style="margin-top: 1rem; text-align: center; font-size: 0.7rem; color: #8ba3bc;">
                         *529 plan projections assume annual compounding. College costs increase with inflation. Adjust contributions to meet your goal.
@@ -982,23 +982,23 @@
         // Updated drawer menu with all 7 tools
         const drawerToolsList = document.getElementById('drawerToolsList');
         const allTools = [
-            "🏠 Mortgage Calculator",
-            "🚗 Car Refinance Calculator",
-            "💳 Credit Card Points Calculator",
-            "📈 Investment Calculator",
-            "📊 Budget Calculator",
-            "📉 Inflation Calculator",
-            "🎓 College Savings Calculator"
+            "Mortgage Calculator",
+            "Car Refinance Calculator",
+            "Credit Card Points Calculator",
+            "Investment Calculator",
+            "Budget Calculator",
+            "Inflation Calculator",
+            "College Savings Calculator"
         ];
         
         const toolFileMap = {
-            "🏠 Mortgage Calculator": "mortgage-calculator.html",
-            "🚗 Car Refinance Calculator": "car-refinance-calculator.html",
-            "💳 Credit Card Points Calculator": "credit-card-points-calculator.html",
-            "📈 Investment Calculator": "investment-calculator.html",
-            "📊 Budget Calculator": "budget-calculator.html",
-            "📉 Inflation Calculator": "inflation-calculator.html",
-            "🎓 College Savings Calculator": "college-savings-calculator.html"
+            "Mortgage Calculator": "mortgage-calculator.html",
+            "Car Refinance Calculator": "car-refinance-calculator.html",
+            "Credit Card Points Calculator": "credit-card-points-calculator.html",
+            "Investment Calculator": "investment-calculator.html",
+            "Budget Calculator": "budget-calculator.html",
+            "Inflation Calculator": "inflation-calculator.html",
+            "College Savings Calculator": "college-savings-calculator.html"
         };
         
         allTools.forEach(toolName => {
@@ -1052,10 +1052,10 @@
         window.addEventListener('click', (e) => { if (e.target === modal) closeModalFunc(); });
         
         const contentMap = {
-            about: { title: "📌 About SmartRatesLab", body: "<p>SmartRatesLab delivers professional-grade financial calculators. Founded in 2022, we're committed to transparency and accuracy. All calculations are performed locally in your browser.</p>" },
-            contact: { title: "📧 Contact Us", body: "<p><strong>Email:</strong> supportentry1@gmail.com<br><strong>Hours:</strong> Monday-Friday, 9am-6pm EST<br>We respond within 24 hours.</p>" },
-            privacy: { title: "🔒 Privacy Policy", body: "<p>We do not store any personal financial data. All calculations happen locally in your browser. We use anonymous analytics to improve our tools.</p>" },
-            terms: { title: "⚖️ Terms of Service", body: "<p>Calculators are for educational purposes only. Not financial advice. Always consult a qualified financial advisor before making major decisions.</p>" },
+            about: { title: "About SmartRatesLab", body: "<p>SmartRatesLab delivers professional-grade financial calculators. Founded in 2022, we're committed to transparency and accuracy. All calculations are performed locally in your browser.</p>" },
+            contact: { title: "Contact Us", body: "<p><strong>Email:</strong> supportentry1@gmail.com<br><strong>Hours:</strong> Monday-Friday, 9am-6pm EST<br>We respond within 24 hours.</p>" },
+            privacy: { title: "Privacy Policy", body: "<p>We do not store any personal financial data. All calculations happen locally in your browser. We use anonymous analytics to improve our tools.</p>" },
+            terms: { title: "Terms of Service", body: "<p>Calculators are for educational purposes only. Not financial advice. Always consult a qualified financial advisor before making major decisions.</p>" },
             home: { title: "SmartRatesLab", body: "<p>Welcome to SmartRatesLab — your hub for financial calculators. Use our College Savings Calculator to plan for future education costs and see if your 529 plan is on track.</p>" }
         };
         
