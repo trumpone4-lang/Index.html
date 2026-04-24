@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Can I Pay My House Off Early?/title>
+    <title>Can I Pay My House Off Early?</title>
     <meta name="description" content="How many years can you cut from your mortgage? Enter your numbers into our free calculator and see exactly how much interest you save with extra payments. Biweekly, lump sum, and Dave Ramsey methods explained.">
     
     <link rel="canonical" href="https://www.smartrateslab.com/">
@@ -793,14 +793,14 @@
         
         createMortgageCalculator();
         
-        // MENU BUTTON TOOLS LIST - ALL 7 CALCULATORS WITH WORKING LINKS
+        // MENU BUTTON TOOLS LIST - UPDATED WITH CORRECT URLS
         const drawerToolsList = document.getElementById('drawerToolsList');
         const allTools = [
             "🏠 Mortgage Calculator", "🚗 Car Refinance Calculator", "💳 Credit Card Points Calculator",
             "📈 Investment Calculator", "📊 Budget Calculator", "📉 Inflation Calculator", "🎓 College Savings Calculator"
         ];
         const toolUrls = {
-            "🏠 Mortgage Calculator": "mortgage-calculator.html",
+            "🏠 Mortgage Calculator": "https://financialbankrates.indevs.in/mortgage-calculator.html",
             "🚗 Car Refinance Calculator": "car-refinance-calculator.html",
             "💳 Credit Card Points Calculator": "credit-card-points-calculator.html",
             "📈 Investment Calculator": "investment-calculator.html",
@@ -829,7 +829,7 @@
         function openModal(type) { const data = contentMap[type]; if (data) { modalTitle.innerText = data.title; modalText.innerHTML = data.body; modal.style.display = 'flex'; } }
         function handleNavigation(navType) { 
             if (navType === 'home') { 
-                window.location.href = 'index.html';
+                window.location.href = 'https://financialbankrates.indevs.in/';
                 closeDrawer();
                 return;
             } else { 
@@ -843,7 +843,7 @@
         menuBtn.addEventListener('click', openDrawer); closeDrawerBtn.addEventListener('click', closeDrawer); overlay.addEventListener('click', closeDrawer);
         document.querySelectorAll('.drawer-item[data-nav]').forEach(item => { item.addEventListener('click', (e) => { e.preventDefault(); handleNavigation(item.getAttribute('data-nav')); }); });
         document.querySelectorAll('.footer-nav-link, .footer-legal-link, [data-nav]').forEach(link => { if (!link.closest('.drawer')) { link.addEventListener('click', (e) => { e.preventDefault(); const nav = link.getAttribute('data-nav'); if (nav) handleNavigation(nav); }); } });
-        document.getElementById('homeLinkHeader')?.addEventListener('click', () => { window.location.href = 'index.html'; });
+        document.getElementById('homeLinkHeader')?.addEventListener('click', () => { window.location.href = 'https://financialbankrates.indevs.in/'; });
         
         document.querySelectorAll('.faq-question').forEach(q => { q.addEventListener('click', () => { const answer = q.parentElement.querySelector('.faq-answer'); answer.classList.toggle('show'); q.querySelector('.toggle-icon').innerText = answer.classList.contains('show') ? '−' : '+'; }); });
     })();
@@ -851,4 +851,4 @@
     
 <script src="nav.js"></script>
 </body>
-            </html>
+                                                             </html>
