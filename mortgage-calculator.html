@@ -531,9 +531,9 @@
 <div class="drawer" id="drawerMenu">
     <div class="drawer-header"><h3>Navigation & Tools</h3><button class="close-drawer" id="closeDrawerBtn">&times;</button></div>
     <div class="drawer-nav">
-        <div class="drawer-section"><h4>Main</h4><a class="drawer-item" data-nav="home">🏠 Home</a><a class="drawer-item" data-nav="about">📄 About</a><a class="drawer-item" data-nav="contact">📞 Contact</a></div>
-        <div class="drawer-section"><h4>Legal</h4><a class="drawer-item" data-nav="privacy">🔒 Privacy Policy</a><a class="drawer-item" data-nav="terms">⚖️ Terms of Service</a></div>
-        <div class="drawer-section"><h4>📊 Financial Tools</h4><div id="drawerToolsList"></div></div>
+        <div class="drawer-section"><h4>Main</h4><a class="drawer-item" data-nav="home">Home</a><a class="drawer-item" data-nav="about">About</a><a class="drawer-item" data-nav="contact">Contact</a></div>
+        <div class="drawer-section"><h4>Legal</h4><a class="drawer-item" data-nav="privacy">Privacy Policy</a><a class="drawer-item" data-nav="terms">Terms of Service</a></div>
+        <div class="drawer-section"><h4>Financial Tools</h4><div id="drawerToolsList"></div></div>
     </div>
 </div>
 
@@ -724,7 +724,7 @@
                         </div>
                     </div>
                     <div class="extra-payment-results">
-                        <h4>📊 EXTRA PAYMENT IMPACT ANALYSIS</h4>
+                        <h4>EXTRA PAYMENT IMPACT ANALYSIS</h4>
                         <div class="extra-row"><span class="extra-label">📅 Normal payoff date:</span><span class="extra-value" id="normalPayoff">--</span></div>
                         <div class="extra-row"><span class="extra-label">🚀 New payoff date (with extras):</span><span class="extra-value saved-highlight" id="newPayoff">--</span></div>
                         <div class="extra-row"><span class="extra-label">⏱️ Years saved:</span><span class="extra-value saved-highlight" id="yearsSaved">0.0 years</span></div>
@@ -800,17 +800,17 @@
         // MENU BUTTON TOOLS LIST - UPDATED WITH CORRECT URLS
         const drawerToolsList = document.getElementById('drawerToolsList');
         const allTools = [
-            "🏠 Mortgage Calculator", "🚗 Car Refinance Calculator", "💳 Credit Card Points Calculator",
-            "📈 Investment Calculator", "📊 Budget Calculator", "📉 Inflation Calculator", "🎓 College Savings Calculator"
+            "Mortgage Calculator", "Car Refinance Calculator", "Credit Card Points Calculator",
+            "Investment Calculator", "Budget Calculator", "Inflation Calculator", "College Savings Calculator"
         ];
         const toolUrls = {
-            "🏠 Mortgage Calculator": "https://financialbankrates.indevs.in/mortgage-calculator.html",
-            "🚗 Car Refinance Calculator": "car-refinance-calculator.html",
-            "💳 Credit Card Points Calculator": "credit-card-points-calculator.html",
-            "📈 Investment Calculator": "investment-calculator.html",
-            "📊 Budget Calculator": "budget-calculator.html",
-            "📉 Inflation Calculator": "inflation-calculator.html",
-            "🎓 College Savings Calculator": "college-savings-calculator.html"
+            "Mortgage Calculator": "https://financialbankrates.indevs.in/mortgage-calculator.html",
+            "Car Refinance Calculator": "car-refinance-calculator.html",
+            "Credit Card Points Calculator": "credit-card-points-calculator.html",
+            "Investment Calculator": "investment-calculator.html",
+            "Budget Calculator": "budget-calculator.html",
+            "Inflation Calculator": "inflation-calculator.html",
+            "College Savings Calculator": "college-savings-calculator.html"
         };
         allTools.forEach(toolName => {
             const toolLink = document.createElement('a');
