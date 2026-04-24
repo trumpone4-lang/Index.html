@@ -646,7 +646,7 @@
                 <p>I started researching and discovered the future value formula: FV = PV × (1 + r)^n. I plugged in my numbers: $10,000 at 0.5% for 5 years. The result? $10,253. I had earned $253 in five years. Then I tried the same calculation with an 8% return — the historical average of the stock market. $10,000 at 8% for 5 years grows to $14,693. That is nearly $4,500 more for doing absolutely nothing different except where I parked my money.</p>
                 
                 <div class="highlight-box">
-                    <strong>📊 The Eye-Opening Comparison:</strong><br>
+                    <strong>The Eye-Opening Comparison:</strong><br>
                     • Savings account (0.5%): $10,000 → $10,253 after 5 years<br>
                     • Stock market (8%): $10,000 → $14,693 after 5 years<br>
                     • Difference: $4,440 for the exact same effort
@@ -670,7 +670,7 @@
                 <p>The formula gets more complex with monthly contributions, which is why the calculator above is so valuable. It handles the math for you. But here is the rule of thumb: adding consistent monthly contributions dramatically increases your future value.</p>
                 
                 <div class="highlight-box">
-                    <strong>📊 $10,000 Initial Investment at 8% for 20 Years:</strong><br>
+                    <strong>$10,000 Initial Investment at 8% for 20 Years:</strong><br>
                     • $0/month → $46,609<br>
                     • $200/month → $157,000<br>
                     • $500/month → $350,000<br>
@@ -697,7 +697,7 @@
                 <p>Starting at 30 instead of 40 gives you an extra $650,000 at retirement. That is the power of understanding <strong>how to calculate the future value of an investment</strong> early.</p>
                 
                 <div class="warning-box">
-                    <strong>⚠️ Common Future Value Mistakes:</strong>
+                    <strong>Common Future Value Mistakes:</strong>
                     <ul style="margin-top: 0.5rem; margin-bottom: 0; margin-left: 1.2rem;">
                         <li>Forgetting to account for inflation (use 5-6% real return for long-term planning)</li>
                         <li>Assuming you will get the same return every year (markets go up and down)</li>
@@ -725,7 +725,7 @@
                 </table>
                 
                 <div class="highlight-box">
-                    <strong>✅ Key Takeaways for Calculating Future Value:</strong><br>
+                    <strong>Key Takeaways for Calculating Future Value:</strong><br>
                     • Start as early as possible — time is your biggest asset<br>
                     • Add monthly contributions — they matter more than your starting amount<br>
                     • Use realistic return rates (8% for stocks, 4-5% for conservative)<br>
@@ -799,10 +799,10 @@
                     </div>
                     <div class="calc-two-columns">
                         <div>
-                            <div class="calc-input-group"><label>💰 Initial Investment ($)</label><input type="number" id="initialInvestment" value="10000" step="1000"></div>
-                            <div class="calc-input-group"><label>📅 Monthly Contribution ($)</label><input type="number" id="monthlyContribution" value="500" step="100"></div>
-                            <div class="calc-input-group"><label>📈 Annual Return Rate (%)</label><input type="number" id="returnRate" value="8" step="0.5"></div>
-                            <div class="calc-input-group"><label>⏱️ Number of Years</label><input type="number" id="years" value="20" step="1"></div>
+                            <div class="calc-input-group"><label>Initial Investment ($)</label><input type="number" id="initialInvestment" value="10000" step="1000"></div>
+                            <div class="calc-input-group"><label>Monthly Contribution ($)</label><input type="number" id="monthlyContribution" value="500" step="100"></div>
+                            <div class="calc-input-group"><label>Annual Return Rate (%)</label><input type="number" id="returnRate" value="8" step="0.5"></div>
+                            <div class="calc-input-group"><label>Number of Years</label><input type="number" id="years" value="20" step="1"></div>
                             <button class="calc-button" id="calculateInvestment">⟳ Calculate Future Value</button>
                         </div>
                         <div>
@@ -879,23 +879,23 @@
         // Updated drawer menu with all 7 tools
         const drawerToolsList = document.getElementById('drawerToolsList');
         const allTools = [
-            "🏠 Mortgage Calculator",
-            "🚗 Car Refinance Calculator",
-            "💳 Credit Card Points Calculator",
-            "📈 Investment Calculator",
-            "📊 Budget Calculator",
-            "📉 Inflation Calculator",
-            "🎓 College Savings Calculator"
+            "Mortgage Calculator",
+            "Car Refinance Calculator",
+            "Credit Card Points Calculator",
+            "Investment Calculator",
+            "Budget Calculator",
+            "Inflation Calculator",
+            "College Savings Calculator"
         ];
         
         const toolFileMap = {
-            "🏠 Mortgage Calculator": "mortgage-calculator.html",
-            "🚗 Car Refinance Calculator": "car-refinance-calculator.html",
-            "💳 Credit Card Points Calculator": "credit-card-points-calculator.html",
-            "📈 Investment Calculator": "investment-calculator.html",
-            "📊 Budget Calculator": "budget-calculator.html",
-            "📉 Inflation Calculator": "inflation-calculator.html",
-            "🎓 College Savings Calculator": "college-savings-calculator.html"
+            "Mortgage Calculator": "mortgage-calculator.html",
+            "Car Refinance Calculator": "car-refinance-calculator.html",
+            "Credit Card Points Calculator": "credit-card-points-calculator.html",
+            "Investment Calculator": "investment-calculator.html",
+            "Budget Calculator": "budget-calculator.html",
+            "Inflation Calculator": "inflation-calculator.html",
+            "College Savings Calculator": "college-savings-calculator.html"
         };
         
         allTools.forEach(toolName => {
@@ -948,10 +948,10 @@
         window.addEventListener('click', (e) => { if (e.target === modal) closeModalFunc(); });
         
         const contentMap = {
-            about: { title: "📌 About SmartRatesLab", body: "<p>SmartRatesLab delivers professional-grade financial calculators. Founded in 2022, we're committed to transparency and accuracy. All calculations are performed locally in your browser.</p>" },
-            contact: { title: "📧 Contact Us", body: "<p><strong>Email:</strong> supportentry1@gmail.com<br><strong>Hours:</strong> Monday-Friday, 9am-6pm EST<br>We respond within 24 hours.</p>" },
-            privacy: { title: "🔒 Privacy Policy", body: "<p>We do not store any personal financial data. All calculations happen locally in your browser. We use anonymous analytics to improve our tools.</p>" },
-            terms: { title: "⚖️ Terms of Service", body: "<p>Calculators are for educational purposes only. Not financial advice. Always consult a qualified financial advisor before making major decisions.</p>" },
+            about: { title: "About SmartRatesLab", body: "<p>SmartRatesLab delivers professional-grade financial calculators. Founded in 2022, we're committed to transparency and accuracy. All calculations are performed locally in your browser.</p>" },
+            contact: { title: "Contact Us", body: "<p><strong>Email:</strong> supportentry1@gmail.com<br><strong>Hours:</strong> Monday-Friday, 9am-6pm EST<br>We respond within 24 hours.</p>" },
+            privacy: { title: "Privacy Policy", body: "<p>We do not store any personal financial data. All calculations happen locally in your browser. We use anonymous analytics to improve our tools.</p>" },
+            terms: { title: "Terms of Service", body: "<p>Calculators are for educational purposes only. Not financial advice. Always consult a qualified financial advisor before making major decisions.</p>" },
             home: { title: "SmartRatesLab", body: "<p>Welcome to SmartRatesLab — your hub for financial calculators. Use our Investment Calculator to see how your money grows over time.</p>" }
         };
         
