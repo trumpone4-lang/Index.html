@@ -660,7 +660,7 @@
 </div>
 
 <main>
-    <!-- Answer Box Above Calculator -->
+    <!-- Answer Box Above Calculator - ADDED MISSING KEY POINTS COMPARING STRATEGIES -->
     <div class="container">
         <div class="direct-answer">
             <h1>What Are the Best College Saving Strategies?</h1>
@@ -668,19 +668,19 @@
             <div class="answer-text">
                 <p><strong>Yes — starting early and choosing the right college saving strategy can save you tens of thousands of dollars in taxes and interest.</strong> The best strategy depends on your child's age, your income, your risk tolerance, and how much you can save each month. But the single most important factor is starting now. Every year you delay, you lose the power of compound growth.</p>
                 
-                <p>Let me show you why starting early matters so much. If you start saving $200 per month when your child is born, assuming a 6% annual return, you will have over $80,000 by the time they turn 18. If you wait until they are 10 years old, you will have less than $30,000. That eight-year delay costs you $50,000. The best college saving strategy is simply starting as early as possible.</p>
+                <p><strong>Key Point #1: Compare all available strategies before choosing.</strong> The most popular and effective college saving vehicle is the <strong>529 plan</strong>. Named after Section 529 of the IRS tax code, these state-sponsored investment accounts offer tax-free growth and tax-free withdrawals for qualified education expenses. That means every dollar your investments earn never gets taxed — not when you contribute, not when it grows, and not when you withdraw it for college costs. Over 18 years, that tax advantage can add tens of thousands of dollars to your college fund.</p>
                 
-                <p>The most popular and effective college saving vehicle is the <strong>529 plan</strong>. Named after Section 529 of the IRS tax code, these state-sponsored investment accounts offer tax-free growth and tax-free withdrawals for qualified education expenses. That means every dollar your investments earn never gets taxed — not when you contribute, not when it grows, and not when you withdraw it for college costs. Over 18 years, that tax advantage can add tens of thousands of dollars to your college fund.</p>
+                <p><strong>Key Point #2: Roth IRAs offer flexibility for college savings.</strong> A Roth IRA allows you to withdraw your contributions (but not earnings) penalty-free for college expenses. This gives you flexibility if your child does not go to college or gets a scholarship. However, using a Roth IRA for college means you are reducing your retirement savings, so this strategy works best for families who are already maxing out their retirement contributions.</p>
                 
-                <p>But 529 plans are not the only option. <strong>Roth IRAs</strong> allow you to withdraw your contributions (but not earnings) penalty-free for college expenses. This gives you flexibility if your child does not go to college or gets a scholarship. <strong>Custodial accounts (UTMA/UGMA)</strong> offer more flexibility but count more heavily against financial aid. <strong>Coverdell Education Savings Accounts (ESAs)</strong> are another tax-advantaged option, but they have lower contribution limits ($2,000 per year) and income restrictions.</p>
+                <p><strong>Key Point #3: Custodial accounts (UTMA/UGMA) have trade-offs.</strong> These accounts are held in the child's name with an adult custodian. They offer more flexibility than 529 plans because funds can be used for any purpose, not just education. However, they count more heavily against financial aid — custodial accounts count as child assets at 20% or more, while parent-owned 529 plans count at only 5.64%. They also have less favorable tax treatment after the first $2,500 of earnings.</p>
                 
-                <p>Here is a real-world example. The Johnsons have a newborn daughter. They want to save for her college education at a state university that currently costs $25,000 per year. Assuming 4% annual tuition inflation, that same education will cost over $50,000 per year by the time she enrolls. That is $200,000 for four years. Using the calculator below, they can see exactly how much to save each month to reach that goal.</p>
+                <p><strong>Key Point #4: Coverdell ESAs are a niche option.</strong> Coverdell Education Savings Accounts (ESAs) are similar to 529 plans but with lower contribution limits ($2,000 per year) and income restrictions. They can be used for K-12 expenses as well as college. For most families, a 529 plan is a better choice due to higher contribution limits and no income phaseouts.</p>
                 
-                <p>The calculator shows that saving $300 per month in a 529 plan earning 6% returns would give them about $120,000 by age 18 — enough to cover about 60% of projected costs. To fully fund $200,000, they would need to save about $500 per month. This is the power of the calculator — it takes the guesswork out of college planning.</p>
+                <p><strong>Key Point #5: The front-loading strategy maximizes growth.</strong> Some 529 plans allow you to contribute up to five years' worth of gifts at once — up to $90,000 per parent ($180,000 per couple) without triggering gift taxes. This gets more money invested earlier, maximizing compound growth. If grandparents want to help, they can also contribute to a 529 plan using this strategy.</p>
                 
-                <p>Another powerful strategy is the <strong>front-loading approach</strong>. Some 529 plans allow you to contribute up to five years' worth of gifts at once — up to $90,000 per parent ($180,000 per couple) without triggering gift taxes. This gets more money invested earlier, maximizing compound growth. If grandparents want to help, they can also contribute to a 529 plan.</p>
+                <p><strong>Key Point #6: State tax deductions vary significantly.</strong> Many states offer a state income tax deduction for 529 plan contributions. New York deducts up to $10,000, Pennsylvania up to $18,000, and several states have no limit. Some states offer a deduction only for their own state's 529 plan, while others offer it for any plan. Always check your state's rules before choosing a 529 plan.</p>
                 
-                <p>One often-overlooked strategy is the <strong>scholarship strategy</strong>. Many parents assume they will not qualify for scholarships, but millions of dollars go unclaimed every year. The best way to position yourself for scholarships is to have a high GPA, strong test scores, and unique extracurriculars. Some 529 plans allow you to withdraw the equivalent of scholarship amounts penalty-free, though earnings may be subject to income tax.</p>
+                <p><strong>Key Point #7: The scholarship strategy can unlock extra funds.</strong> Many parents assume they will not qualify for scholarships, but millions of dollars go unclaimed every year. The best way to position yourself for scholarships is to have a high GPA, strong test scores, and unique extracurriculars. If your child earns a scholarship, you can withdraw an equivalent amount from a 529 plan without penalty (though earnings may be subject to income tax).</p>
                 
                 <p>The calculator below will show you exactly how much to save each month based on your child's age, current savings, expected return, and college cost projections. Enter your numbers and see if you are on track. If you are falling short, the calculator will suggest a monthly contribution to fully fund your goal. Start today — your child's future self will thank you.</p>
             </div>
@@ -1056,7 +1056,16 @@
         };
         
         function openModal(type) { const data = contentMap[type]; if (data) { modalTitle.innerText = data.title; modalText.innerHTML = data.body; modal.style.display = 'flex'; } }
-        function handleNavigation(navType) { if (navType === 'home') { window.scrollTo({ top: 0, behavior: 'smooth' }); openModal('home'); } else { openModal(navType); } closeDrawer(); }
+        function handleNavigation(navType) { 
+            if (navType === 'home') { 
+                window.location.href = 'https://financialbankrates.indevs.in/';
+                closeDrawer();
+                return;
+            } else { 
+                openModal(navType); 
+            } 
+            closeDrawer(); 
+        }
         
         const drawer = document.getElementById('drawerMenu');
         const overlay = document.getElementById('drawerOverlay');
@@ -1080,7 +1089,7 @@
             }
         });
         
-        document.getElementById('homeLinkHeader')?.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); openModal('home'); });
+        document.getElementById('homeLinkHeader')?.addEventListener('click', () => { window.location.href = 'https://financialbankrates.indevs.in/'; });
         
         // Blog posts
         const blogPosts = {
@@ -1102,4 +1111,4 @@
     })();
 </script>
 </body>
-                </html>
+    </html>
