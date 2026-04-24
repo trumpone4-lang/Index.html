@@ -631,7 +631,7 @@
         </div>
     </section>
 
-    <!-- Long Blog Post Section -->
+    <!-- Long Blog Post Section with Strategic Backlinks -->
     <section class="blog-post-section">
         <div class="blog-post-container">
             <div class="blog-post-card">
@@ -688,7 +688,7 @@
                         <tr><td>30 + $500/month</td><td>$20,000 + $210,000 = $230,000</td><td>$1,200,000</td> </tr>
                         <tr><td>40 (start at 40 instead of 30)</td><td>$20,000 + $500/month = $170,000</td><td>$550,000</td> </tr>
                     </tbody>
-                 </table>
+                </table>
                 
                 <p>Starting at 30 instead of 40 gives you an extra $650,000 at retirement. That is the power of understanding <strong>how to calculate the future value of an investment</strong> early.</p>
                 
@@ -703,7 +703,7 @@
                 </div>
                 
                 <h3>What About Inflation?</h3>
-                <p>Inflation eats away at your purchasing power. A 3% inflation rate means your money loses half its value every 24 years. That is why you should use a "real return" (return minus inflation) for long-term planning. If you expect 8% returns and 3% inflation, use 5% for your future value calculations.</p>
+                <p>Inflation eats away at your purchasing power. A 3% inflation rate means your money loses half its value every 24 years. That is why you should use a "real return" (return minus inflation) for long-term planning. If you expect 8% returns and 3% inflation, use 5% for your future value calculations. You can also use our <a href="inflation-calculator.html" style="color:#3b82f6; text-decoration:underline;">Inflation Calculator</a> to see how inflation impacts your savings over time.</p>
                 
                 <h3>Stocks vs Bonds vs Savings</h3>
                 <p>Different investments have different expected returns:</p>
@@ -755,7 +755,7 @@
                 
                 <div class="faq-item"><div class="faq-question">Should I use simple or compound interest for investment calculations?<span class="faq-toggle">+</span></div><div class="faq-answer">Always use compound interest for investment calculations. Compound interest means you earn returns on your returns — this is how investments grow exponentially over time. Simple interest only earns returns on your original principal and will significantly underestimate your future value.</div></div>
                 
-                <div class="faq-item"><div class="faq-question">How does inflation affect future value?<span class="faq-toggle">+</span></div><div class="faq-answer">Inflation reduces your purchasing power over time. A 3% inflation rate means your money loses half its value every 24 years. For long-term planning, use a "real return" (expected return minus inflation). If you expect 8% returns and 3% inflation, use 5% for your future value calculations.</div></div>
+                <div class="faq-item"><div class="faq-question">How does inflation affect future value?<span class="faq-toggle">+</span></div><div class="faq-answer">Inflation reduces your purchasing power over time. A 3% inflation rate means your money loses half its value every 24 years. For long-term planning, use a "real return" (expected return minus inflation). If you expect 8% returns and 3% inflation, use 5% for your future value calculations. Try our <a href="inflation-calculator.html" style="color:#3b82f6;">Inflation Calculator</a> to see the real impact.</div></div>
                 
                 <div class="faq-item"><div class="faq-question">What is the difference between future value and present value?<span class="faq-toggle">+</span></div><div class="faq-answer">Present value (PV) is what your money is worth today. Future value (FV) is what your money will be worth in the future after earning returns. The relationship between them is: FV = PV × (1 + r)^n. Understanding both concepts helps you compare investment opportunities and make better financial decisions.</div></div>
                 
@@ -952,7 +952,16 @@
         };
         
         function openModal(type) { const data = contentMap[type]; if (data) { modalTitle.innerText = data.title; modalText.innerHTML = data.body; modal.style.display = 'flex'; } }
-        function handleNavigation(navType) { if (navType === 'home') { window.scrollTo({ top: 0, behavior: 'smooth' }); openModal('home'); } else { openModal(navType); } closeDrawer(); }
+        function handleNavigation(navType) { 
+            if (navType === 'home') { 
+                window.location.href = 'https://financialbankrates.indevs.in/';
+                closeDrawer();
+                return;
+            } else { 
+                openModal(navType); 
+            } 
+            closeDrawer(); 
+        }
         
         const drawer = document.getElementById('drawerMenu');
         const overlay = document.getElementById('drawerOverlay');
@@ -976,7 +985,7 @@
             }
         });
         
-        document.getElementById('homeLinkHeader')?.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); openModal('home'); });
+        document.getElementById('homeLinkHeader')?.addEventListener('click', () => { window.location.href = 'https://financialbankrates.indevs.in/'; });
         
         const blogPosts = {
             1: { title: "Mortgage prepayment vs. index funds", content: "<p>Extra mortgage payments give a guaranteed return equal to your interest rate. Compare with expected market returns using our calculators.</p>" },
