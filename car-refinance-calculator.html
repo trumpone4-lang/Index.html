@@ -649,9 +649,9 @@
 <div class="drawer" id="drawerMenu">
     <div class="drawer-header"><h3>Navigation & Tools</h3><button class="close-drawer" id="closeDrawerBtn">&times;</button></div>
     <div class="drawer-nav">
-        <div class="drawer-section"><h4>Main</h4><a class="drawer-item" data-nav="home">🏠 Home</a><a class="drawer-item" data-nav="about">📄 About</a><a class="drawer-item" data-nav="contact">📞 Contact</a></div>
-        <div class="drawer-section"><h4>Legal</h4><a class="drawer-item" data-nav="privacy">🔒 Privacy Policy</a><a class="drawer-item" data-nav="terms">⚖️ Terms of Service</a></div>
-        <div class="drawer-section"><h4>📊 Financial Tools</h4><div id="drawerToolsList"></div></div>
+        <div class="drawer-section"><h4>Main</h4><a class="drawer-item" data-nav="home">Home</a><a class="drawer-item" data-nav="about">About</a><a class="drawer-item" data-nav="contact">Contact</a></div>
+        <div class="drawer-section"><h4>Legal</h4><a class="drawer-item" data-nav="privacy">Privacy Policy</a><a class="drawer-item" data-nav="terms">Terms of Service</a></div>
+        <div class="drawer-section"><h4>Financial Tools</h4><div id="drawerToolsList"></div></div>
     </div>
 </div>
 
@@ -704,7 +704,7 @@
                 <p>If you're also managing other financial goals, check out our <a href="budget-calculator.html" style="color:#3b82f6; text-decoration:underline;">Budget Calculator</a> to see where you can find extra money each month to put toward your car payment or other savings.</p>
                 
                 <div class="highlight-box">
-                    <strong>📊 My Real Numbers:</strong> $18,000 balance | 13% rate → 9% rate | 48 months | $250 refinance fees<br>
+                    <strong>My Real Numbers:</strong> $18,000 balance | 13% rate → 9% rate | 48 months | $250 refinance fees<br>
                     <strong>Result:</strong> Monthly payment dropped from $474 to $448 | Total interest saved after fees: $998 | Breakeven: 10 months
                 </div>
                 
@@ -746,7 +746,7 @@
                 <p><strong>Step 4: Bring a cosigner if needed.</strong> This is especially helpful if you are asking <strong>can you refinance a car loan with a cosigner</strong> — yes, and it works.</p>
                 
                 <div class="warning-box">
-                    <strong>⚠️ When refinancing does NOT make sense:</strong>
+                    <strong>When refinancing does NOT make sense:</strong>
                     <ul style="margin-top: 0.5rem; margin-bottom: 0; margin-left: 1.2rem;">
                         <li>Your LTV is above 130% — no lender will approve</li>
                         <li>You have less than 12 months left on your current loan</li>
@@ -756,7 +756,7 @@
                 </div>
                 
                 <div class="highlight-box">
-                    <strong>✅ Final Verdict: Should You Refinance When You Owe More Than Your Car Is Worth?</strong><br><br>
+                    <strong>Final Verdict: Should You Refinance When You Owe More Than Your Car Is Worth?</strong><br><br>
                     <strong>Refinance if:</strong> Your LTV is 120% or lower, you can lower your interest rate by at least 2%, you plan to keep the car for another 24+ months, and refinance fees are less than your interest savings.<br><br>
                     <strong>Do NOT refinance if:</strong> Your LTV is above 130%, you have less than 12 months left on your loan, or you are trying to lower payment by extending term (you will pay more total interest).
                 </div>
@@ -913,18 +913,18 @@
             const calculatorHTML = `
                 <div class="mortgage-calculator-card" id="mortgageCalculatorCard">
                     <div style="text-align: center; margin-bottom: 1.5rem;">
-                        <div class="tool-icon" style="font-size: 2.5rem;">🚗💰</div>
+                        <div class="tool-icon" style="font-size: 2.5rem;"></div>
                         <h3 style="font-size: 1.3rem; color: #122b44;">Car Refinance Calculator</h3>
                         <p style="font-size: 0.85rem; color: #6c8eaa;">Compare your current auto loan vs refinance offer. See how much you can save.</p>
                     </div>
                     <div class="calc-two-columns">
                         <div>
-                            <div class="calc-input-group"><label>🚗 Current Loan Balance ($)</label><input type="number" id="loanBalance" value="18000" step="1000"></div>
-                            <div class="calc-input-group"><label>📅 Months Remaining on Current Loan</label><input type="number" id="currentMonths" value="48" step="6" min="1" max="84"></div>
-                            <div class="calc-input-group"><label>📈 Current Interest Rate (%)</label><input type="number" id="currentRate" value="13" step="0.25"></div>
-                            <div class="calc-input-group"><label>🔄 New Interest Rate (%)</label><input type="number" id="newRate" value="9" step="0.25"></div>
-                            <div class="calc-input-group"><label>📅 New Loan Term (months)</label><input type="number" id="newTermMonths" value="48" step="6" min="12" max="84"></div>
-                            <div class="calc-input-group"><label>💸 Refinance Fees ($)</label><input type="number" id="refiFees" value="250" step="50" placeholder="Origination, title, etc."></div>
+                            <div class="calc-input-group"><label>Current Loan Balance ($)</label><input type="number" id="loanBalance" value="18000" step="1000"></div>
+                            <div class="calc-input-group"><label>Months Remaining on Current Loan</label><input type="number" id="currentMonths" value="48" step="6" min="1" max="84"></div>
+                            <div class="calc-input-group"><label>Current Interest Rate (%)</label><input type="number" id="currentRate" value="13" step="0.25"></div>
+                            <div class="calc-input-group"><label>New Interest Rate (%)</label><input type="number" id="newRate" value="9" step="0.25"></div>
+                            <div class="calc-input-group"><label>New Loan Term (months)</label><input type="number" id="newTermMonths" value="48" step="6" min="12" max="84"></div>
+                            <div class="calc-input-group"><label>Refinance Fees ($)</label><input type="number" id="refiFees" value="250" step="50" placeholder="Origination, title, etc."></div>
                             <button class="calc-button" id="calculateRefinance">⟳ Compare & Save</button>
                         </div>
                         <div>
@@ -932,17 +932,17 @@
                             <div class="payment-breakdown">
                                 <div class="breakdown-item"><span class="breakdown-label"><span class="green-dot"></span> Current Monthly Payment</span><span class="breakdown-value" id="currentPayment">$0.00</span></div>
                                 <div class="breakdown-item"><span class="breakdown-label"><span class="red-dot"></span> New Monthly Payment</span><span class="breakdown-value" id="newPayment">$0.00</span></div>
-                                <div class="breakdown-item"><span class="breakdown-label"><strong>📋 Monthly Savings</strong></span><span class="breakdown-value" id="monthlySavings"><strong>$0.00</strong></span></div>
+                                <div class="breakdown-item"><span class="breakdown-label"><strong>Monthly Savings</strong></span><span class="breakdown-value" id="monthlySavings"><strong>$0.00</strong></span></div>
                             </div>
                         </div>
                     </div>
                     <div class="extra-payment-results">
-                        <h4>📊 REFINANCE SAVINGS ANALYSIS</h4>
-                        <div class="extra-row"><span class="extra-label">💰 Current total interest remaining:</span><span class="extra-value" id="currentInterest">$0</span></div>
-                        <div class="extra-row"><span class="extra-label">💎 New total interest (over new term):</span><span class="extra-value" id="newInterest">$0</span></div>
-                        <div class="extra-row"><span class="extra-label">🏦 Refinance fees:</span><span class="extra-value" id="feesDisplay">$0</span></div>
-                        <div class="extra-row"><span class="extra-label">🎉 TOTAL INTEREST SAVED (after fees):</span><span class="extra-value saved-highlight" id="interestSaved">$0</span></div>
-                        <div class="extra-row"><span class="extra-label">⏱️ Breakeven point (months):</span><span class="extra-value" id="breakeven">--</span></div>
+                        <h4>REFINANCE SAVINGS ANALYSIS</h4>
+                        <div class="extra-row"><span class="extra-label">Current total interest remaining:</span><span class="extra-value" id="currentInterest">$0</span></div>
+                        <div class="extra-row"><span class="extra-label">New total interest (over new term):</span><span class="extra-value" id="newInterest">$0</span></div>
+                        <div class="extra-row"><span class="extra-label">Refinance fees:</span><span class="extra-value" id="feesDisplay">$0</span></div>
+                        <div class="extra-row"><span class="extra-label">TOTAL INTEREST SAVED (after fees):</span><span class="extra-value saved-highlight" id="interestSaved">$0</span></div>
+                        <div class="extra-row"><span class="extra-label">Breakeven point (months):</span><span class="extra-value" id="breakeven">--</span></div>
                     </div>
                     <div style="margin-top: 1rem; text-align: center; font-size: 0.7rem; color: #8ba3bc;">
                         *Compare your current loan against a refinance offer. Savings assume you pay the new loan as agreed.
@@ -1006,23 +1006,23 @@
         // Updated drawer menu with all 7 tools
         const drawerToolsList = document.getElementById('drawerToolsList');
         const allTools = [
-            "🏠 Mortgage Calculator",
-            "🚗 Car Refinance Calculator",
-            "💳 Credit Card Points Calculator",
-            "📈 Investment Calculator",
-            "📊 Budget Calculator",
-            "📉 Inflation Calculator",
-            "🎓 College Savings Calculator"
+            "Mortgage Calculator",
+            "Car Refinance Calculator",
+            "Credit Card Points Calculator",
+            "Investment Calculator",
+            "Budget Calculator",
+            "Inflation Calculator",
+            "College Savings Calculator"
         ];
         
         const toolFileMap = {
-            "🏠 Mortgage Calculator": "mortgage-calculator.html",
-            "🚗 Car Refinance Calculator": "car-refinance-calculator.html",
-            "💳 Credit Card Points Calculator": "credit-card-points-calculator.html",
-            "📈 Investment Calculator": "investment-calculator.html",
-            "📊 Budget Calculator": "budget-calculator.html",
-            "📉 Inflation Calculator": "inflation-calculator.html",
-            "🎓 College Savings Calculator": "college-savings-calculator.html"
+            "Mortgage Calculator": "mortgage-calculator.html",
+            "Car Refinance Calculator": "car-refinance-calculator.html",
+            "Credit Card Points Calculator": "credit-card-points-calculator.html",
+            "Investment Calculator": "investment-calculator.html",
+            "Budget Calculator": "budget-calculator.html",
+            "Inflation Calculator": "inflation-calculator.html",
+            "College Savings Calculator": "college-savings-calculator.html"
         };
         
         allTools.forEach(toolName => {
@@ -1083,10 +1083,10 @@
         window.addEventListener('click', (e) => { if (e.target === modal) closeModalFunc(); });
         
         const contentMap = {
-            about: { title: "📌 About SmartRatesLab", body: "<p>SmartRatesLab delivers professional-grade financial calculators. Founded in 2022, we're committed to transparency and accuracy. All calculations are performed locally in your browser.</p>" },
-            contact: { title: "📧 Contact Us", body: "<p><strong>Email:</strong> supportentry1@gmail.com<br><strong>Hours:</strong> Monday-Friday, 9am-6pm EST<br>We respond within 24 hours.</p>" },
-            privacy: { title: "🔒 Privacy Policy", body: "<p>We do not store any personal financial data. All calculations happen locally in your browser. We use anonymous analytics to improve our tools.</p>" },
-            terms: { title: "⚖️ Terms of Service", body: "<p>Calculators are for educational purposes only. Not financial advice. Always consult a qualified financial advisor before making major decisions.</p>" },
+            about: { title: "About SmartRatesLab", body: "<p>SmartRatesLab delivers professional-grade financial calculators. Founded in 2022, we're committed to transparency and accuracy. All calculations are performed locally in your browser.</p>" },
+            contact: { title: "Contact Us", body: "<p><strong>Email:</strong> supportentry1@gmail.com<br><strong>Hours:</strong> Monday-Friday, 9am-6pm EST<br>We respond within 24 hours.</p>" },
+            privacy: { title: "Privacy Policy", body: "<p>We do not store any personal financial data. All calculations happen locally in your browser. We use anonymous analytics to improve our tools.</p>" },
+            terms: { title: "Terms of Service", body: "<p>Calculators are for educational purposes only. Not financial advice. Always consult a qualified financial advisor before making major decisions.</p>" },
             home: { title: "SmartRatesLab", body: "<p>Welcome to SmartRatesLab — your hub for financial calculators. Use our Car Refinance Calculator to see how much you can save on your auto loan.</p>" }
         };
         
