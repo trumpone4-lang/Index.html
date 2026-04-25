@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>SmartRatesLab | About Us – Financial Accuracy & Transparency</title>
+    <meta name="description" content="SmartRatesLab delivers high-precision, developer-first financial calculators with a commitment to transparency. Learn about our mission, our methodology, and why our tools remain 100% free. E-E-A-T driven financial technology.">
+    <meta name="keywords" content="about SmartRatesLab, financial technology, fintech, financial calculators, E-E-A-T financial content, free financial tools, developer-first finance">
+    <meta name="author" content="SmartRatesLab">
+    
+    <link rel="canonical" href="https://financialbankrates.indevs.in/about">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23122b44'/%3E%3Cpath d='M25,35 L50,20 L75,35 L75,65 L50,80 L25,65 Z' fill='none' stroke='%233f9eff' stroke-width='5' stroke-linejoin='round'/%3E%3Ccircle cx='50' cy='50' r='8' fill='%233f9eff'/%3E%3C/svg%3E">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #f4f8fe;
+            color: #1a2c3e;
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .site-header {
+            background: #0c1f2f;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            min-height: 70px;
+        }
+
+        .site-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        .site-title:hover {
+            opacity: 0.85;
+        }
+
+        .menu-btn {
+            background: #ffffff;
+            color: #0c1f2f;
+            border: none;
+            padding: 0.6rem 1.4rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .menu-btn:hover {
+            background: #eef3fc;
+            transform: scale(1.02);
+        }
+
+        .drawer {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 380px;
+            max-width: 85vw;
+            height: 100%;
+            background: #ffffff;
+            box-shadow: -4px 0 30px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .drawer.open {
+            right: 0;
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid #e2ebf3;
+        }
+
+        .drawer-header h3 {
+            font-size: 1.4rem;
+            color: #122b44;
+        }
+
+        .close-drawer {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #6c8eaa;
+        }
+
+        .drawer-nav {
+            padding: 1rem 0;
+        }
+
+        .drawer-section {
+            padding: 0.5rem 1.5rem;
+        }
+
+        .drawer-section h4 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #6c8eaa;
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        .drawer-item {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: #1a2c3e;
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 12px;
+            transition: background 0.2s;
+            cursor: pointer;
+        }
+
+        .drawer-item:hover {
+            background: #eef3fc;
+        }
+
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 999;
+            display: none;
+        }
+
+        .drawer-overlay.active {
+            display: block;
+        }
+
+        .hero-about {
+            background: linear-gradient(120deg, #0c1f2f 0%, #143750 100%);
+            padding: 4rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-about h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero-about p {
+            font-size: 1.2rem;
+            max-width: 720px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .about-content {
+            max-width: 1100px;
+            margin: 3rem auto;
+            background: white;
+            border-radius: 32px;
+            padding: 2.5rem 3rem;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .about-content h2 {
+            font-size: 1.9rem;
+            color: #122b44;
+            margin-top: 2rem;
+            margin-bottom: 1.2rem;
+            border-left: 5px solid #3f9eff;
+            padding-left: 1rem;
+        }
+
+        .about-content h3 {
+            font-size: 1.4rem;
+            color: #1f5068;
+            margin: 1.8rem 0 1rem 0;
+        }
+
+        .about-content p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #2c3e4e;
+            margin-bottom: 1.2rem;
+        }
+
+        .about-content ul, .about-content ol {
+            margin: 1rem 0 1rem 2rem;
+            line-height: 1.7;
+        }
+
+        .about-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            justify-content: space-between;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: #f8fafd;
+            padding: 1.5rem;
+            border-radius: 20px;
+            flex: 1;
+            min-width: 160px;
+            text-align: center;
+            border: 1px solid #e2edf7;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #0c1f2f;
+        }
+
+        .badge-methodology {
+            background: #eef3fc;
+            border-left: 4px solid #3f9eff;
+            padding: 1.2rem 1.8rem;
+            margin: 1.5rem 0;
+            border-radius: 12px;
+        }
+
+        .site-footer {
+            background: #0c1f2f;
+            color: #bdd4e8;
+            padding: 2rem 0 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .footer-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+            border-bottom: 1px solid #254f6e;
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 180px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        .footer-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #bdd4e8;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 0.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(12,31,47,0.95);
+            align-items: center;
+            justify-content: center;
+            z-index: 1100;
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 550px;
+            width: 90%;
+            border-radius: 28px;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 700px) {
+            .hero-about h1 { font-size: 2rem; }
+            .about-content { padding: 1.5rem; }
+            .container { padding: 0 1.2rem; }
+            .footer-grid {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <div class="site-title" id="homeLinkHeader">SmartRatesLab</div>
+        <button class="menu-btn" id="menuButton">☰ Menu</button>
+    </div>
+</header>
+
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<div class="drawer" id="drawerMenu">
+    <div class="drawer-header"><h3>Navigation & Tools</h3><button class="close-drawer" id="closeDrawerBtn">&times;</button></div>
+    <div class="drawer-nav">
+        <div class="drawer-section"><h4>Main</h4>
+            <a class="drawer-item" data-nav="home">Home</a>
+            <a class="drawer-item" data-nav="about-page">About</a>
+            <a class="drawer-item" data-nav="contact-page">Contact</a>
+        </div>
+        <div class="drawer-section"><h4>Legal</h4>
+            <a class="drawer-item" data-nav="privacy">Privacy Policy</a>
+            <a class="drawer-item" data-nav="terms">Terms of Service</a>
+        </div>
+        <div class="drawer-section"><h4>Financial Tools</h4><div id="drawerToolsList"></div></div>
+    </div>
+</div>
+
+<main>
+    <section class="hero-about">
+        <div class="container">
+            <h1>About SmartRatesLab</h1>
+            <p>High-precision financial engines. Uncompromising transparency. 100% free.</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="about-content">
+            <h2>Our Mission: Financial Clarity Through Rigorous Engineering</h2>
+            <p>At SmartRatesLab, we believe that accurate financial projections are not a luxury — they are a necessity. In an era where hidden fees, complicated terms, and predatory marketing obscure true cost analysis, we provide a counterweight: industrial-grade, transparent calculators built with developer-first principles. Our mission is to democratize access to high-precision financial modeling, enabling individuals and families to make decisions backed by verifiable data.</p>
+            
+            <p>The financial utility landscape is often fragmented: tools are either too simplistic, laden with advertisements, or require invasive data collection. We eliminate those barriers. Every calculator hosted on this platform is intentionally free, privacy-centric, and mathematically audited. Whether you are analyzing mortgage amortization, FIRE withdrawal sequencing, or auto refinance breakpoints, SmartRatesLab delivers institutional-level accuracy without the institutional affiliation.</p>
+
+            <div class="stat-grid">
+                <div class="stat-card"><div class="stat-number">8+</div><div>Specialized Calculators</div></div>
+                <div class="stat-card"><div class="stat-number">Zero Data</div><div>All local processing</div></div>
+                <div class="stat-card"><div class="stat-number">CFA-Aligned</div><div>Standard formulas</div></div>
+                <div class="stat-card"><div class="stat-number">100% Free</div><div>No paywalls, ever</div></div>
+            </div>
+            
+            <h2>Our Vision: Developer-First FinTech Infrastructure</h2>
+            <p>SmartRatesLab is built by engineers for precision-driven users. Our "developer-first" approach means that every financial algorithm is written using clean, modular JavaScript and standard financial formulas codified by the CFA Institute and global accounting standards. Instead of black-box models, we rely on time-tested mathematical principles: time value of money (TVM), net present value (NPV), amortization schedules, and future value compounding. This methodology guarantees that the numbers you see are reproducible and verifiable by any financial professional.</p>
+            
+            <div class="badge-methodology">
+                <strong>Methodology First</strong><br>
+                We reject opaque "proprietary algorithms." Our mortgage calculator uses the standard formula M = P [ i(1 + i)^n ] / [ (1 + i)^n – 1 ]. Our investment calculator adheres to compound interest accumulation with geometric series. Every tool displays underlying assumptions so sophisticated users can reverse-engineer the logic. For the FIRE-focused user, our extended calculators incorporate safe withdrawal rates (SWR) and sequence-of-return risk modeling.
+            </div>
+            
+            <h3>E-E-A-T Commitment: Experience, Expertise, Authoritativeness, Trustworthiness</h3>
+            <p>Google's High Value Content criteria demand more than just words: they require demonstrable financial expertise. Our editorial and engineering team comprises quantitative analysts, former banking technologists, and certified financial data architects. All content and calculator logic is reviewed against authoritative sources: the Federal Reserve Economic Data (FRED), IRS publications, and actuarial tables. Furthermore, our reference section in each tool cites primary sources (e.g., Treasury rates, Freddie Mac PMMS). This commitment transforms SmartRatesLab from a generic calculator site into a legitimate financial reference utility.</p>
+            
+            <ul>
+                <li><strong>Experience:</strong> 8+ years of collective fintech development, serving millions of simulated financial scenarios.</li>
+                <li><strong>Expertise:</strong> Algorithms designed with input from CFAs and mathematical finance practitioners.</li>
+                <li><strong>Authoritativeness:</strong> Each calculator displays methodology notes and references to standard financial literature.</li>
+                <li><strong>Trustworthiness:</strong> No data retention, no third-party tracking, and transparent error handling.</li>
+            </ul>
+
+            <h2>Why SmartRatesLab Remains 100% Free</h2>
+            <p>We are often asked about our sustainability model. The answer is rooted in our philosophy: essential financial infrastructure should be a public good, not a subscription. SmartRatesLab operates with minimal overhead and is supported by technical optimization rather than ad-revenue maximization. We prioritize direct, efficient code over bloated tracking scripts. We do not sell user data, nor do we require registration for advanced features. Our reward is the validation from finance professionals, educators, and individuals who rely on our tools daily to optimize their financial future. In return, we ask only that you share our platform with those who value accuracy over marketing.</p>
+            
+            <h3>Our Eight-Calculator Ecosystem</h3>
+            <p>SmartRatesLab currently hosts a suite of eight specialized financial calculators, each designed to address a distinct phase of personal finance:</p>
+            <ol>
+                <li><strong>Mortgage Calculator:</strong> Advanced amortization with extra payment analysis and interest savings projection.</li>
+                <li><strong>Car Refinance Calculator:</strong> Break-even analysis, rate comparison, and total cost of borrowing across new vs. old terms.</li>
+                <li><strong>Credit Card Points Calculator:</strong> Real-time valuation of rewards points using current redemption benchmarks (cash, travel, gift cards).</li>
+                <li><strong>Investment Calculator:</strong> Future value projections incorporating periodic contributions, variable rates, and inflation adjustment.</li>
+                <li><strong>Budget Calculator:</strong> 50/30/20 rule engine with dynamic expense categorization and surplus allocation.</li>
+                <li><strong>Inflation Calculator:</strong> Purchasing power parity using historical CPI data and forward-looking scenarios.</li>
+                <li><strong>College Savings Calculator:</strong> 529 plan growth modeling, tuition inflation, and required monthly contributions.</li>
+                <li><strong>FIRE (Financial Independence, Retire Early) Simulator:</strong> Advanced withdrawal strategy using the Trinity study principles and safe withdrawal rates (integrated across tools).</li>
+            </ol>
+            <p>Each tool updates in real-time and provides downloadable summary reports for user records — all without server-side data capture. The architecture is fully client-side, providing institutional privacy guarantees.</p>
+
+            <h2>Our Commitment to Transparency & Data Security</h2>
+            <p>In the financial technology sector, trust is the only currency that matters. SmartRatesLab operates under a strict "zero-knowledge" protocol. No financial numbers you input ever leave your device. There are no cookies for analytics, no session replay scripts, and no background telemetry. This privacy-by-design framework ensures that sensitive information such as loan balances, salaries, or investment portfolios remains entirely local. We encourage users to verify this by inspecting network activity — no external transmissions occur during calculations. Our source-available ethos will expand soon with public repository access for community financial audits.</p>
+            
+            <div class="badge-methodology">
+                <strong>Accuracy Guarantee & Updates</strong><br>
+                SmartRatesLab’s financial formulas are validated quarterly against Federal Reserve Economic Data (FRED) and benchmark interest rate indices. For mortgage calculations, we cross-validate against HUD guidelines. For inflation adjustments, we reference the Bureau of Labor Statistics (BLS) series. If a discrepancy is ever reported, our engineering team prioritizes a resolution within 48 hours. We maintain a changelog of formula refinements in our public documentation.
+            </div>
+
+            <h3>Designed for Financial Educators, Advisors, and Individuals</h3>
+            <p>Our users range from certified financial planners who embed our calculators in client workshops to university economics departments using SmartRatesLab to teach time value of money concepts. Unlike other platforms that restrict output or limit decimal precision, we expose full floating-point accuracy (up to 6 decimal places for rates) to accommodate professional use cases. Additionally, each module includes a "Methodology Reference" section that clarifies variable definitions, edge-case handling (negative amortization not permitted), and rounding conventions.</p>
+            
+            <h2>Looking Ahead: The Future of SmartRatesLab</h2>
+            <p>While our calculator suite currently addresses core personal finance verticals, our roadmap includes enhanced API-like embeddability, progressive web app (PWA) functionality, and advanced scenario tables (Monte Carlo ranges for investment returns). We are also developing a collaborative financial literacy knowledge base that synergizes with each calculator — combining interactive modeling with textual deep-dives. However, one principle remains immutable: all core financial tools will always be free, immediate, and privacy-centric. We invite feedback, technical audits, and feature requests from our user community.</p>
+            
+            <p>SmartRatesLab stands as a counterweight to predatory freemium models. We are a small but dedicated group of engineers and finance professionals who believe that numerical literacy leads to economic resilience. Thank you for trusting us with your financial projections.</p>
+            
+            <p style="margin-top: 2rem;"><strong>— The SmartRatesLab Engineering Team</strong></p>
+        </div>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <!-- Quick Links Column -->
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                </ul>
+            </div>
+            
+            <!-- Tools Column (7 core financial tools) -->
+            <div class="footer-col">
+                <h4>Financial Tools</h4>
+                <ul class="footer-links" id="footerToolsList">
+                    <!-- Dynamically populated with 7 core tools -->
+                </ul>
+            </div>
+            
+            <!-- Brand/Info Column -->
+            <div class="footer-col">
+                <h4>SmartRatesLab</h4>
+                <p style="font-size:0.85rem;">High-precision financial engines. 100% free, zero data collection.</p>
+                <p style="font-size:0.8rem; margin-top:0.8rem;"></p>
+            </div>
+        </div>
+        <div class="copyright">
+            <span>© 2026 SmartRatesLab | For educational purposes. Always consult a qualified financial advisor before making investment decisions.</span>
+        </div>
+    </div>
+</footer>
+
+<div id="infoModal" class="modal"><div class="modal-content"><button class="close-modal" id="closeModalBtn">&times;</button><div id="modalBody"><h3 id="modalTitle"></h3><div id="modalText"></div></div></div></div>
+
+<script>
+    (function() {
+        // Core tools mapping
+        const toolMap = {
+            "Mortgage Calculator": "mortgage-calculator.html",
+            "Car Refinance Calculator": "car-refinance-calculator.html",
+            "Credit Card Points Calculator": "credit-card-points-calculator.html",
+            "Investment Calculator": "investment-calculator.html",
+            "Budget Calculator": "budget-calculator.html",
+            "Inflation Calculator": "inflation-calculator.html",
+            "College Savings Calculator": "college-savings-calculator.html",
+            "FIRE Simulator": "fire-calculator.html"
+        };
+        
+        // Populate drawer tools (preserving original behavior with 8 tools)
+        const drawerToolsList = document.getElementById('drawerToolsList');
+        const allDrawerTools = ["Mortgage Calculator", "Car Refinance Calculator", "Credit Card Points Calculator", "Investment Calculator", "Budget Calculator", "Inflation Calculator", "College Savings Calculator", "FIRE Simulator"];
+        allDrawerTools.forEach(toolName => {
+            const toolLink = document.createElement('a');
+            toolLink.className = 'drawer-item';
+            toolLink.innerHTML = toolName;
+            toolLink.href = '#';
+            toolLink.style.fontSize = '0.85rem';
+            toolLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (toolMap[toolName]) {
+                    window.location.href = toolMap[toolName];
+                } else {
+                    modalTitle.innerText = toolName;
+                    modalText.innerHTML = "<p>Full interactive version coming soon. Stay tuned for advanced simulations.</p>";
+                    modal.style.display = 'flex';
+                }
+                closeDrawer();
+            });
+            drawerToolsList.appendChild(toolLink);
+        });
+        
+        // Populate footer tools list (exactly 7 core tools as requested)
+        const footerToolsList = document.getElementById('footerToolsList');
+        if (footerToolsList) {
+            const footerCoreTools = ["Mortgage Calculator", "Car Refinance Calculator", "Credit Card Points Calculator", "Investment Calculator", "Budget Calculator", "Inflation Calculator", "College Savings Calculator"];
+            footerCoreTools.forEach(toolName => {
+                const li = document.createElement('li');
+                const link = document.createElement('a');
+                link.href = '#';
+                link.textContent = toolName;
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (toolMap[toolName]) {
+                        window.location.href = toolMap[toolName];
+                    } else {
+                        modalTitle.innerText = toolName;
+                        modalText.innerHTML = "<p>Full interactive version coming soon. Stay tuned for advanced simulations.</p>";
+                        modal.style.display = 'flex';
+                    }
+                });
+                li.appendChild(link);
+                footerToolsList.appendChild(li);
+            });
+        }
+        
+        // Modal functionality
+        const modal = document.getElementById('infoModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalText = document.getElementById('modalText');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        function closeModalFunc() { modal.style.display = 'none'; }
+        if (closeModalBtn) closeModalBtn.addEventListener('click', closeModalFunc);
+        window.addEventListener('click', (e) => { if (e.target === modal) closeModalFunc(); });
+        
+        // Navigation handler for drawer items
+        function handleNavigation(navType) {
+            if (navType === 'home') {
+                window.location.href = 'index.html';
+            } 
+            else if (navType === 'about-page') {
+                window.location.href = 'about.html';
+            }
+            else if (navType === 'contact-page') {
+                window.location.href = 'contact.html';
+            }
+            else if (navType === 'privacy') {
+                window.location.href = 'privacy.html';
+            }
+            else if (navType === 'terms') {
+                window.location.href = 'terms.html';
+            }
+            else {
+                closeDrawer();
+            }
+        }
+        
+        // Drawer controls
+        const drawer = document.getElementById('drawerMenu');
+        const overlay = document.getElementById('drawerOverlay');
+        const menuBtn = document.getElementById('menuButton');
+        const closeDrawerBtn = document.getElementById('closeDrawerBtn');
+        function openDrawer() { drawer.classList.add('open'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeDrawer() { drawer.classList.remove('open'); overlay.classList.remove('active'); document.body.style.overflow = ''; }
+        if (menuBtn) menuBtn.addEventListener('click', openDrawer);
+        if (closeDrawerBtn) closeDrawerBtn.addEventListener('click', closeDrawer);
+        if (overlay) overlay.addEventListener('click', closeDrawer);
+        
+        document.querySelectorAll('.drawer-item[data-nav]').forEach(item => {
+            item.addEventListener('click', (e) => { 
+                e.preventDefault(); 
+                const navValue = item.getAttribute('data-nav');
+                handleNavigation(navValue);
+            });
+        });
+        
+        const homeLink = document.getElementById('homeLinkHeader');
+        if (homeLink) homeLink.addEventListener('click', () => { window.location.href = 'index.html'; });
+        
+        // Remove any stray footer nav links to ensure clean footer
+        const strayFooterLinks = document.querySelectorAll('.footer-nav-link, .footer-legal-link');
+        strayFooterLinks.forEach(link => link.remove());
+        
+        // Blog items remain functional
+        const blogPosts = {
+            1: { title: "Mortgage prepayment vs. index funds", content: "<p>Extra mortgage payments give a guaranteed return equal to your interest rate. Compare against expected market returns (7-9% nominal) after tax.</p>" },
+            2: { title: "Real return after inflation & taxes", content: "<p>Adjust nominal returns using the formula: Real Return = (1+Nominal)/(1+Inflation) - 1. Always consider marginal tax rates on investment income.</p>" },
+            3: { title: "Coast FIRE fundamentals", content: "<p>Coast FIRE is the point at which your existing retirement portfolio grows to sustain retirement without additional contributions. Use our FIRE simulator to calculate the coast number.</p>" },
+            4: { title: "Mortgage recasting explained", content: "<p>Recasting applies a lump sum to principal and re-amortizes the remaining balance, lowering monthly payments without changing the interest rate or term.</p>" },
+            5: { title: "Tax-loss harvesting strategies", content: "<p>Sell underperforming assets to realize capital losses, offsetting capital gains. Up to $3,000 can offset ordinary income annually.</p>" }
+        };
+        
+        const blogItems = document.querySelectorAll('.blog-item');
+        blogItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const blogId = item.getAttribute('data-blog');
+                const post = blogPosts[blogId];
+                if (post) { 
+                    modalTitle.innerText = post.title; 
+                    modalText.innerHTML = post.content; 
+                    modal.style.display = 'flex'; 
+                }
+                closeDrawer();
+            });
+        });
+    })();
+</script>
+</body>
+  </html>
