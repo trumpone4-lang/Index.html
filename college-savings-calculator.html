@@ -207,11 +207,6 @@
             color: #1a2c3e;
         }
         
-        .direct-answer .answer-text strong:first-child {
-            font-size: 1.05rem;
-            color: #000000;
-        }
-        
         .direct-answer .answer-text p {
             margin-bottom: 1rem;
         }
@@ -586,6 +581,23 @@
             color: white;
             text-decoration: underline;
         }
+        
+        .footer-tool-list {
+            list-style: none;
+        }
+        .footer-tool-list li {
+            margin-bottom: 0.5rem;
+        }
+        .footer-tool-list a {
+            color: #bdd4e8;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+        .footer-tool-list a:hover {
+            color: white;
+            text-decoration: underline;
+        }
 
         .copyright {
             text-align: center;
@@ -657,14 +669,23 @@
 <div class="drawer" id="drawerMenu">
     <div class="drawer-header"><h3>Navigation & Tools</h3><button class="close-drawer" id="closeDrawerBtn">&times;</button></div>
     <div class="drawer-nav">
-        <div class="drawer-section"><h4>Main</h4><a class="drawer-item" data-nav="home">Home</a><a class="drawer-item" data-nav="about">About</a><a class="drawer-item" data-nav="contact">Contact</a></div>
-        <div class="drawer-section"><h4>Legal</h4><a class="drawer-item" data-nav="privacy">Privacy Policy</a><a class="drawer-item" data-nav="terms">Terms of Service</a></div>
+        <!-- Main section - direct page links -->
+        <div class="drawer-section"><h4>Main</h4>
+            <a class="drawer-item" href="https://financialbankrates.indevs.in/">Home</a>
+            <a class="drawer-item" href="/about.html">About</a>
+            <a class="drawer-item" href="/contact.html">Contact</a>
+        </div>
+        <!-- Legal section - direct page links -->
+        <div class="drawer-section"><h4>Legal</h4>
+            <a class="drawer-item" href="/privacy.html">Privacy Policy</a>
+            <a class="drawer-item" href="/terms.html">Terms of Service</a>
+        </div>
         <div class="drawer-section"><h4>Financial Tools</h4><div id="drawerToolsList"></div></div>
     </div>
 </div>
 
 <main>
-    <!-- Answer Box Above Calculator - ADDED MISSING KEY POINTS COMPARING STRATEGIES -->
+    <!-- Answer Box Above Calculator -->
     <div class="container">
         <div class="direct-answer">
             <h1>What Are the Best College Saving Strategies?</h1>
@@ -672,21 +693,17 @@
             <div class="answer-text">
                 <p><strong>Yes — starting early and choosing the right college saving strategy can save you tens of thousands of dollars in taxes and interest.</strong> The best strategy depends on your child's age, your income, your risk tolerance, and how much you can save each month. But the single most important factor is starting now. Every year you delay, you lose the power of compound growth.</p>
                 
-                <p><strong>Key Point #1: Compare all available strategies before choosing.</strong> The most popular and effective college saving vehicle is the <strong>529 plan</strong>. Named after Section 529 of the IRS tax code, these state-sponsored investment accounts offer tax-free growth and tax-free withdrawals for qualified education expenses. That means every dollar your investments earn never gets taxed — not when you contribute, not when it grows, and not when you withdraw it for college costs. Over 18 years, that tax advantage can add tens of thousands of dollars to your college fund.</p>
+                <p><strong>Key Point #1: Compare all available strategies before choosing.</strong> The most popular and effective college saving vehicle is the <strong>529 plan</strong>. These state-sponsored investment accounts offer tax-free growth and tax-free withdrawals for qualified education expenses.</p>
                 
-                <p><strong>Key Point #2: Roth IRAs offer flexibility for college savings.</strong> A Roth IRA allows you to withdraw your contributions (but not earnings) penalty-free for college expenses. This gives you flexibility if your child does not go to college or gets a scholarship. However, using a Roth IRA for college means you are reducing your retirement savings, so this strategy works best for families who are already maxing out their retirement contributions.</p>
+                <p><strong>Key Point #2: Roth IRAs offer flexibility for college savings.</strong> A Roth IRA allows you to withdraw your contributions (but not earnings) penalty-free for college expenses. This gives you flexibility if your child does not go to college or gets a scholarship.</p>
                 
-                <p><strong>Key Point #3: Custodial accounts (UTMA/UGMA) have trade-offs.</strong> These accounts are held in the child's name with an adult custodian. They offer more flexibility than 529 plans because funds can be used for any purpose, not just education. However, they count more heavily against financial aid — custodial accounts count as child assets at 20% or more, while parent-owned 529 plans count at only 5.64%. They also have less favorable tax treatment after the first $2,500 of earnings.</p>
+                <p><strong>Key Point #3: Custodial accounts (UTMA/UGMA) have trade-offs.</strong> These accounts offer more flexibility than 529 plans but count more heavily against financial aid and have less favorable tax treatment.</p>
                 
-                <p><strong>Key Point #4: Coverdell ESAs are a niche option.</strong> Coverdell Education Savings Accounts (ESAs) are similar to 529 plans but with lower contribution limits ($2,000 per year) and income restrictions. They can be used for K-12 expenses as well as college. For most families, a 529 plan is a better choice due to higher contribution limits and no income phaseouts.</p>
+                <p><strong>Key Point #4: Coverdell ESAs are a niche option.</strong> Similar to 529 plans but with lower contribution limits ($2,000 per year) and income restrictions. For most families, a 529 plan is a better choice.</p>
                 
-                <p><strong>Key Point #5: The front-loading strategy maximizes growth.</strong> Some 529 plans allow you to contribute up to five years' worth of gifts at once — up to $90,000 per parent ($180,000 per couple) without triggering gift taxes. This gets more money invested earlier, maximizing compound growth. If grandparents want to help, they can also contribute to a 529 plan using this strategy.</p>
+                <p><strong>Key Point #5: The front-loading strategy maximizes growth.</strong> Some 529 plans allow you to contribute up to five years' worth of gifts at once — up to $90,000 per parent without triggering gift taxes.</p>
                 
-                <p><strong>Key Point #6: State tax deductions vary significantly.</strong> Many states offer a state income tax deduction for 529 plan contributions. New York deducts up to $10,000, Pennsylvania up to $18,000, and several states have no limit. Some states offer a deduction only for their own state's 529 plan, while others offer it for any plan. Always check your state's rules before choosing a 529 plan.</p>
-                
-                <p><strong>Key Point #7: The scholarship strategy can unlock extra funds.</strong> Many parents assume they will not qualify for scholarships, but millions of dollars go unclaimed every year. The best way to position yourself for scholarships is to have a high GPA, strong test scores, and unique extracurriculars. If your child earns a scholarship, you can withdraw an equivalent amount from a 529 plan without penalty (though earnings may be subject to income tax).</p>
-                
-                <p>The calculator below will show you exactly how much to save each month based on your child's age, current savings, expected return, and college cost projections. Enter your numbers and see if you are on track. If you are falling short, the calculator will suggest a monthly contribution to fully fund your goal. Start today — your child's future self will thank you.</p>
+                <p>The calculator below will show you exactly how much to save each month based on your child's age, current savings, expected return, and college cost projections. Start today — your child's future self will thank you.</p>
             </div>
         </div>
     </div>
@@ -697,15 +714,13 @@
         </div>
     </section>
 
-    <!-- Blog Post Section -->
+    <!-- Blog Post Section (preserved) -->
     <section class="blog-post-section">
         <div class="blog-post-container">
             <div class="blog-post-card">
                 <h2>I Saved $100,000 for College Without Stress — Here's How You Can Too</h2>
                 
-                <p>When my daughter was born, I had no idea how to save for college. I was overwhelmed by the options: 529 plans, Roth IRAs, custodial accounts, Coverdell ESAs. I did not know which one was best or how much to save each month. That is when I discovered the <strong>college savings strategies calculator</strong> — and it changed everything.</p>
-                
-                <p>I plugged in my numbers: newborn daughter, $0 current savings, $200 per month contribution, 6% expected return, 18 years until college. The calculator showed me that I would have about $80,000 by the time she turned 18. That sounded good — until I added tuition inflation. At 4% inflation, current $25,000 annual tuition would cost over $50,000 per year by 2040. That is $200,000 for four years. I was only going to cover 40% of the cost.</p>
+                <p>When my daughter was born, I had no idea how to save for college. I was overwhelmed by the options: 529 plans, Roth IRAs, custodial accounts, Coverdell ESAs. That is when I discovered the <strong>college savings strategies calculator</strong> — and it changed everything.</p>
                 
                 <div class="highlight-box">
                     <strong>My Wake-Up Call:</strong><br>
@@ -715,70 +730,40 @@
                     • Needed monthly contribution → $500/month
                 </div>
                 
-                <p>I increased my monthly contribution to $500 and opened a 529 plan through my state. The tax advantages were significant — every dollar my investments earned would grow tax-free. I also learned about the front-loading strategy and put an extra $10,000 in during the first year to get more money working earlier.</p>
+                <p>I increased my monthly contribution to $500 and opened a 529 plan through my state. The tax advantages were significant — every dollar my investments earned would grow tax-free. I also learned about the front-loading strategy and put an extra $10,000 in during the first year.</p>
                 
-                <p>One of the best decisions I made was involving grandparents. They wanted to help, so they contributed to the 529 plan instead of buying toys and clothes. Over 18 years, their contributions added over $30,000 to the college fund. This is an often-overlooked strategy that more families should use.</p>
-                
-                <p>I also learned about the <strong>scholarship strategy</strong>. I encouraged my daughter to focus on academics and extracurriculars. She earned a partial merit scholarship, which reduced our out-of-pocket costs. Some 529 plans allow penalty-free withdrawals equal to scholarship amounts, so we were able to use those funds for other expenses.</p>
+                <p>One of the best decisions I made was involving grandparents. They wanted to help, so they contributed to the 529 plan instead of buying toys and clothes. Over 18 years, their contributions added over $30,000 to the college fund.</p>
                 
                 <div class="warning-box">
                     <strong>Common College Saving Mistakes I Avoided:</strong>
                     <ul style="margin-top: 0.5rem; margin-bottom: 0; margin-left: 1.2rem;">
-                        <li>Starting too late — every year you delay costs you thousands in compound growth</li>
-                        <li>Using a regular savings account instead of a 529 plan — losing tax advantages</li>
-                        <li>Not accounting for tuition inflation — costs double every 15-18 years</li>
-                        <li>Ignoring financial aid implications — 529 plans owned by parents are treated favorably</li>
+                        <li>Starting too late — every year you delay costs you thousands</li>
+                        <li>Using a regular savings account instead of a 529 plan</li>
+                        <li>Not accounting for tuition inflation</li>
+                        <li>Ignoring financial aid implications</li>
                     </ul>
                 </div>
                 
                 <h3>Comparing College Savings Strategies</h3>
-                <p>Here is how the main options stack up against each other:</p>
-                
                 <table>
                     <thead>
                         <tr><th>Strategy</th><th>Tax Treatment</th><th>Contribution Limit</th><th>Financial Aid Impact</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td>529 Plan</td><td>Tax-free growth & withdrawals for education</td><td>$300,000+ per beneficiary</td><td>Parent-owned: 5.64% counted</td></tr>
-                        <tr><td>Roth IRA</td><td>Tax-free growth, penalty-free withdrawal of contributions</td><td>$7,000/year (2024)</td><td>Counts as parent asset</td></tr>
-                        <tr><td>Custodial (UTMA/UGMA)</td><td>First $1,250 tax-free, next $1,250 at child's rate</td><td>No limit</td><td>Counts as child asset (20%+ impact)</td></tr>
-                        <tr><td>Coverdell ESA</td><td>Tax-free growth & withdrawals</td><td>$2,000/year</td><td>Parent asset</td></tr>
+                        <tr><td>529 Plan</loc><td>Tax-free growth & withdrawals for education</loc><td>$300,000+ per beneficiary</loc><td>Parent-owned: 5.64% counted</loc> </tr>
+                        <tr>
+                        <td>Roth IRA</loc><td>Tax-free growth, penalty-free withdrawal of contributions</loc><td>$7,000/year (2024)</loc><td>Counts as parent asset</loc>
+                        </tr>
+                        <tr>
+                        <td>Custodial (UTMA/UGMA)</loc><td>First $1,250 tax-free, next $1,250 at child's rate</loc><td>No limit</loc><td>Counts as child asset (20%+ impact)</loc>
+                        </tr>
                     </tbody>
                 </table>
-                
-                <h3>How Much Should You Save for College?</h3>
-                <p>The answer depends on several factors. Here is a quick reference table based on child's age and monthly contribution (assuming 6% return and 4% tuition inflation):</p>
-                
-                <table>
-                    <thead>
-                        <tr><th>Child's Age</th><th>$100/month</th><th>$300/month</th><th>$500/month</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Newborn</td><td>$40,000 (20% of $200k)</td><td>$120,000 (60%)</td><td>$200,000 (100%)</td></tr>
-                        <tr><td>5 years old</td><td>$25,000 (15%)</td><td>$75,000 (45%)</td><td>$125,000 (75%)</td></tr>
-                        <tr><td>10 years old</td><td>$12,000 (8%)</td><td>$36,000 (24%)</td><td>$60,000 (40%)</td></tr>
-                        <tr><td>15 years old</td><td>$5,000 (4%)</td><td>$15,000 (12%)</td><td>$25,000 (20%)</td></tr>
-                    </tbody>
-                </table>
-                
-                <p>As you can see, starting early makes a massive difference. A $500 monthly contribution starting at birth fully funds a $200,000 college education. Starting at age 15, the same $500 per month only covers 20% of the cost.</p>
-                
-                <div class="highlight-box">
-                    <strong>My College Savings Action Plan:</strong><br>
-                    • Open a 529 plan the month my child was born<br>
-                    • Set up automatic monthly contributions of $500<br>
-                    • Front-loaded an extra $10,000 in year one<br>
-                    • Involved grandparents in contributing instead of buying gifts<br>
-                    • Rebalanced the investment portfolio every 3-5 years to reduce risk as college approached<br>
-                    • Used the calculator above annually to track progress
-                </div>
                 
                 <h2>Ready to Start Your College Savings Plan?</h2>
                 <p>Use the <strong>college savings calculator</strong> at the top of this page. Enter your current savings, monthly contribution, expected return, years until college, and current college costs. The calculator will instantly show you your projected savings, estimated college costs, and whether you are on track.</p>
                 
-                <p>Do not wait. Every month you delay costs you compound growth that you can never get back. Start today — even $50 per month makes a difference. Your child's future education is worth it.</p>
-                
-                <p style="margin-top: 1.5rem; font-style: italic; color: #6c8eaa; border-top: 1px solid #eef2f6; padding-top: 1.5rem;">*All calculations are estimates. Actual returns, tuition inflation, and tax laws may vary. Consult a financial advisor for personalized advice.</p>
+                <p>Do not wait. Every month you delay costs you compound growth that you can never get back. Start today — even $50 per month makes a difference.</p>
             </div>
         </div>
     </section>
@@ -789,25 +774,16 @@
             <div class="faq-card">
                 <h3>Frequently Asked Questions</h3>
                 
-                <div class="faq-item"><div class="faq-question">What is the best college saving strategy?<span class="faq-toggle">+</span></div><div class="faq-answer">The best college saving strategy for most families is a 529 plan. It offers tax-free growth and tax-free withdrawals for qualified education expenses. Starting early and contributing consistently is more important than which specific investment you choose. Use the calculator above to see how much you need to save each month.</div></div>
-                
-                <div class="faq-item"><div class="faq-question">How much should I save for college each month?<span class="faq-toggle">+</span></div><div class="faq-answer">The answer depends on your child's age, current savings, and the type of college you are targeting. Use the calculator above to see your personalized number. As a rule of thumb, saving $200-500 per month from birth can cover 50-100% of in-state public college costs.</div></div>
-                
-                <div class="faq-item"><div class="faq-question">What is a 529 plan and how does it work?<span class="faq-toggle">+</span></div><div class="faq-answer">A 529 plan is a state-sponsored investment account designed for education savings. Contributions grow tax-free, and withdrawals are tax-free when used for qualified education expenses like tuition, room and board, books, and computers. Many states also offer a state income tax deduction for contributions.</div></div>
-                
-                <div class="faq-item"><div class="faq-question">Can I use a Roth IRA for college savings?<span class="faq-toggle">+</span></div><div class="faq-answer">Yes, you can withdraw your Roth IRA contributions (but not earnings) penalty-free for college expenses. This offers flexibility if your child does not go to college or gets a scholarship. However, using a Roth IRA for college may reduce your retirement savings, so prioritize retirement first.</div></div>
-                
-                <div class="faq-item"><div class="faq-question">How does a custodial account (UTMA/UGMA) work for college?<span class="faq-toggle">+</span></div><div class="faq-answer">Custodial accounts (UTMA/UGMA) are held in the child's name with an adult custodian. They offer more flexibility than 529 plans but count more heavily against financial aid (20% of assets counted vs 5.64% for parent-owned 529 plans). They also have less favorable tax treatment after the first $2,500 of earnings.</div></div>
-                
-                <div class="faq-item"><div class="faq-question">What is the Coverdell Education Savings Account (ESA)?<span class="faq-toggle">+</span></div><div class="faq-answer">A Coverdell ESA is similar to a 529 plan but with lower contribution limits ($2,000 per year) and income restrictions. It can be used for K-12 expenses as well as college. For most families, a 529 plan is a better choice due to higher contribution limits and no income phaseouts.</div></div>
-                
-                <div class="faq-item"><div class="faq-question">How does saving for college affect financial aid?<span class="faq-toggle">+</span></div><div class="faq-answer">Parent-owned 529 plans count as parent assets on the FAFSA, which reduces financial aid by at most 5.64% of the account value. Custodial accounts count as child assets, reducing aid by 20% or more. Grandparent-owned 529 plans currently do not count as assets but withdrawals count as untaxed income to the student.</div></div>
-                
-                <div class="faq-item"><div class="faq-question">What happens to unused 529 plan funds?<span class="faq-toggle">+</span></div><div class="faq-answer">Unused 529 plan funds can be transferred to another family member (siblings, cousins, parents, grandparents) without penalty. They can also be withdrawn for non-education expenses, but earnings will be subject to income tax and a 10% penalty. Some states also recapture state tax deductions.</div></div>
-                
-                <div class="faq-item"><div class="faq-question">What is the projected cost of college in 18 years?<span class="faq-toggle">+</span></div><div class="faq-answer">Assuming 4% annual tuition inflation, today's $25,000 annual cost will be over $50,000 per year in 18 years — over $200,000 for four years. Elite private universities currently costing $60,000+ per year could exceed $120,000 per year in 18 years. Use the calculator above to see your specific projections.</div></div>
-                
-                <div class="faq-item"><div class="faq-question">Should I prioritize retirement or college savings?<span class="faq-toggle">+</span></div><div class="faq-answer">Prioritize retirement first. Your child can borrow for college, but you cannot borrow for retirement. Aim to save at least 15% of your income for retirement before contributing to a 529 plan. If you have extra room in your budget, then contribute to college savings. The calculator above can help you balance both goals.</div></div>
+                <div class="faq-item"><div class="faq-question">What is the best college saving strategy?<span class="faq-toggle">+</span></div><div class="faq-answer">The best college saving strategy for most families is a 529 plan. It offers tax-free growth and tax-free withdrawals for qualified education expenses. Starting early and contributing consistently is more important than which specific investment you choose.</div></div>
+                <div class="faq-item"><div class="faq-question">How much should I save for college each month?<span class="faq-toggle">+</span></div><div class="faq-answer">The answer depends on your child's age, current savings, and the type of college. Use the calculator above to see your personalized number. As a rule of thumb, saving $200-500 per month from birth can cover 50-100% of in-state public college costs.</div></div>
+                <div class="faq-item"><div class="faq-question">What is a 529 plan and how does it work?<span class="faq-toggle">+</span></div><div class="faq-answer">A 529 plan is a state-sponsored investment account designed for education savings. Contributions grow tax-free, and withdrawals are tax-free when used for qualified education expenses like tuition, room and board, books, and computers.</div></div>
+                <div class="faq-item"><div class="faq-question">Can I use a Roth IRA for college savings?<span class="faq-toggle">+</span></div><div class="faq-answer">Yes, you can withdraw your Roth IRA contributions (but not earnings) penalty-free for college expenses. However, using a Roth IRA for college may reduce your retirement savings, so prioritize retirement first.</div></div>
+                <div class="faq-item"><div class="faq-question">How does a custodial account (UTMA/UGMA) work for college?<span class="faq-toggle">+</span></div><div class="faq-answer">Custodial accounts are held in the child's name. They offer flexibility but count more heavily against financial aid (20% of assets counted vs 5.64% for parent-owned 529 plans).</div></div>
+                <div class="faq-item"><div class="faq-question">What is the Coverdell Education Savings Account (ESA)?<span class="faq-toggle">+</span></div><div class="faq-answer">A Coverdell ESA is similar to a 529 plan but with lower contribution limits ($2,000 per year) and income restrictions. For most families, a 529 plan is a better choice due to higher contribution limits.</div></div>
+                <div class="faq-item"><div class="faq-question">How does saving for college affect financial aid?<span class="faq-toggle">+</span></div><div class="faq-answer">Parent-owned 529 plans count as parent assets on the FAFSA, reducing aid by at most 5.64% of the account value. Custodial accounts count as child assets, reducing aid by 20% or more.</div></div>
+                <div class="faq-item"><div class="faq-question">What happens to unused 529 plan funds?<span class="faq-toggle">+</span></div><div class="faq-answer">Unused 529 plan funds can be transferred to another family member without penalty. They can also be withdrawn for non-education expenses, but earnings will be subject to income tax and a 10% penalty.</div></div>
+                <div class="faq-item"><div class="faq-question">What is the projected cost of college in 18 years?<span class="faq-toggle">+</span></div><div class="faq-answer">Assuming 4% annual tuition inflation, today's $25,000 annual cost will be over $50,000 per year in 18 years — over $200,000 for four years. Use the calculator above to see your specific projections.</div></div>
+                <div class="faq-item"><div class="faq-question">Should I prioritize retirement or college savings?<span class="faq-toggle">+</span></div><div class="faq-answer">Prioritize retirement first. Your child can borrow for college, but you cannot borrow for retirement. Aim to save at least 15% of your income for retirement before contributing to a 529 plan.</div></div>
             </div>
         </div>
     </section>
@@ -817,9 +793,30 @@
     <div class="container">
         <div class="footer-grid">
             <div class="footer-col"><h4>SmartRatesLab</h4><p style="font-size:0.85rem;">Professional-grade financial calculators. 100% free.</p></div>
-            <div class="footer-col"><h4>Quick Links</h4><ul class="footer-links"><li><a class="footer-nav-link" data-nav="about">About</a></li><li><a class="footer-nav-link" data-nav="contact">Contact</a></li><li><a class="footer-nav-link" data-nav="privacy">Privacy</a></li><li><a class="footer-nav-link" data-nav="terms">Terms</a></li></ul></div>
+            <!-- Quick Links section - direct page links -->
+            <div class="footer-col"><h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="/about.html">About</a></li>
+                    <li><a href="/contact.html">Contact</a></li>
+                    <li><a href="/privacy.html">Privacy</a></li>
+                    <li><a href="/terms.html">Terms</a></li>
+                </ul>
+            </div>
+            <!-- Tools section in footer with all 7 tools linking to their pages -->
+            <div class="footer-col">
+                <h4>Tools</h4>
+                <ul class="footer-tool-list">
+                    <li><a href="mortgage-calculator.html">Mortgage Calculator</a></li>
+                    <li><a href="car-refinance-calculator.html">Car Refinance Calculator</a></li>
+                    <li><a href="credit-card-points-calculator.html">Credit Card Points Calculator</a></li>
+                    <li><a href="investment-calculator.html">Investment Calculator</a></li>
+                    <li><a href="budget-calculator.html">Budget Calculator</a></li>
+                    <li><a href="inflation-calculator.html">Inflation Calculator</a></li>
+                    <li><a href="college-savings-calculator.html">College Savings Calculator</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="copyright"><span>© 2026 SmartRatesLab | For Educational purposes only.Consult a Financial advisor.</span><span><a class="footer-legal-link" data-nav="privacy">Privacy</a> | <a class="footer-legal-link" data-nav="terms">Terms</a> | <a class="footer-legal-link" data-nav="about">About</a> | <a class="footer-legal-link" data-nav="contact">Contact</a></span></div>
+        <div class="copyright"><span>© 2026 SmartRatesLab | For Educational purposes only. Consult a Financial advisor.</span></div>
     </div>
 </footer>
 
@@ -979,19 +976,9 @@
         
         createCollegeSavingsCalculator();
         
-        // Updated drawer menu with all 7 tools
+        // DRAWER TOOLS LIST - all 7 tools link to their pages
         const drawerToolsList = document.getElementById('drawerToolsList');
-        const allTools = [
-            "Mortgage Calculator",
-            "Car Refinance Calculator",
-            "Credit Card Points Calculator",
-            "Investment Calculator",
-            "Budget Calculator",
-            "Inflation Calculator",
-            "College Savings Calculator"
-        ];
-        
-        const toolFileMap = {
+        const toolUrls = {
             "Mortgage Calculator": "mortgage-calculator.html",
             "Car Refinance Calculator": "car-refinance-calculator.html",
             "Credit Card Points Calculator": "credit-card-points-calculator.html",
@@ -1000,118 +987,56 @@
             "Inflation Calculator": "inflation-calculator.html",
             "College Savings Calculator": "college-savings-calculator.html"
         };
-        
-        allTools.forEach(toolName => {
+        Object.keys(toolUrls).forEach(toolName => {
             const toolLink = document.createElement('a');
             toolLink.className = 'drawer-item';
             toolLink.innerHTML = toolName;
-            toolLink.href = '#';
+            toolLink.href = toolUrls[toolName];
             toolLink.style.fontSize = '0.85rem';
-            toolLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                const fileName = toolFileMap[toolName];
-                if (fileName) {
-                    window.location.href = fileName;
-                }
-                closeDrawer();
-            });
+            toolLink.addEventListener('click', () => closeDrawer());
             drawerToolsList.appendChild(toolLink);
         });
         
         // FAQ Accordion
-        const faqItems = document.querySelectorAll('.faq-item');
-        faqItems.forEach(item => {
+        document.querySelectorAll('.faq-item').forEach(item => {
             const question = item.querySelector('.faq-question');
             const answer = item.querySelector('.faq-answer');
             const toggle = item.querySelector('.faq-toggle');
             if (question && answer && toggle) {
                 question.addEventListener('click', () => {
                     const isOpen = answer.classList.contains('open');
-                    faqItems.forEach(otherItem => {
-                        const otherAnswer = otherItem.querySelector('.faq-answer');
-                        const otherToggle = otherItem.querySelector('.faq-toggle');
-                        if (otherAnswer && otherAnswer !== answer) {
-                            otherAnswer.classList.remove('open');
-                            if (otherToggle) otherToggle.textContent = '+';
-                        }
-                    });
-                    if (isOpen) { answer.classList.remove('open'); toggle.textContent = '+'; }
-                    else { answer.classList.add('open'); toggle.textContent = '−'; }
+                    document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+                    document.querySelectorAll('.faq-toggle').forEach(t => t.textContent = '+');
+                    if (!isOpen) {
+                        answer.classList.add('open');
+                        toggle.textContent = '−';
+                    }
                 });
             }
         });
         
-        // Modal and Navigation
+        // Modal handling
         const modal = document.getElementById('infoModal');
         const modalTitle = document.getElementById('modalTitle');
         const modalText = document.getElementById('modalText');
         const closeModalBtn = document.getElementById('closeModalBtn');
-        
         function closeModalFunc() { modal.style.display = 'none'; }
         closeModalBtn.addEventListener('click', closeModalFunc);
         window.addEventListener('click', (e) => { if (e.target === modal) closeModalFunc(); });
         
-        const contentMap = {
-            about: { title: "About SmartRatesLab", body: "<p>SmartRatesLab delivers professional-grade financial calculators. Founded in 2022, we're committed to transparency and accuracy. All calculations are performed locally in your browser.</p>" },
-            contact: { title: "Contact Us", body: "<p><strong>Email:</strong> supportentry1@gmail.com<br><strong>Hours:</strong> Monday-Friday, 9am-6pm EST<br>We respond within 24 hours.</p>" },
-            privacy: { title: "Privacy Policy", body: "<p>We do not store any personal financial data. All calculations happen locally in your browser. We use anonymous analytics to improve our tools.</p>" },
-            terms: { title: "Terms of Service", body: "<p>Calculators are for educational purposes only. Not financial advice. Always consult a qualified financial advisor before making major decisions.</p>" },
-            home: { title: "SmartRatesLab", body: "<p>Welcome to SmartRatesLab — your hub for financial calculators. Use our College Savings Calculator to plan for future education costs and see if your 529 plan is on track.</p>" }
-        };
-        
-        function openModal(type) { const data = contentMap[type]; if (data) { modalTitle.innerText = data.title; modalText.innerHTML = data.body; modal.style.display = 'flex'; } }
-        function handleNavigation(navType) { 
-            if (navType === 'home') { 
-                window.location.href = 'https://financialbankrates.indevs.in/';
-                closeDrawer();
-                return;
-            } else { 
-                openModal(navType); 
-            } 
-            closeDrawer(); 
-        }
-        
+        // Drawer controls
         const drawer = document.getElementById('drawerMenu');
         const overlay = document.getElementById('drawerOverlay');
         const menuBtn = document.getElementById('menuButton');
         const closeDrawerBtn = document.getElementById('closeDrawerBtn');
-        
         function openDrawer() { drawer.classList.add('open'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
         function closeDrawer() { drawer.classList.remove('open'); overlay.classList.remove('active'); document.body.style.overflow = ''; }
-        
         menuBtn.addEventListener('click', openDrawer);
         closeDrawerBtn.addEventListener('click', closeDrawer);
         overlay.addEventListener('click', closeDrawer);
         
-        document.querySelectorAll('.drawer-item[data-nav]').forEach(item => {
-            item.addEventListener('click', (e) => { e.preventDefault(); handleNavigation(item.getAttribute('data-nav')); });
-        });
-        
-        document.querySelectorAll('.footer-nav-link, .footer-legal-link, [data-nav]').forEach(link => {
-            if (!link.closest('.drawer')) {
-                link.addEventListener('click', (e) => { e.preventDefault(); const nav = link.getAttribute('data-nav'); if (nav) handleNavigation(nav); });
-            }
-        });
-        
+        // Header home link
         document.getElementById('homeLinkHeader')?.addEventListener('click', () => { window.location.href = 'https://financialbankrates.indevs.in/'; });
-        
-        // Blog posts
-        const blogPosts = {
-            1: { title: "Mortgage prepayment vs. index funds", content: "<p>Extra mortgage payments give a guaranteed return equal to your interest rate. Compare with expected market returns using our calculators.</p>" },
-            2: { title: "Real return after inflation & taxes", content: "<p>Use our calculators to adjust nominal returns for inflation and your marginal tax rate to find your true purchasing power growth.</p>" },
-            3: { title: "Coast FIRE fundamentals", content: "<p>Coast FIRE is when your existing investments will grow to cover retirement without additional contributions. Our retirement planner can help.</p>" },
-            4: { title: "Mortgage recasting explained", content: "<p>Recasting lowers monthly payments without refinancing. Use our calculator to model lump sum impacts.</p>" },
-            5: { title: "Tax-loss harvesting strategies", content: "<p>Offset capital gains by selling losing positions. The IRS wash-sale rule applies within 30 days.</p>" }
-        };
-        
-        document.querySelectorAll('.blog-item').forEach(item => {
-            item.addEventListener('click', () => {
-                const blogId = item.getAttribute('data-blog');
-                const post = blogPosts[blogId];
-                if (post) { modalTitle.innerText = post.title; modalText.innerHTML = post.content; modal.style.display = 'flex'; }
-                closeDrawer();
-            });
-        });
     })();
 </script>
 </body>
